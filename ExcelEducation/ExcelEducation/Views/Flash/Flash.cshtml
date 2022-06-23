@@ -5,26 +5,29 @@
 }
 
 <!-- data tables css -->
+
 <link rel="stylesheet" href="@Url.Content("https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css")">
 <link href="@Url.Content("~/Content/Custom.css")" rel="stylesheet" />
 
-<form id="frm_flash" method="post" action="#" role="form" novalidate="novalidate">
+<form id="frm_flash">
     <div class="row">
         <div class="col-md-12">
             <h4 class="text-primary">Home Page- Flash Photos</h4><hr />
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-4">
-            
+
             <span class="text-danger" style="font-weight: 600; color: #0026ff;">Title&nbsp;<span style="color: red; font-weight: 600;">*</span></span>
             @Html.TextBoxFor(Model => Model.FLASH_CAPTION, new { @class = "form-control md-static", placeholder = "Enter Caption", @required = "required" })
+            <label id="FLASH_CAPTION-error" class="error hide_column invalid-feedback" for="FLASH_CAPTION" style="">This field is required.</label>
             @Html.TextBoxFor(Model => Model.ACTION, new { @class = "hide_column", value = "1" })
             @Html.TextBoxFor(Model => Model.FLASH_ID, new { @class = "hide_column" })
         </div>
         <div class="col-md-2">
             <span class="text-danger" style="font-weight: 600; color: #0026ff;">Upload Image&nbsp;<span style="color: red; font-weight: 600;">*</span></span>
-            <input type="file" id="uploadfile" />
+            <input type="file" id="uploadfile" accept=".jpg, .jpeg, .png" required/>
         </div>
         <div class="col-md-2">
             <span class="text-danger" style="font-weight: 600; color: #0026ff;">Order No :&nbsp;<span style="color: red; font-weight: 600;">*</span></span>
@@ -40,10 +43,11 @@
         </div>
         <div class="col-md-4">
             <br />
-            <div class="btn btn-success has-ripple" data-type="success" data-from="top" data-align="right" id="btnsubmit">Submit</div>
+            <button class="btn btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="submit" id="btnsubmit">Submit</button>
             <div class="btn btn-primary has-ripple" data-type="success" data-from="top" data-align="right" id="btnreorder">Set Order</div>
         </div>
     </div>
+
     <div class="row">
         &nbsp;
     </div>
@@ -60,7 +64,8 @@
 <script src="@Url.Content("https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js")"></script>
 
 <script src="@Url.Content("~/Scripts/custom/FlashDatatable.js")"></script>
-
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/custom/Flash.js"></script>
 <script>
     var LoadRecord = "@Url.Content("~/Flash/loadRecord")"
     var AddEditDeleteRecord= "@Url.Content("~/Flash/addEditDeleteRecord")"
