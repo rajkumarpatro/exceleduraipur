@@ -53,7 +53,7 @@ var FlashTables = function () {
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                         var conf = 'return confirm("Are you sure to delete this record?")';
                         //var editbtn = "&nbsp; <i data-id='" + oData.FLASH_ID + "' id='btnedit_" + oData.FLASH_ID + "' class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green clsedit' ToolTip='Edit'></i>";
-                        var delbtn = "<i data-id='" + oData.FLASH_ID + "' id='btndel_" + oData.FLASH_ID + "' class='fa fa-trash text-danger clsdel' ToolTip='Delete' onclick='" + conf + "'></i>";
+                        var delbtn = "<i data-id='" + oData.FLASH_ID + "' id='btndel_" + oData.FLASH_ID + "' class='icon feather icon-trash-2 f-w-600 f-16 m-r-15 text-c-red clsdel' ToolTip='Delete' onclick='" + conf + "'></i>";
                         //$(nTd).html(editbtn + delbtn);
                         $(nTd).html(delbtn);
                     }
@@ -87,7 +87,7 @@ jQuery(document).ready(function () {
 
 $(document).ready(function () {
     document.title = "Flash";
-
+    //alert('ok');
     var table = $('#FlashTable').DataTable();
 
     
