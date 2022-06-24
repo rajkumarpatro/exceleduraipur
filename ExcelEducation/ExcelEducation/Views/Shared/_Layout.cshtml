@@ -4,6 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="@Url.Content("~/Content/admin/assets/images/favicon.ico")" type="image/x-icon">
+
     @*@Styles.Render("~/Content/admin/css")
         @Scripts.Render("~/bundles/modernizr")*@
 
@@ -40,18 +44,17 @@
                         <ul class="pcoded-submenu">
                             <li><a href="/Home">Change Password</a></li>
                             <li>@Html.ActionLink("Flash", "Index", "Flash")</li>
-                            <li><a href="/Keyword">Keywords</a></li>
+                            <li>@Html.ActionLink("Latest Updates", "Index", "LatestUpdates")</li>
                             <li><a href="/Report">Execute Search</a></li>
                             <li><a href="/Announcement/Settings">Alert Settings</a></li>
                             <li><a href="/Announcement/AlertReports">Alert Report</a></li>
                         </ul>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fa fa-bullhorn"></i></span><span class="pcoded-mtext">Announcements</span></a>
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="fa fa-list"></i></span><span class="pcoded-mtext">Menu</span></a>
                         <ul class="pcoded-submenu">
-                            <li><a href="/Watchlist">Watchlist Company</a></li>
-                            <li><a href="/Category">Category</a></li>
-                            <li><a href="/Announcement">Announcement</a></li>
+                            <li>@Html.ActionLink("Page Head", "Index", "PageHead")</li>
+                            <li>@Html.ActionLink("Sub Menu", "Index", "Page")</li>
                         </ul>
                     </li>
                 </ul>

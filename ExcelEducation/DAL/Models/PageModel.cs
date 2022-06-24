@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace DAL.Models
 {
-    public class Page
+    public class PageModel
     {
         public int PAGE_ID { get; set; }
         public int PAGE_HEAD_ID { get; set; }
@@ -19,5 +20,9 @@ namespace DAL.Models
         public bool IS_LINK { get; set; }
 
         public string LINK_URL { get; set; }
+
+        public List<SelectListItem> PAGE_LIST { get; set; } = new List<SelectListItem>();
+
+        public string ACTION { get; set; }
     }
 }

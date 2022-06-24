@@ -125,6 +125,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FlashController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LatestUpdatesController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PageHeadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -476,6 +480,7 @@
     <Content Include="Content\admin\assets\fonts\pct.woff" />
     <Content Include="Content\admin\assets\fonts\pctd41d.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\custom\LatestUpdatesDatatable.js" />
     <Content Include="Scripts\custom\FlashDatatable.js" />
     <Content Include="Scripts\custom\gbl.js" />
     <Content Include="Scripts\custom\jquery.dataTables.js" />
@@ -505,6 +510,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Flash\Flash.cshtml" />
+    <Content Include="Views\LatestUpdates\LatestUpdates.cshtml" />
+    <Content Include="Views\PageHead\PageHead.cshtml" />
+    <Content Include="Views\Page\Page.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

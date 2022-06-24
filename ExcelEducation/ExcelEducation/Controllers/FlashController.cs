@@ -16,7 +16,8 @@ namespace ExcelEducation.Controllers
     {
         // GET: Flash
         public ActionResult Index()
-        { FlashModel ob = new FlashModel();
+        { 
+            FlashModel ob = new FlashModel();
             ob.ACTION = "1";
             return View("Flash", ob);
         }
