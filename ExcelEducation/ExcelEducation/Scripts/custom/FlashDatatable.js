@@ -4,18 +4,33 @@ var FlashTables = function () {
     var table;
     var Watchlist = function () {
         table = $('#FlashTable');
-
-        //debugger;
-        // begin first table
-        //alert('called');
         table.dataTable({
             //"autowidth": "true",
             //"scrollX": true,
             "ajax": {
                 "url": LoadRecord,
                 "type": "GET",
-                "datatype": "json"
-            },//
+                "datatype": "json",
+                complete: function (data) {
+                    var data = [];
+                    for (i = 1; i <= 100; i++) {
+                        data.push({ id: i, text: i })
+                    }
+                    
+                    $('.gridFlashSelect').select2({
+                        data: data
+                    });
+
+                    gridFlashAction = "fromLoad"
+                    $('.gridFlashSelect').each(function () {
+                        //alert($(this).data('order'));
+                        $(this).val($(this).data('order'));
+                        $(this).select2().trigger('change');
+                       // $(this).select2("val", $(this).data('order'));
+                    });
+
+                }
+            },
             "columns": [
 
                 {
@@ -35,8 +50,9 @@ var FlashTables = function () {
                 {
                     "title": "ORDER", "data": "FLASH_ORDER",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        var txtorder = "<input id='txt_" + oData.FLASH_ID + "' style='width:50px;' type='text' value='" + oData.FLASH_ORDER + "'></input>";
-                        $(nTd).html(txtorder);
+                        var select = "<select data-order=" + oData.FLASH_ORDER +" data-id=" + oData.FLASH_ID + " class='col-sm-6 gridFlashSelect'></select>"
+                        //var txtorder = "<input id='txt_" + oData.FLASH_ID + "' style='width:50px;' type='text' value='" + oData.FLASH_ORDER + "'></input>";
+                        $(nTd).html(select);
                     }
                 },
 
@@ -44,7 +60,7 @@ var FlashTables = function () {
                     "title": "SHOW", "data": "FLASH_SHOW",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                         var showtext = (oData.FLASH_SHOW == true ? 'YES' : 'NO');
-                        var labelshow = "<label id='lnk_" + oData.FLASH_ID + "' class='LableText clsshow'>" + showtext + "</label>";
+                        var labelshow = "<label data-id='" + oData.FLASH_ID + "' data-FLASH_SHOW=" + oData.FLASH_SHOW + "  id='lnk_" + oData.FLASH_ID + "' class='grdflashshow LableText clsshow'>" + showtext + "</label>";
                         $(nTd).html(labelshow);
                     }
                 },
@@ -53,13 +69,13 @@ var FlashTables = function () {
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                         var conf = 'return confirm("Are you sure to delete this record?")';
                         //var editbtn = "&nbsp; <i data-id='" + oData.FLASH_ID + "' id='btnedit_" + oData.FLASH_ID + "' class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green clsedit' ToolTip='Edit'></i>";
-                        var delbtn = "<i data-id='" + oData.FLASH_ID + "' id='btndel_" + oData.FLASH_ID + "' class='fa fa-trash text-danger clsdel' ToolTip='Delete' onclick='" + conf + "'></i>";
+                        var delbtn = "<i data-id='" + oData.FLASH_ID + "' id='btndel_" + oData.FLASH_ID + "' class='icon feather icon-trash-2 f-w-600 f-16 m-r-15 text-c-red clsdel' ToolTip='Delete' ></i>";
                         //$(nTd).html(editbtn + delbtn);
                         $(nTd).html(delbtn);
                     }
                 },
 
-               
+
             ],
             dom: 'lBfrtip',
             buttons: ['excel', 'csv'],
@@ -87,59 +103,7 @@ jQuery(document).ready(function () {
 
 $(document).ready(function () {
     document.title = "Flash";
-
+    //alert('ok');
     var table = $('#FlashTable').DataTable();
-
-    
-
-    $('#FlashTable tbody').on('click', '.clsdel', function () {
-        //debugger
-        var id = $(this).attr("data-id");
-        
-        debugger
-
-        var flashid = id;
-        var flashcaption = '';
-        var filepath = '';
-        var flashorder =0;
-        var txtaction = '3';
-        var url = AddEditDeleteRecord;
-
-        $.ajax({
-            url: AddEditDeleteRecord,
-            type: "POST",
-            //contentType: "json",
-            //processData: false,
-            dataType: "json",
-            data: {
-                FLASH_ID: flashid,
-                FLASH_CAPTION: flashcaption,
-                FLASH_FILEPATH: filepath,
-                FLASH_ORDER: flashorder,
-                FLASH_SHOW: true,
-                ACTION: txtaction
-            },
-            beforeSend: function () {
-                $.blockUI();
-            },
-            success: function (msg) {
-                alert("Data Deleted Successfully");
-                FlashTables.reloadTable(); //reloads Exam datatable
-            },
-            error: function (err) {
-                
-                $.unblockUI();
-                alert("error", "Error occured", err.status + " " + err.statusText);
-            },
-            complete: function () {
-                $.unblockUI();
-                $('#FLASH_ID').val('');
-                $('#ACTION').val('1');
-            }
-        });
-    });
-
-    
-
 
 });
