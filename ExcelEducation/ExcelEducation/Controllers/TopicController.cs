@@ -19,7 +19,7 @@ namespace ExcelEducation.Controllers
         {
             return Json(new
             {
-                data = (await Menus.GetPageHead())
+                data = (await MenusDB.GetPageHead())
                 .Select(x => new { id = x.PAGE_HEAD_ID, text = x.PAGE_HEAD_NAME }).ToList()
             }, JsonRequestBehavior.AllowGet);
         }
@@ -28,7 +28,7 @@ namespace ExcelEducation.Controllers
         {
             return Json(new
             {
-                data = (await Menus.GetPage(pageHeadId))
+                data = (await MenusDB.GetPage(pageHeadId))
                 .Select(x => new { id = x.PAGE_ID, text = x.PAGE_NAME }).ToList()
             }, JsonRequestBehavior.AllowGet);
         }

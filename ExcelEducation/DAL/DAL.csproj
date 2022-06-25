@@ -71,11 +71,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
-    <Compile Include="Menus.cs" />
+    <Compile Include="MenusDB.cs" />
     <Compile Include="FlashDB.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="Models\FlashModel.cs" />
     <Compile Include="Models\LatestUpdatesModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PageFiles.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PagePhotos.cs" />

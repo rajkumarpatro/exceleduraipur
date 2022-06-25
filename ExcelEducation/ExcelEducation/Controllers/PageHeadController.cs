@@ -12,7 +12,7 @@ namespace ExcelEducation.Controllers
         // GET: PageHead
         public ActionResult Index()
         {
-            PageHeadModel ob = new PageHeadModel();
+            PageHead ob = new PageHead();
             ob.ACTION = "1";
             return View("PageHead", ob);
         }

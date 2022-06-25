@@ -8,7 +8,7 @@ namespace ExcelEducation.Controllers
         // GET: Page
         public ActionResult Index()
         {
-            PageModel ob = new PageModel();
+            Page ob = new Page();
             ob.ACTION = "1";
             return View("Page", ob);
         }

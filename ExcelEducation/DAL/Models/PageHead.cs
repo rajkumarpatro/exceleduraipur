@@ -14,5 +14,6 @@ namespace DAL.Models
 		public bool SHOW { get; set; }
 		public int REORDER { get; set; }
 		public List<SelectListItem> SelectPageHead { get; set; }
+		public string ACTION { get; set; }
 	}
 }

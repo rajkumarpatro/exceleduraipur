@@ -18,5 +18,6 @@ namespace DAL.Models
 		public bool IS_DEPARTMENT { get; set; }
 		public bool IS_LINK { get; set; }
 		public string LINK_URL { get; set; }
+		public string ACTION { get; set; }
 	}
 }

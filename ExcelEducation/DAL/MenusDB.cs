@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PDFReader
 {
-    public class Menus
+    public class MenusDB
     {
         public async static Task<List<PageHead>> GetPageHead()
         {
