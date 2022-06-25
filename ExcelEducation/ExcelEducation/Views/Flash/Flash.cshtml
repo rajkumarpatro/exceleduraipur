@@ -23,32 +23,35 @@
                             <div class="form-group">
                                 <label>Caption</label>
                                 @Html.TextBoxFor(Model => Model.FLASH_CAPTION, new { @class = "form-control", placeholder = "Enter Caption", @required = "required" })
+                                <label id="FLASH_CAPTION-error" class="error hide_column invalid-feedback" for="FLASH_CAPTION" style="">This field is required.</label>
                                 @Html.TextBoxFor(Model => Model.ACTION, new { @class = "hide_column", value = "1" })
                                 @Html.TextBoxFor(Model => Model.FLASH_ID, new { @class = "hide_column" })
                             </div>
                         </div>
-                            <div class="col-md-2">
-                                <label>Upload Image</label>
-                                <input type="file" id="uploadfile" />
-                            </div>
-                            <div class="col-md-2">
-                                <label>Order</label>
-                                <select class="form-control" id="ddl_order">
-                                    @{
-                                        for (int i = 1; i <= 100; i++)
-                                        {
-                                            <option value="@i">@i</option>
-                                        }
-                                    }
-                                </select>
-                                @Html.TextBoxFor(Model => Model.FLASH_ORDER, new { @class = "hide_column" })
-                            </div>
-                            <div class="col-md-4">
-                                <br />
-                                <div class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" id="btnsubmit">Submit</div>
-                                <div class="btn notifications btn-primary has-ripple" data-type="success" data-from="top" data-align="right" id="btnsetorder">Set Order</div>
-                            </div>
+                        <div class="col-md-2">
+                            <label>Upload Image</label>
+                            <input type="file" id="uploadfile" accept=".jpg, .jpeg, .png"  required/>
+                            <label id="FLASH_ORDER-error" class="error hide_column invalid-feedback" for="uploadfile" style="">This field is required.</label>
                         </div>
+                        <div class="col-md-2">
+                            <label>Order</label>
+                            <select class="form-control" id="FLASH_ORDER" required>
+                                @{
+                                    for (int i = 1; i <= 100; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                }
+                            </select>
+                            
+                            @Html.TextBoxFor(Model => Model.FLASH_ORDER, new { @class = "hide_column" })
+                        </div>
+                        <div class="col-md-4">
+                            <br />
+                            <button class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="submit" id="btnsubmit">Submit</button>
+                            <div class="btn notifications btn-primary has-ripple" data-type="success" data-from="top" data-align="right" id="btnsetorder">Set Order</div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="dt-responsive table-responsive">
@@ -79,12 +82,18 @@
 
 <!--Custom-->
 <script src="@Url.Content("~/Scripts/custom/FlashDatatable.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/Flash.js")"></script>
 
 <script>
     var LoadRecord = "@Url.Content("~/Flash/loadRecord")"
     var AddEditDeleteRecord= "@Url.Content("~/Flash/addEditDeleteRecord")"
     var EditRecord = "@Url.Content("~/Flash/editRecord")"
     var DeleteRecord = "@Url.Content("~/Flash/deleteRecord")"
+    var ToggleFlash = "@Url.Content("~/Flash/ToggleFlash")"
+    var DeleteFlash = "@Url.Content("~/Flash/DeleteFlash")"
+    var SetOrder = "@Url.Content("~/Flash/SetOrder")"
+    
 
     var UploadFileUrl = "@Url.Content("~/Flash/uploadFile")"
 </script>

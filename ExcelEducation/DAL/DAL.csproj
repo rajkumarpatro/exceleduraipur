@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="FlashDB.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="Models\FlashModel.cs" />
     <Compile Include="Models\LatestUpdatesModel.cs" />
