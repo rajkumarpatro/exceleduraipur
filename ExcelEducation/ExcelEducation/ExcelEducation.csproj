@@ -124,6 +124,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FlashController.cs" />
+    <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LatestUpdatesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -481,6 +482,7 @@
     <Content Include="Content\admin\assets\fonts\pct.woff" />
     <Content Include="Content\admin\assets\fonts\pctd41d.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\custom\Topic.js" />
     <Content Include="Scripts\custom\LatestUpdatesDatatable.js" />
     <Content Include="Scripts\custom\Flash.js" />
     <Content Include="Scripts\custom\FlashDatatable.js" />
@@ -512,6 +514,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Flash\Flash.cshtml" />
+    <Content Include="Views\Topic\Index.cshtml" />
     <Content Include="Views\LatestUpdates\LatestUpdates.cshtml" />
     <Content Include="Views\PageHead\PageHead.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />
