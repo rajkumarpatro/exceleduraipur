@@ -48,7 +48,6 @@ namespace ExcelEducation.Controllers
             return await FlashDB.SetOrder(order, flashId);
         }
 
-        [HttpPost]
         public async Task<bool> DeleteFlash(int flashId)
         {
             return await FlashDB.DeleteFlash(flashId);

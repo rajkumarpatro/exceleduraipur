@@ -1,59 +1,7 @@
-﻿//Get the button
-var mybutton = document.getElementById("myBtn");
-
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function () { scrollFunction() };
-
-function scrollFunction() {
-    $("#myBottomBtn").show();
-    if (document.documentElement.scrollTop == 0) {
-        $("#myBottomBtn").show();
-    }
-    else { $("#myBottomBtn").hide(); }
-
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-    } else {
-        mybutton.style.display = "none";
-    }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
-function bottomFunction() {
-    document.body.scrollTop = $(document).height();
-    document.documentElement.scrollTop = $(document).height();
-}
-
+﻿
 //notification
 function notify(title, message, type) {
-    //$.notify({
-    //    title: title,
-    //    message: message
-    //}, {
-    //    type: type,
-    //    allow_dismiss: false,
-    //    label: 'Cancel',
-    //    className: 'btn-xs btn-inverse',
-    //    placement: {
-    //        from: 'top',
-    //        align: 'right'
-    //    },
-    //    delay: 2500,
-    //    animate: {
-    //        enter: 'animated fadeInRight',
-    //        exit: 'animated fadeOutRight'
-    //    },
-    //    offset: {
-    //        x: 30,
-    //        y: 30
-    //    }
-    //});
+   
 
     $.notify({
        // icon: icon,
@@ -95,15 +43,3 @@ function notify(title, message, type) {
             '</div>'
     });
 }
-$(document).ready(function () {
-    $(document).ajaxError(function () {
-       
-        //notify("Failed", "Something went wrong", "danger");
-    });
-
-    $(document).ajaxSuccess(function (event, jqxhr, settings, thrownError) {
-        //debugger;
-        //if (settings.url.indexOf("toggleFlash") !== -1)
-        //notify("Success", "Flash updated succesfully", "success");
-    });
-})

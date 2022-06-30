@@ -89,6 +89,22 @@ namespace PDFReader
 
             return res > 0;
         }
+        public async static Task<List<FlashModel>> AddTopicDetail()
+        {
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                DynamicParameters dp = new DynamicParameters();
+                dp.Add("FLASH_ID", 0);
+                dp.Add("FLASH_CAPTION", "");
+                dp.Add("FLASH_FILEPATH", "");
+                dp.Add("FLASH_ORDER", 0);
+                dp.Add("FLASH_SHOW", true);
+                dp.Add("ACTION", "4");
+                
+                var res = await db.QueryAsync<FlashModel>("SP_FLASH", dp, commandType: CommandType.StoredProcedure);
+                return res.ToList();
+            }
+        }
     }
 
 }

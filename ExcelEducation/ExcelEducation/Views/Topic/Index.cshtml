@@ -1,8 +1,16 @@
 ﻿<!-- data tables css -->
 <link rel="stylesheet" href="@Url.Content("~/Content/admin/assets/css/plugins/dataTables.bootstrap4.min.css")">
 <link href="@Url.Content("~/Content/admin/Custom.css")" rel="stylesheet" />
+<!-- datepicker -->
+<link href="~/Content/admin/assets/css/plugins/daterangepicker.css" rel="stylesheet" />
+<script src="~/Content/admin/assets/js/plugins/moment.min.js"></script>
+<script src="~/Content/admin/assets/js/plugins/daterangepicker.js"></script>
+<!-- toggle -->
+<link href="~/Scripts/BootstrapToggle/bootstrap4-toggle.min.css" rel="stylesheet" />
+<script src="~/Scripts/BootstrapToggle/bootstrap4-toggle.min.js"></script>
 
-<div class="row">
+
+<div class="row topic" style="padding:0px; margin:0px">
 
     <div class="col-sm-12">
         <div class="card">
@@ -12,58 +20,78 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label">Page Head</label>
                             <select class="clsddlpagehead col-sm-12" required></select>
                         </div>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label">Sub menu</label>
                             <select class="clsddlpage col-sm-12"></select>
                         </div>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label">Topic</label>
                             <select class="clsddltopic col-sm-12"></select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="dt-responsive table-responsive">
-                            <table id="FlashTable" class="table table-bordered">
-                            </table>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label style="visibility: hidden" class="control-label">Topic</label>
+                            <div>
+                                <button style="display: none" class="btn btn-sm btn-outline-primary" id="btnAddData" type="submit">Add data</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
+                <table id="griddtable" class="table table-bordered">
+                </table>
+
             </div>
         </div>
     </div>
 </div>
-
-
+<div class="topic-content"></div>
+<div class="topic-files"></div>
 
 <script src="@Url.Content("~/Content/admin/assets/js/plugins/jquery.dataTables.min.js")"></script>
 <script src="@Url.Content("~/Content/admin/assets/js/plugins/dataTables.bootstrap4.min.js")"></script>
 
-<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.colVis.min.js")"></script>
-<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.print.min.js")"></script>
-<script src="@Url.Content("~/Content/admin/assets/js/plugins/pdfmake.min.js")"></script>
-<script src="@Url.Content("~/Content/admin/assets/js/plugins/jszip.min.js")"></script>
-<script src="@Url.Content("~/Content/admin/assets/js/plugins/dataTables.buttons.min.js")"></script>
-<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.html5.min.js")"></script>
-<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.bootstrap4.min.js")"></script>
-<script src="@Url.Content("~/Content/admin/assets/js/pages/data-export-custom.js")"></script>
+@*<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.colVis.min.js")"></script>
+    <script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.print.min.js")"></script>
+    <script src="@Url.Content("~/Content/admin/assets/js/plugins/pdfmake.min.js")"></script>
+    <script src="@Url.Content("~/Content/admin/assets/js/plugins/jszip.min.js")"></script>*@
+@*<script src="@Url.Content("~/Content/admin/assets/js/plugins/dataTables.buttons.min.js")"></script>
+    <script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.html5.min.js")"></script>
+    <script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.bootstrap4.min.js")"></script>
+    <script src="@Url.Content("~/Content/admin/assets/js/pages/data-export-custom.js")"></script>*@
 
 <!--Custom-->
+
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
-<script src="@Url.Content("~/Scripts/custom/Topic.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/topic/Topic.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/topic/TopicDatatable.js")"></script>
+
 
 <script>
-    var GetPageHead = "@Url.Content("~/Topic/GetPageHead")";
-    var GetPage = "@Url.Content("~/Topic/GetPage")";
+    var GetPageHeads = "@Url.Content("~/Topic/GetPageHeads")";
+    var GetPages = "@Url.Content("~/Topic/GetPages")";
+    var GetTopics = "@Url.Content("~/Topic/GetTopics")";
+    var GetTopicDetails = "@Url.Content("~/Topic/GetTopicDetails")";
+    var AddTopicDetail = "@Url.Content("~/Topic/AddTopicDetail")";
+    var AddTopicDetailFiles = "@Url.Content("~/Topic/AddTopicDetailFiles")";
+    var GetTopicDetailFiles = "@Url.Content("~/Topic/GetTopicDetailFiles")";
+    var DeletePhoto = "@Url.Content("~/Topic/DeletePhoto")";
+    var UploadTopicDetailFiles = "@Url.Content("~/Topic/UploadTopicDetailFiles")";
+    var SetOrder = "@Url.Content("~/Topic/SetOrder")";
+    var DeleteTopicDetailFile = "@Url.Content("~/Topic/DeleteTopicDetailFile")";
+    var UploadTopicDetailPhotos = "@Url.Content("~/Topic/UploadTopicDetailPhotos")";
+
+
 </script>
 

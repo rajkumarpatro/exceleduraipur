@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Web;
@@ -51,6 +52,58 @@ namespace ExcelEducation.Helpers
             return fname;
         }
 
+        public static List<dynamic> UploadedMultipleFiles(HttpRequestBase Request, string filePrefix, int id)
+        {
+            var paths = new List<dynamic>();
+
+            //List<string> paths = new List<string>();
+            string fname = String.Empty;
+
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    HttpFileCollectionBase files = Request.Files;
+                    //HttpPostedFileBase file = files[0];
+
+                    for (int i=0; i<files.Count; i++) {
+                        HttpPostedFileBase file = files[i];
+
+                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                        {
+                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                            fname = testfiles[testfiles.Length - 1];
+                        }
+                        else
+                        {
+                            fname = file.FileName;
+                        }
+
+                        var uploadPath = ConfigurationManager.AppSettings["UploadPath"].ToString();
+
+                        // Get the complete folder path and store the file inside it.
+                        var guidId = Guid.NewGuid();
+                        var targetpath = $"{uploadPath}/{filePrefix}_{guidId}_{fname}";
+                        var fPath = Path.Combine(HttpContext.Current.Server.MapPath(uploadPath), $"{filePrefix}_{guidId}_{fname}");
+
+                        file.SaveAs(fPath);
+                       
+                        paths.Add(new { name = fname, path = targetpath });
+                    }
+                    
+
+                    //Returns message that successfully uploaded
+
+                    return paths;
+                }
+                catch (Exception ex)
+                {
+                    //return ("Error occurred. Error details: " + ex.Message);
+                }
+            }
+
+            return paths;
+        }
         public static string SaveFile(HttpRequestBase Request, string FileFrom)
         {
             string fname;

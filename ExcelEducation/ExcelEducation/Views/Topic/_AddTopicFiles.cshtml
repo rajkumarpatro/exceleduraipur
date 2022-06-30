@@ -1,0 +1,65 @@
+﻿@model DAL.Models.PageFiles
+@using DAL.Models
+
+
+<script src="~/Scripts/custom/topic/TopicDetailfiles.js"></script>
+<link href="~/Scripts/imageuploadify/imageuploadify.min.css" rel="stylesheet" />
+<script src="~/Scripts/imageuploadify/imageuploadify.js"></script>
+
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Topic Details files</h5>
+            <h5 class="closeDetailFilesCard" style="float: right; color: blue; cursor: pointer;"><i class="feather icon-x"></i></h5>
+        </div>
+        <div class="card-body">
+            <form id="frm_topicdetailfiles">
+                @Html.HiddenFor(m => m.SUB_TOPIC_ID)
+                @Html.HiddenFor(m => m.FILE_ID)
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label required">Title</label>
+                            @Html.TextBoxFor(m => m.FILE_DESCRIPTION, new { @class = "form-control", placeholder = "Title", @required = "required" })
+                            <label id="FILE_DESCRIPTION-error" class="error hide_column invalid-feedback" for="FILE_DESCRIPTION" style="">This field is required.</label>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group" style="visibility: ">
+                            <label class="form-label required">File</label>
+                            <input type="file" id="uploadfiledetails" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1 mr-0 pr-0 ml-0 pl-0">
+                        <div class="form-group">
+                            <label class="form-label" style="display:block">Set Order</label>
+                            @Html.DropDownListFor(m => m.FILE_ORDER, Model.ORDERDD, new { @class = "frmselect col-md-5" })
+                        </div>
+                    </div>
+                    <div class="col- mr-0 pr-0 ml-0 pl-0" style=" margin-top: 1.8rem !important;">
+                        <div class="form-group">
+
+                            <button type="button" class="btn btn-primary btn-sm addTopicDetailFiles">Add</button>
+                            <button type="button" class="btn btn-primary btn-sm uploadDetailFiles">Upload files</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+            <form id="frm_topicdetailsfiles">
+                <div class="row col-md-12">
+                    <input type="file" id="photosuploaddetails" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+                </div>
+            </form>
+            <table id="gridDetailsFilestable" class="table table-bordered">
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/custom/topic/TopicFileDatatable.js"></script>
+
