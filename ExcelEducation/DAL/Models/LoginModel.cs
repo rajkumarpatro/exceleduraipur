@@ -16,6 +16,6 @@ namespace DAL.Models
 
         public string USER_STATUS { get; set; }
 
-        public int StatusCode { get; set; }
+        public string StatusCode { get; set; }
     }
 }

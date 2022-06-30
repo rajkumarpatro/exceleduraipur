@@ -4,11 +4,11 @@
     Layout = null;
 
     var msg = "";
-    if (Model.StatusCode != null && Model.StatusCode == -1)
+    if (Model.StatusCode != null && Model.StatusCode == "-1")
     {
         msg = "Wrong User Name";
     }
-    else if (Model.StatusCode != null && Model.StatusCode == -2)
+    else if (Model.StatusCode != null && Model.StatusCode == "-2")
     {
         msg = "Password is wrong";
     }
@@ -46,9 +46,9 @@
                             <img src="@Url.Content("~/Content/admin/assets/images/logo.png")" class="img-fluid mb-4" />
                             @*<h4 style="color:#000000;">Excel Educational Institute </h4>*@
                             <h5 class="mb-3 f-w-400">Signin</h5>
-                            <div class="alert alert-danger display-hide" style="display:@(Model.StatusCode == 0 ?"none":"block" )">
+                            <div class="alert alert-danger display-hide" style="display:@(Model.StatusCode == "0" ?"none":"block" )">
                                 <button class="close" data-close="alert"></button>
-                                <span> @(Model.StatusCode < 0 ?msg:"Enter any username and password"). </span>
+                                <span> @((Model.StatusCode == "-1" || Model.StatusCode == "-2") ? msg:"Enter any username and password"). </span>
                             </div>
                             <div class="form-group mb-3">
                                 <div class="form-group">

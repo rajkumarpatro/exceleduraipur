@@ -1,4 +1,4 @@
-﻿@model DAL.Models.PageModel
+﻿@model DAL.Models.Page
 
 @{
     ViewBag.Title = "Sub Menu";
@@ -22,7 +22,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Page head</label>
-                                @Html.DropDownListFor(model => model.PAGE_HEAD_ID, new List<SelectListItem>(Model.PAGE_LIST), "Select Page Head", new { @class = "form-control", placeholder = "Select Page Head" })
+                                @Html.DropDownListFor(model => model.PAGE_HEAD_ID, new List<SelectListItem>(Model.SelectPageHead), "Select Page Head", new { @class = "form-control", placeholder = "Select Page Head" })
                                 @Html.TextBoxFor(Model => Model.ACTION, new { @class = "hide_column", value = "1" })
                                 @Html.TextBoxFor(Model => Model.PAGE_ID, new { @class = "hide_column" })
                             </div>
@@ -30,16 +30,12 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Sub Menu</label>
-                                @Html.TextBoxFor(Model => Model.SUB_MENU, new { @class = "form-control", placeholder = "Enter Sub Menu", @required = "required" })
+                                @Html.TextBoxFor(Model => Model.PAGE_NAME, new { @class = "form-control", placeholder = "Enter Sub Menu", @required = "required" })
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label>Description/Link</label>
-                            <select class="form-control" id="ddl_islink">
-                                <option value="false">Description</option>
-                                <option value="true">Link</option>
-                            </select>
-                            @Html.TextBoxFor(Model => Model.IS_LINK, new { @class = "hide_column" })
+                            @Html.DropDownListFor(m => m.IS_LINK, Model.LINKDD, new { @class = "form-control" })
                         </div>
                         <div class="col-md-4" id="dv_link">
                             <label>URL</label>
@@ -49,37 +45,29 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>Show</label>
-                            <select class="form-control" id="ddl_show">
-                                <option value="True">YES</option>
-                                <option value="false">NO</option>
-                            </select>
-                            @Html.TextBoxFor(Model => Model.SHOW, new { @class = "hide_column" })
+                            @Html.DropDownListFor(m => m.SHOW, Model.SHOWDD, new { @class = "form-control" })
                         </div>
                         <div class="col-md-2">
                             <label>More Sub Menu?</label>
-                            <select class="form-control" id="ddl_moresubmenu">
-                                <option value="True">YES</option>
-                                <option value="false">NO</option>
-                            </select>
-                            @Html.TextBoxFor(Model => Model.SUB_MENU, new { @class = "hide_column" })
+                            @Html.DropDownListFor(m => m.SUB_MENU, Model.SUBMENUDD, new { @class = "form-control" })
                         </div>
                         <div class="col-md-2">
                             <label>Is Department?</label>
-                            <select class="form-control" id="ddl_isdepartment">
-                                <option value="True">YES</option>
-                                <option value="false">NO</option>
-                            </select>
-                            @Html.TextBoxFor(Model => Model.IS_DEPARTMENT, new { @class = "hide_column" })
+                            @Html.DropDownListFor(m => m.IS_DEPARTMENT, Model.DEPARTMENTDD, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-2">
+                            <label>Order</label>
+                            @Html.DropDownListFor(m => m.REORDER, Model.ORDERDD, new { @class = "form-control" })
                         </div>
                         <div class="col-md-1">
                             <br />
-                            <div class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" id="btnsubmit">Submit</div>
+                            <button class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="submit" id="btnsubmit">Submit</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="dt-responsive table-responsive">
-                                <table id="PageTable" class="table table-bordered">
+                                <table id="gridtable" class="table table-bordered">
                                 </table>
                             </div>
                         </div>
@@ -105,14 +93,15 @@
 <script src="@Url.Content("~/Content/admin/assets/js/pages/data-export-custom.js")"></script>
 
 <!--Custom-->
-<script src="@Url.Content("~/Scripts/custom/PageDatatable.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/Page/Page.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/Page/PageDatatable.js")"></script>
 
 <script>
     var LoadRecord = "@Url.Content("~/Page/loadRecord")"
-    var AddEditDeleteRecord= "@Url.Content("~/Page/addEditDeleteRecord")"
-    var EditRecord = "@Url.Content("~/Page/editRecord")"
-    var DeleteRecord = "@Url.Content("~/Page/deleteRecord")"
-
-    var UploadFileUrl = "@Url.Content("~/Page/uploadFile")"
+    var AddEditRecord = "@Url.Content("~/Page/addEditRecord")"
+    var SetOrder = "@Url.Content("~/Page/SetOrder")"
+    var ToggleRecord = "@Url.Content("~/Page/ToggleRecord")"
+    var DeleteRecord = "@Url.Content("~/Page/DeleteRecord")"
 </script>
 

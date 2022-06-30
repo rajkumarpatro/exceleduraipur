@@ -40,9 +40,6 @@
                             <li><a href="/Home">Change Password</a></li>
                             <li>@Html.ActionLink("Flash", "Index", "Flash")</li>
                             <li>@Html.ActionLink("Latest Updates", "Index", "LatestUpdates")</li>
-                            <li><a href="/Report">Execute Search</a></li>
-                            <li><a href="/Announcement/Settings">Alert Settings</a></li>
-                            <li><a href="/Announcement/AlertReports">Alert Report</a></li>
                         </ul>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
@@ -74,23 +71,9 @@
             <ul class="navbar-nav ml-auto">
 
                 <li>
-                    <div class="dropdown drp-user">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="feather icon-user"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-notification">
-                            <div class="pro-head">
-                                <img src="../../Content/admin/assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>Abhay Telang</span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
-                                    <i class="feather icon-log-out"></i>
-                                </a>
-                            </div>
-                            <ul class="pro-body">
-                                <li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <a href="/login">
+                        <i class="feather icon-log-out"></i>
+                    </a>
                 </li>
             </ul>
         </div>

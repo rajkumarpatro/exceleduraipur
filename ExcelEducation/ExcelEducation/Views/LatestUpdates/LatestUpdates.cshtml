@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <div class="card">
 
-                <div class="card-header">
+                <div class="card-header d-flex">
                     <h5>Latest Updates</h5>
                 </div>
                 <div class="card-body">
@@ -22,12 +22,12 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Date</label>
-                                @Html.TextBoxFor(Model => Model.NEWS_DATE, new { @class = "form-control datepicker", type="date", placeholder = "Enter Date", @required = "required" })
+                                @Html.TextBoxFor(Model => Model.NEWS_DATE, new { @class = "form-control datepicker", type = "date", placeholder = "Enter Date", @required = "required" })
                                 @Html.TextBoxFor(Model => Model.ACTION, new { @class = "hide_column", value = "1" })
                                 @Html.TextBoxFor(Model => Model.NEWS_ID, new { @class = "hide_column" })
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label>Title</label>
                                 @Html.TextBoxFor(Model => Model.NEWS_TITLE, new { @class = "form-control", placeholder = "Enter Title", @required = "required" })
@@ -35,20 +35,13 @@
                         </div>
                         <div class="col-md-2">
                             <label>Section</label>
-                            <select class="form-control" id="ddl_news_section">
-                                <option value="Latest Upldates">Latest Upldates</option>
-                                <option value="Announcements">Announcements</option>
-                            </select>
-                            @Html.TextBoxFor(Model => Model.NEWS_SECTION, new { @class = "hide_column" })
+                            @Html.DropDownListFor(m => m.NEWS_SECTION, Model.NEWS_SECTIONDD, new { @class = "form-control" })
                         </div>
                         <div class="col-md-3">
                             <label>Type</label>
-                            <select class="form-control" id="ddl_news_type">
-                                <option value="Text">Text</option>
-                                <option value="URL">URL</option>
-                                <option value="File">File</option>
-                            </select>
-                            @Html.TextBoxFor(Model => Model.NEWS_LINKTYPE, new { @class = "hide_column" })
+                            @Html.DropDownListFor(m => m.NEWS_LINKTYPE, Model.NEWS_LINKTYPEDD, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-3">
                             <div id="dv_file">
                                 <label>Upload File</label>
                                 <input type="file" id="uploadfile" />
@@ -61,13 +54,13 @@
                         </div>
                         <div class="col-md-1">
                             <br />
-                            <div class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" id="btnsubmit">Submit</div>
+                            <button class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="submit" id="btnsubmit">Submit</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="dt-responsive table-responsive">
-                                <table id="LatestUpdatesTable" class="table table-bordered">
+                                <table id="gridtable" class="table table-bordered">
                                 </table>
                             </div>
                         </div>
@@ -93,14 +86,13 @@
 <script src="@Url.Content("~/Content/admin/assets/js/pages/data-export-custom.js")"></script>
 
 <!--Custom-->
-<script src="@Url.Content("~/Scripts/custom/LatestUpdatesDatatable.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/LatestUpdates/LatestUpdates.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/LatestUpdates/LatestUpdatesDatatable.js")"></script>
 
 <script>
     var LoadRecord = "@Url.Content("~/LatestUpdates/loadRecord")"
-    var AddEditDeleteRecord= "@Url.Content("~/LatestUpdates/addEditDeleteRecord")"
-    var EditRecord = "@Url.Content("~/LatestUpdates/editRecord")"
-    var DeleteRecord = "@Url.Content("~/LatestUpdates/deleteRecord")"
-
-    var UploadFileUrl = "@Url.Content("~/LatestUpdates/uploadFile")"
+    var AddEditRecord = "@Url.Content("~/LatestUpdates/addEditRecord")"
+    var DeleteRecord = "@Url.Content("~/LatestUpdates/DeleteRecord")"
 </script>
 

@@ -11,9 +11,11 @@ namespace DAL.Models
 	{
 		public int PAGE_HEAD_ID { get; set; }
 		public string PAGE_HEAD_NAME { get; set; }
-		public bool SHOW { get; set; }
+		public bool SHOW { get; set; } = true;
 		public int REORDER { get; set; }
 		public List<SelectListItem> SelectPageHead { get; set; }
+		public List<SelectListItem> ORDERDD { get; set; }
+		public List<SelectListItem> SHOWDD { get; set; }
 		public string ACTION { get; set; }
 	}
 }

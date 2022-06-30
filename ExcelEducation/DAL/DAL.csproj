@@ -74,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="PageDB.cs" />
+    <Compile Include="LatestUpdatesDB.cs" />
+    <Compile Include="PageHeadDB.cs" />
     <Compile Include="MenusDB.cs" />
     <Compile Include="FlashDB.cs" />
     <Compile Include="DB.cs" />

@@ -3,7 +3,7 @@ var FlashTables = function () {
     //TODO:: table-datatables-scroller.js use to fix scroller issue
     var table;
     var tableGrid = function () {
-        table = $('#FlashTable');
+        table = $('#gridtable');
         table.dataTable({
             //"autowidth": "true",
             //"scrollX": true,
@@ -77,8 +77,8 @@ var FlashTables = function () {
 
 
             ],
-            dom: 'lBfrtip',
-            buttons: ['excel', 'csv'],
+            //dom: 'lBfrtip',
+            //buttons: ['excel', 'csv'],
         });
     }
 
@@ -104,6 +104,6 @@ jQuery(document).ready(function () {
 $(document).ready(function () {
     document.title = "Flash";
     //alert('ok');
-    var table = $('#FlashTable').DataTable();
+    var table = $('#gridtable').DataTable();
 
 });
