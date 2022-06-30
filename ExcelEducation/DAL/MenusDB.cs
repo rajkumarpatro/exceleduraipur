@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PDFReader
+namespace DAL
 {
     public class MenusDB
     {
@@ -17,7 +17,7 @@ namespace PDFReader
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
-                var list = await db.QueryAsync<PageHead>("select * from TBL_PAGE_HEAD");
+                var list = await db.QueryAsync<PageHead>("select * from TBL_PAGE_HEAD ORDER BY REORDER");
                 return list.ToList();
             }
         }
@@ -26,7 +26,7 @@ namespace PDFReader
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
-                var list = await db.QueryAsync<Page>("select * from TBL_PAGE where PAGE_HEAD_ID = @pageheadid", new { @pageheadid  = pageHeadId });
+                var list = await db.QueryAsync<Page>("select * from TBL_PAGE where PAGE_HEAD_ID = @pageheadid ORDER BY REORDER, PAGE_NAME", new { @pageheadid  = pageHeadId });
                 return list.ToList();
             }
         }

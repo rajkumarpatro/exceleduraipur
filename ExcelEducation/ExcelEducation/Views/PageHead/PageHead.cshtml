@@ -1,4 +1,4 @@
-﻿@model DAL.Models.PageHeadModel
+﻿@model DAL.Models.PageHead
 
 @{
     ViewBag.Title = "Page Head";
@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="@Url.Content("~/Content/admin/assets/css/plugins/dataTables.bootstrap4.min.css")">
 <link href="@Url.Content("~/Content/admin/Custom.css")" rel="stylesheet" />
 
-<form id="frm_pagehead" method="post" action="#" role="form" novalidate="novalidate">
+<form id="frm_pagehead">
     <div class="row">
         <!-- [ sample-page ] start -->
         <div class="col-sm-12">
@@ -23,40 +23,28 @@
                             <div class="form-group">
                                 <label>Menu Name</label>
                                 @Html.TextBoxFor(Model => Model.PAGE_HEAD_NAME, new { @class = "form-control", placeholder = "Enter Menu Name", @required = "required" })
+                                <label id="PAGE_HEAD_NAME-error" class="error hide_column invalid-feedback" for="PAGE_HEAD_NAME" style="">This field is required.</label>
                                 @Html.TextBoxFor(Model => Model.ACTION, new { @class = "hide_column", value = "1" })
                                 @Html.TextBoxFor(Model => Model.PAGE_HEAD_ID, new { @class = "hide_column" })
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label>Order</label>
-                            <select class="form-control" id="ddl_order">
-                                @{
-                                    for (int i = 1; i <= 100; i++)
-                                    {
-                                        <option value="@i">@i</option>
-                                    }
-                                }
-                            </select>
-                            @Html.TextBoxFor(Model => Model.REORDER, new { @class = "hide_column" })
+                            @Html.DropDownListFor(m => m.REORDER, Model.ORDERDD, new { @class="form-control"})
                         </div>
                         <div class="col-md-2">
-                            <label>Section</label>
-                            <select class="form-control" id="ddl_news_section">
-                                <option value="true">YES</option>
-                                <option value="false">NO</option>
-                            </select>
-                            @Html.TextBoxFor(Model => Model.SHOW, new { @class = "hide_column" })
+                            <label>Show</label>
+                            @Html.DropDownListFor(m => m.SHOW, Model.SHOWDD, new { @class = "form-control" })
                         </div>
                         <div class="col-md-4">
                             <br />
-                            <div class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" id="btnsubmit">Submit</div>
-                            <div class="btn notifications btn-primary has-ripple" data-type="success" data-from="top" data-align="right" id="btnsetorder">Set Order</div>
+                            <button class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="submit" id="btnsubmit">Submit</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="dt-responsive table-responsive">
-                                <table id="PageHeadTable" class="table table-bordered">
+                                <table id="gridtable" class="table table-bordered">
                                 </table>
                             </div>
                         </div>
@@ -82,14 +70,15 @@
 <script src="@Url.Content("~/Content/admin/assets/js/pages/data-export-custom.js")"></script>
 
 <!--Custom-->
-<script src="@Url.Content("~/Scripts/custom/PageHeadDatatable.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/PageHead/PageHead.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/PageHead/PageHeadDatatable.js")"></script>
 
 <script>
     var LoadRecord = "@Url.Content("~/PageHead/loadRecord")"
-    var AddEditDeleteRecord= "@Url.Content("~/PageHead/addEditDeleteRecord")"
-    var EditRecord = "@Url.Content("~/PageHead/editRecord")"
-    var DeleteRecord = "@Url.Content("~/PageHead/deleteRecord")"
-
-    var UploadFileUrl = "@Url.Content("~/PageHead/uploadFile")"
+    var AddEditRecord = "@Url.Content("~/PageHead/addEditRecord")"
+    var SetOrder = "@Url.Content("~/PageHead/SetOrder")"
+    var ToggleRecord = "@Url.Content("~/PageHead/ToggleRecord")"
+    var DeleteRecord = "@Url.Content("~/PageHead/DeleteRecord")"
 </script>
 

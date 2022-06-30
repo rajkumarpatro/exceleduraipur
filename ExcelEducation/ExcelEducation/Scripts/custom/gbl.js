@@ -95,6 +95,7 @@ function notify(title, message, type) {
             '</div>'
     });
 }
+
 $(document).ready(function () {
     $(document).ajaxError(function () {
        

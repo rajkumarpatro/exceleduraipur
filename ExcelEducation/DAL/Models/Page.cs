@@ -12,12 +12,19 @@ namespace DAL.Models
 		public int PAGE_ID { get; set; }
 		public int PAGE_HEAD_ID { get; set; }
 		public string PAGE_NAME { get; set; }
-		public bool SHOW { get; set; }
-		public bool SUB_MENU { get; set; }
+		public bool SHOW { get; set; } = true;
+		public bool SUB_MENU { get; set; } = false;
 		public int REORDER { get; set; }
-		public bool IS_DEPARTMENT { get; set; }
-		public bool IS_LINK { get; set; }
+		public bool IS_DEPARTMENT { get; set; } = false;
+		public bool IS_LINK { get; set; } = false;
 		public string LINK_URL { get; set; }
+		public List<SelectListItem> SelectPageHead { get; set; } = new List<SelectListItem>();
+		public List<SelectListItem> ORDERDD { get; set; }
+		public List<SelectListItem> SHOWDD { get; set; }
+		public List<SelectListItem> SUBMENUDD { get; set; }
+		public List<SelectListItem> DEPARTMENTDD { get; set; }
+		public List<SelectListItem> LINKDD { get; set; }
+
 		public string ACTION { get; set; }
 	}
 }

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="@Url.Content("~/Content/admin/assets/css/plugins/dataTables.bootstrap4.min.css")">
 <link href="@Url.Content("~/Content/admin/Custom.css")" rel="stylesheet" />
 
-<form id="frm_flash" method="post" action="#" role="form" novalidate="novalidate">
+<form id="frm_flash">
     <div class="row">
         <!-- [ sample-page ] start -->
         <div class="col-sm-12">
@@ -49,13 +49,12 @@
                         <div class="col-md-4">
                             <br />
                             <button class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="submit" id="btnsubmit">Submit</button>
-                            <div class="btn notifications btn-primary has-ripple" data-type="success" data-from="top" data-align="right" id="btnsetorder">Set Order</div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="dt-responsive table-responsive">
-                                <table id="FlashTable" class="table table-bordered">
+                                <table id="gridtable" class="table table-bordered">
                                 </table>
                             </div>
                         </div>
@@ -81,9 +80,9 @@
 <script src="@Url.Content("~/Content/admin/assets/js/pages/data-export-custom.js")"></script>
 
 <!--Custom-->
-<script src="@Url.Content("~/Scripts/custom/FlashDatatable.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/Flash/FlashDatatable.js")"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
-<script src="@Url.Content("~/Scripts/custom/Flash.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/Flash/Flash.js")"></script>
 
 <script>
     var LoadRecord = "@Url.Content("~/Flash/loadRecord")"

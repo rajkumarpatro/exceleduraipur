@@ -26,7 +26,7 @@ namespace ExcelEducation.Controllers
 
         public async Task<ActionResult> loadRecord()
         {
-            return Json(new { data = await FlashDB.LoadFlash(), JsonRequestBehavior.AllowGet });
+            return Json(new { data = await FlashDB.LoadFlash() }, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<bool> addEditDeleteRecord(FlashModel flash)
