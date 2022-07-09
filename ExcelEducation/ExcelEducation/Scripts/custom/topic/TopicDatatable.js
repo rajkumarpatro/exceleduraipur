@@ -52,7 +52,10 @@ var griddtable = function () {
                     }
                 },
                 {
-                    "title": "DATE", "data": "TOPIC_DATE"
+                    "title": "DATE", "data": "TOPIC_DATE",
+                    fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                        $(nTd).html(moment(oData.TOPIC_DATE).format("DD/MM/YYYY"));
+                    }
                 },
 
                 {

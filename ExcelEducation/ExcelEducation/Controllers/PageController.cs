@@ -31,7 +31,7 @@ namespace ExcelEducation.Controllers
 
             ob.DEPARTMENTDD = new List<SelectListItem> { new SelectListItem { Text = "YES", Value = "true", Selected = true }, new SelectListItem { Text = "NO", Value = "false" }, };
 
-            var pageHeads = await MenusDB.GetPageHead();
+            var pageHeads = await MenusDB.GetPageHeads();
             ob.SelectPageHead = pageHeads.Select(x => new SelectListItem
             {
                 Text = x.PAGE_HEAD_NAME,
@@ -43,7 +43,7 @@ namespace ExcelEducation.Controllers
 
         public async Task<ActionResult> loadRecord(string pageHeadId)
         {
-            return Json(new { data = await MenusDB.GetPage(Convert.ToInt32(pageHeadId)) }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = await MenusDB.GetPages(Convert.ToInt32(pageHeadId)) }, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<bool> addEditRecord(Page param)
