@@ -490,7 +490,6 @@
     <Content Include="Scripts\custom\Page\PageDatatable.js" />
     <Content Include="Scripts\custom\PageHead\PageHead.js" />
     <Content Include="Scripts\custom\PageHead\PageHeadDatatable.js" />
-    <Content Include="Scripts\custom\Topic.js" />
     <Content Include="Scripts\BootstrapToggle\bootstrap4-toggle.min.css" />
     <Content Include="Scripts\BootstrapToggle\bootstrap4-toggle.min.js" />
     <Content Include="Scripts\custom\Flash\Flash.js" />
