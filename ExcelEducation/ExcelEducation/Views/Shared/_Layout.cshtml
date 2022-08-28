@@ -7,8 +7,6 @@
 
     <!-- Favicon icon -->
     <link rel="icon" href="@Url.Content("~/Content/admin/assets/images/favicon.ico")" type="image/x-icon">
-    
-
     <!-- select2 css -->
     <link rel="stylesheet" href="@Url.Content("~/Content/admin/assets/css/plugins/select2.min.css")">
     <!-- vendor css -->
@@ -25,6 +23,7 @@
     <!-- notification Js -->
     <script src="@Url.Content("/Content/admin/assets/js/plugins/bootstrap-notify.min.js")"></script>
     <script src="@Url.Content("~/Scripts/custom/gbl.js")"></script>
+    @RenderSection("scripts", required: false)
 </head>
 <body style="background-color: #ecf0f5">
     <nav class="pcoded-navbar theme-horizontal menu-light brand-blue" style="position: relative">
@@ -80,7 +79,7 @@
     </header>
     <!-- [ Header ] end -->
     <!-- [ Main Content ] start -->
-    <div class="pcoded-main-container">
+    <div class="pcoded-main-container" style="margin-top: 0px">
         <div class="pcoded-content">
             <div class="page-wrapper">
                 <div class="page-header">

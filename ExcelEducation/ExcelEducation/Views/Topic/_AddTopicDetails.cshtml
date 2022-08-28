@@ -1,0 +1,170 @@
+﻿@model DAL.Models.TopicDetail
+@using DAL.Models
+
+<!-- summer note -->
+<link href="~/Scripts/summernote/summernote-bs4.min.css" rel="stylesheet" />
+<script src="~/Scripts/summernote/summernote-bs4.min.js"></script>
+<script src="~/Scripts/custom/topic/TopicDetails.js"></script>
+<link href="~/Scripts/imageuploadify/imageuploadify.min.css" rel="stylesheet" />
+<script src="~/Scripts/imageuploadify/imageuploadify.js"></script>
+
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Topic Details</h5>
+            <h5 class="closeCard" style="float: right; color: blue; cursor: pointer;"><i class="feather icon-x"></i></h5>
+        </div>
+        <div class="card-body">
+            <form id="frm_topicdetails">
+                @Html.HiddenFor(m => m.SUB_TOPIC_ID)
+                @Html.HiddenFor(m => m.TOPIC_ID)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label required">Title</label>
+                            @Html.TextBoxFor(m => m.SUB_TOPIC_NAME, new { @class = "form-control", placeholder = "Title", @required = "required" })
+                            <label id="SUB_TOPIC_NAME-error" class="error hide_column invalid-feedback" for="SUB_TOPIC_NAME" style="">This field is required.</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label class="form-label">Select Date</label>
+                                    @Html.TextBoxFor(m => m.TOPIC_DATE, Model.TOPIC_DATE.ToString("dd/MM/YYYY"), new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" style="display:block">Show/Hide Title</label>
+                                    <input class="chktoggle" @(Model.SHOW_TOPIC_NAME ? "checked" : "") type="checkbox" id="SHOW_TOPIC_NAME" name="SHOW_TOPIC_NAME" data-size="sm" data-toggle="toggle" data-on="YES" data-off="NO"
+                                           data-onstyle="success" data-offstyle="danger">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" style="display:block">Select Type</label>
+                                    @Html.DropDownListFor(m => m.SUB_TOPIC_TYPE, Model.SUBTOPICTYPEDD, new { @class = "frmselect col-md-12" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" style="display:block">Set Order</label>
+                                    @Html.DropDownListFor(m => m.SUB_TOPIC_ORDER, Model.ORDERDD, new { @class = "frmselect col-md-5" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label required">Description</label>
+                            @Html.TextAreaFor(m => m.TOPIC_DESCRIPTION, new { @class = "form-control description" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-1">
+                                <label class="form-label" style="display:block">Upload file</label>
+                                <input class="chktoggle" type="checkbox" id="TOPIC_LINK_TYPE" name="TOPIC_LINK_TYPE" data-size="sm" data-toggle="toggle" data-on="YES" data-off="NO"
+                                       data-onstyle="success" data-offstyle="danger">
+                            </div>
+                            <div class="form-group col-md-2 divfile" style="visibility: hidden">
+                                <label class="form-label required">File</label>
+                                <input type="file" id="uploadfile" class="form-control" />
+                            </div>
+                            @if (Model.SUB_TOPIC_ID > 0)
+                            {
+                                <div class="col-md-7">
+                                    <input type="file" id="photosupload" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary btnUploadPhotos">Upload photos</button>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="button" id="testbtn" class="btn btn-sm btn-outline-primary">@(Model.SUB_TOPIC_ID > 0 ? "Update" : "Add")</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary" id="btnAddMultipleFiles">Add multiple files</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <hr />
+            @if (Model.PagePhotos.Any())
+            {
+
+                <div class="row mt-2 col-md-12">
+                    <!--Carousel Wrapper-->
+                    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+                        <!--Controls-->
+                        <div class="controls-top">
+                            <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                            <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                        </div>
+                        <!--/.Controls-->
+                        <!--Indicators-->
+                        <ol class="carousel-indicators">
+                            <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                            <li data-target="#multi-item-example" data-slide-to="1"></li>
+                            <li data-target="#multi-item-example" data-slide-to="2"></li>
+                            <li data-target="#multi-item-example" data-slide-to="3"></li>
+                            <li data-target="#multi-item-example" data-slide-to="4"></li>
+                            <li data-target="#multi-item-example" data-slide-to="5"></li>
+                        </ol>
+                        <!--/.Indicators-->
+                        @{
+                            var take = 6;
+                            var totalSlide = Model.PagePhotos.Count() / take;
+                            var leftPhotos = Model.PagePhotos.Count() % take;
+                            if (leftPhotos > 0)
+                            {
+                                totalSlide = totalSlide + 1;
+                            }
+                        }
+                        <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                            @for (int i = 0; i < totalSlide; i++)
+                            {
+                                var photos = Model.PagePhotos.Skip(take * i).Take(take).ToList();
+
+
+                                <div class="carousel-item @( i == 0 ? "active" : "")">
+                                    <div class="row">
+                                        @foreach (var photo in photos)
+                                        {
+                                            <div class="col-md-2">
+                                                <div class="card mb-2">
+                                                    <img class="card-img-top" src="@photo.PHOTO_PATH"
+                                                         alt="Card image cap">
+                                                    <div class="card-body" style=" text-align: center;">
+                                                        <button style="color:white" class=" btn btn-sm btn-primary">
+                                                            <i class="feather icon-trash-2 pagephoto" data-id="@photo.PHOTO_ID"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!--/.Slides-->
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

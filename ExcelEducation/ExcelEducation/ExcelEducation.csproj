@@ -773,6 +773,8 @@
     <Content Include="Scripts\custom\gbl.js" />
     <Content Include="Scripts\custom\jquery.dataTables.js" />
     <Content Include="Scripts\custom\topic\TopicFileDatatable.js" />
+    <Content Include="Scripts\custom\topic\TopicPage.js" />
+    <Content Include="Scripts\custom\topic\TopicsDatatable.js" />
     <Content Include="Scripts\custom\topic\TopicDetailfiles.js" />
     <Content Include="Scripts\custom\topic\TopicDetails.js" />
     <Content Include="Scripts\custom\topic\Topic.js" />
@@ -814,12 +816,13 @@
     <Content Include="Views\PageHead\PageHead.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Topic\_AddTopic.cshtml" />
+    <Content Include="Views\Topic\_AddTopicDetails.cshtml" />
     <Content Include="Scripts\summernote\font\summernote.eot" />
     <Content Include="Scripts\summernote\font\summernote.ttf" />
     <Content Include="Scripts\summernote\font\summernote.woff" />
     <Content Include="Scripts\summernote\font\summernote.woff2" />
     <Content Include="Views\Topic\_AddTopicFiles.cshtml" />
+    <Content Include="Views\Topic\_AddTopic.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ExcelInfo\ExcelInfo.cshtml" />

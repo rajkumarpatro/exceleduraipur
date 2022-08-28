@@ -29,12 +29,6 @@ var gridTopicDetailFilestable = function () {
             },
             "columns": [
                 {
-                    "title": "S.No.", "data": "FILE_DESCRIPTION",
-                    fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html(++iRow);
-                    }
-                },
-                {
                     "title": "TITLE", "data": "FILE_DESCRIPTION"
                 },
                 {

@@ -13,8 +13,50 @@ $(document).ready(function () {
     //summer note
     $('.description').summernote({
         tabsize: 1,
-        height: 200
+        height: 200,
+        callbacks: {
+            onImageUpload: imageUpload
+        }
+    }).on('summernote.change', function (customEvent, contents, $editable) {
+        // Revalidate the content when its value is changed by Summernote
+        fv.revalidateField('content');
     });
+
+    function imageUpload(files) {
+        debugger;
+        var $files = $(files);
+        var $this = $(this);
+        $files.each(function () {
+            var file = this;
+            var data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "/topic/SaveImages",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    $this.summernote('insertImage', 'https://localhost:44312/' + response, function ($image) {
+
+
+                    });
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    if (xhr.responseText) {
+                        toastr.error(xhr.responseText, 'Inconceivable!')
+                    } else {
+                        console.error("<div>Http status: " + xhr.status + " " + xhr.statusText + "</div>" + "<div>ajaxOptions: " + ajaxOptions + "</div>"
+                            + "<div>thrownError: " + thrownError + "</div>");
+                    }
+                }
+            });
+        });
+    }
+
 
     //date picker
     $(function () {
@@ -84,61 +126,6 @@ $(document).ready(function () {
         });
     });
 
-    //upload multiple photos for topic details
-    $(document).on('click', '.btnUploadPhotos', function () {
-        debugger;
-        var fileData = new FormData(document.querySelector('#frm_topicdetails'));
-        for (var key of fileData.keys()) {
-            // here you can add filtering conditions
-            fileData.delete(key)
-        }
-
-        fileData.delete("files")
-
-        var photosEle = $("#photosupload").get(0);
-        var photos = photosEle.files;
-
-        $(photos).each(function () {
-            fileData.append(this.name, this);
-        });
-        fileData.append("subTopicId", $('#SUB_TOPIC_ID').val());
-
-        $.ajax({
-            url: UploadTopicDetailPhotos,
-            type: "POST",
-            contentType: false,
-            processData: false,
-            data: fileData,
-            beforeSend: function () {
-                $.blockUI();
-            },
-            success: function (res) {
-                $.unblockUI();
-
-                if (res === 'False')
-                    notify("", "Something went wrong", "danger");
-                else {
-                    notify("", "Data Add / Edited Successfully", "success");
-                    //$('#photosupload').uploadify('destroy')
-                    $('.imageuploadify-container').remove();
-                    $('#photosupload').val('');
-                }
-
-            },
-            error: function (err) {
-                $.unblockUI();
-                notify("", "Something went wrong", "danger");
-
-            },
-            complete: function () {
-                $.unblockUI();
-                //$('#FLASH_ID').val('');
-                //$('#FLASH_CAPTION').val('');
-                //$('#uploadfile').val('');
-                //$('#ddl_order').val('1');
-                //$('#ACTION').val('1');
-            }
-        });
-    });
+    
 
 });

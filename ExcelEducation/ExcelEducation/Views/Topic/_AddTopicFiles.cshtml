@@ -1,8 +1,10 @@
 ﻿@model DAL.Models.PageFiles
 @using DAL.Models
 
-
 <script src="~/Scripts/custom/topic/TopicDetailfiles.js"></script>
+<script src="~/Scripts/custom/topic/TopicFileDatatable.js"></script>
+
+
 <link href="~/Scripts/imageuploadify/imageuploadify.min.css" rel="stylesheet" />
 <script src="~/Scripts/imageuploadify/imageuploadify.js"></script>
 
@@ -55,11 +57,12 @@
                     <input type="file" id="photosuploaddetails" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
                 </div>
             </form>
+            <hr />
             <table id="gridDetailsFilestable" class="table table-bordered">
             </table>
         </div>
     </div>
 </div>
 
-<script src="~/Scripts/custom/topic/TopicFileDatatable.js"></script>
+
 

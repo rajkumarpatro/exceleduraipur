@@ -215,6 +215,20 @@ namespace DAL
                 return await db.DeleteAsync<PageFiles>(pageFiles);
             }
         }
+
+        public async static Task<bool> SetTopicOrder(int topicId, int order)
+        {
+            int res = 0;
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                db.Open();
+                res = await db.ExecuteAsync
+                    ("update TBL_PAGE_TOPIC set TOPIC_ORDER = @order where TOPIC_ID = @Id",
+                    new { @order = order, @Id = topicId }, commandType: CommandType.Text);
+            }
+
+            return res > 0;
+        }
     }
 
 }

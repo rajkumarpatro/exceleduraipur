@@ -42,7 +42,15 @@
                         <div class="form-group">
                             <label style="visibility: hidden" class="control-label">Topic</label>
                             <div>
-                                <button style="display: none" class="btn btn-sm btn-outline-primary" id="btnAddData" type="submit">Add data</button>
+                                <button class="btn btn-sm btn-outline-primary" id="btnAddTopic" type="button"  style="display:none">Add Topic</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label style="visibility: hidden" class="control-label">Topic</label>
+                            <div>
+                                <button style="display: none" class="btn btn-sm btn-outline-primary" id="btnAddData" type="button">Add data</button>
                             </div>
                         </div>
                     </div>
@@ -74,7 +82,7 @@
 <!--Custom-->
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
-<script src="@Url.Content("~/Scripts/custom/topic/Topic.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/topic/TopicPage.js")"></script>
 <script src="@Url.Content("~/Scripts/custom/topic/TopicDatatable.js")"></script>
 
 
@@ -91,7 +99,9 @@
     var SetOrder = "@Url.Content("~/Topic/SetOrder")";
     var DeleteTopicDetailFile = "@Url.Content("~/Topic/DeleteTopicDetailFile")";
     var UploadTopicDetailPhotos = "@Url.Content("~/Topic/UploadTopicDetailPhotos")";
-
+    var AddTopic = "@Url.Content("~/Topic/AddTopic")";
+    var GetTopicList = "@Url.Content("~/Topic/GetTopicList")";
+    var SetTopicOrder = "@Url.Content("~/Topic/SetTopicOrder")";
 
 </script>
 

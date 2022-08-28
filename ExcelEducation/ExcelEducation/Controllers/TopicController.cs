@@ -66,12 +66,13 @@ namespace ExcelEducation.Controllers
             else
             {
                 topicDetail = await MenusDB.GetTopicDetailsBySubTopicId(subTopicId ?? 0);
+                topicDetail.TOPIC_DESCRIPTION = HttpUtility.UrlDecode(topicDetail.TOPIC_DESCRIPTION);
                 topicDetail.ORDERDD = DDList.GetOrderList();
                 topicDetail.SUBTOPICTYPEDD = DDList.GetSubTopictype();
                 topicDetail.PagePhotos = await MenusDB.GetSubTopicPhotos(subTopicId ?? 0);
             }
 
-            return PartialView("_AddTopic", topicDetail);
+            return PartialView("_AddTopicDetails", topicDetail);
         }
 
         [HttpPost]
@@ -158,6 +159,37 @@ namespace ExcelEducation.Controllers
         public async Task<bool> DeleteTopicDetailFile(int fileId)
         {
             return await MenusDB.DeleteTopicDetailFile(fileId);
+        }
+        
+        [HttpPost]
+        public string SaveImages()
+        {
+            return "common/topicdetailphoto_06d83ca6-588d-437a-9fde-3137c0f41051_2022-05-28%20(3).png";
+        }
+
+        public async Task<ActionResult> AddTopic(int pageId = 0)
+        {
+            PageTopic pageTopic = new PageTopic()
+            {
+                PAGE_ID = pageId,
+                ORDERDD = DDList.GetOrderList()
+            };
+
+            return PartialView("_AddTopic", pageTopic);
+        }
+
+        public async Task<ActionResult> GetTopicList(int pageId)
+        {
+            return Json(new
+            {
+                data = (await MenusDB.GetTopics(pageId))
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<bool> SetTopicOrder(int topicId, int order)
+        {
+            return await MenusDB.SetTopicOrder(topicId, order);
         }
     }
 }
