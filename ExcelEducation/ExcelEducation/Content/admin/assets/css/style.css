@@ -23942,7 +23942,7 @@ pre[class*=language-]:before {
 }
 
 .pcoded-navbar.theme-horizontal ~ .pcoded-main-container {
-    margin-top: 100px;
+    margin-top: 10px;
     margin-left: 0;
     padding-top: 1px;
     min-height: calc(100vh - 100px);

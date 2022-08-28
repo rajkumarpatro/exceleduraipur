@@ -41,6 +41,21 @@ var PageHeadTables = function () {
                     }
                 },
                 {
+                    "title": "IS_LINK", "data": "IS_LINK",
+                    fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                        var linktext = (oData.IS_LINK == true ? 'Yes' : 'No');
+                        var labelshow = "<label data-id='" + oData.PAGE_ID + "' data-SHOW=" + oData.IS_LINK + "  id='lnk_" + oData.PAGE_ID + "'>" + linktext + "</label>";
+                        $(nTd).html(labelshow);
+                    }
+                },
+                {
+                    "title": "LINK_URL", "data": "LINK_URL",
+                    fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                        var labelid = "<label id='lbl_link" + oData.PAGE_ID + "' for='link" + oData.PAGE_ID + "'>" + (oData.LINK_URL == "null" ? "-" : oData.LINK_URL) + "</label>";
+                        $(nTd).html(labelid);
+                    }
+                },
+                {
                     "title": "ORDER", "data": "REORDER",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                         var select = "<select data-order=" + oData.REORDER + " data-id=" + oData.PAGE_HEAD_ID + " class='gridSelect'></select>"
@@ -61,7 +76,7 @@ var PageHeadTables = function () {
                     "title": "EDIT/DELETE", "data": "PAGE_HEAD_ID",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                         var conf = 'return confirm("Are you sure to delete this record?")';
-                        var editbtn = "&nbsp; <i data-id='" + oData.PAGE_HEAD_ID + "' data-order=" + oData.REORDER + " data-show=" + oData.SHOW + " id='btnedit_" + oData.PAGE_HEAD_ID + "' class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green clsedit' ToolTip='Edit'></i>";
+                        var editbtn = "&nbsp; <i data-id='" + oData.PAGE_HEAD_ID + "' data-link='" + oData.IS_LINK + "' data-order=" + oData.REORDER + " data-show=" + oData.SHOW + " id='btnedit_" + oData.PAGE_HEAD_ID + "' class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green clsedit' ToolTip='Edit'></i>";
                         var delbtn = "<i data-id='" + oData.PAGE_HEAD_ID + "' id='btndel_" + oData.PAGE_HEAD_ID + "' class='icon feather icon-trash-2 f-w-600 f-16 m-r-15 text-c-red clsdel' ToolTip='Delete' ></i>";
                         $(nTd).html(editbtn + delbtn);
                         //$(nTd).html(delbtn);
@@ -70,7 +85,7 @@ var PageHeadTables = function () {
 
 
             ],
-            order: [[1, 'asc']],
+            order: [[4, 'asc']],
             //dom: 'lBfrtip',
             //buttons: ['excel', 'csv'],
         });
