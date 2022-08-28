@@ -88,7 +88,7 @@ namespace ExcelEducation.Helpers
 
                         file.SaveAs(fPath);
                        
-                        paths.Add(new { name = fname, path = targetpath });
+                        paths.Add(new { name = Path.ChangeExtension(fname, null), path = targetpath });
                     }
                     
 

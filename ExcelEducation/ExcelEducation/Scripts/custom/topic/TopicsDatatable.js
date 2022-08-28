@@ -1,69 +1,62 @@
 
-var griddtable = function () {
+var gridTopicstable = function () {
     //TODO:: table-datatables-scroller.js use to fix scroller issue
     var table;
-    var tableGrid = function (topicId) {
-        table = $('#griddtable');
+    var tableGrid = function (pageId) {
+        table = $('#gridTopicstable');
         table.dataTable({
-            //"autowidth": "true",
-            //"scrollX": true,
-            order: [[3, 'desc']],
             "ajax": {
-                "url": GetTopicDetails + "?topicId=" + topicId,
+                order: [[1, "desc"]],
+                "url": GetTopicList + "?pageId=" + pageId,
                 "type": "GET",
                 "datatype": "json",
-                complete: function (data) {
+                complete: function (data1) {
                     var data = [];
                     for (i = 1; i <= 100; i++) {
                         data.push({ id: i, text: i })
                     }
 
-                    $('.gridFlashSelect').select2({
+                    $('.gridTopicSelect').select2({
                         data: data
                     });
 
-                    gridFlashAction = "fromLoad";
+                    gridAction = "fromLoad";
 
-                    $('.gridFlashSelect').each(function () {
-                        //alert($(this).data('order'));
+                    $('.gridTopicSelect').each(function () {
                         $(this).val($(this).data('order'));
                         $(this).select2().trigger('change');
-                        // $(this).select2("val", $(this).data('order'));
                     });
-
                 }
             },
             "columns": [
                 {
-                    "title": "TITLE", "data": "SUB_TOPIC_NAME"
+                    "title": "TOPIC", "data": "TOPIC_NAME"
                 },
                 {
-                    "title": "SHOW", "data": "TOPIC_LINK_TYPE",
+                    "title": "IS_LINK", "data": "IS_LINK",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        var data = oData.TOPIC_LINK_TYPE ? "YES" : "NO";
-                        $(nTd).html(data);
+                        $(nTd).html(oData.IS_LINK ? "YES":"NO" );
                     }
                 },
                 {
-                    "title": "DATE", "data": "TOPIC_DATE",
+                    "title": "LINK", "data": "LINK_URL",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html(moment(oData.TOPIC_DATE).format("DD/MM/YYYY"));
+                        var select = '<a href="' + oData.LINK_URL +' target="_blank">';
+                        $(nTd).html(select);
                     }
                 },
                 {
-                    "title": "FILE PATH", "data": "TOPIC_FILEPATH"
-                },
-                {
-                    "title": "LINK TYPE", "data": "TOPIC_LINK_TYPE",
+                    "title": "ORDER", "data": "TOPIC_ORDER",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        var data = oData.TOPIC_LINK_TYPE ? "FILE" : "#";
-                        $(nTd).html(data);
+                        var select = "<select data-order=" + oData.TOPIC_ORDER + " data-id=" + oData.TOPIC_ID + " class='gridTopicSelect'></select>"
+                        $(nTd).html(select);
                     }
-                },
+                }
+                ,
                 {
-                    "title": "EDIT", "data": "TOPIC_LINK_TYPE",
+                    "title": "", "data": "TOPIC_ORDER",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<i data-id=" + oData.SUB_TOPIC_ID + " style='color: blue; cursor: pointer' class='fas fa-edit gridedit'></i>");
+                        $(nTd).html("<i data-id=" + oData.TOPIC_ID + " class='feather icon-trash-2 deletefile'></i> <i data-id=" + oData.FILE_ID + " class='feather icon-edit'></i>");
                     }
                 }
             ]
@@ -72,12 +65,12 @@ var griddtable = function () {
 
     return {
         //main function to initiate the module
-        init: function (topicId) {
+        init: function (pageId) {
             if (!jQuery().dataTable) {
                 return;
             }
 
-            tableGrid(topicId);
+            tableGrid(pageId);
         },
         reloadTable: function () {
             table.DataTable().ajax.reload(null, false); // user paging is not reset on reload
@@ -98,6 +91,5 @@ var griddtable = function () {
 }();
 
 jQuery(document).ready(function () {
-    griddtable.init(0);
-    var table = $('#griddtable').DataTable();
+    gridTopicstable.init($("#PAGE_ID").val());
 });

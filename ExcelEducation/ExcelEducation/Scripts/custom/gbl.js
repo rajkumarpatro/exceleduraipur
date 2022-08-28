@@ -1,8 +1,6 @@
 ﻿
 //notification
 function notify(title, message, type) {
-   
-
     $.notify({
        // icon: icon,
         title: title,
@@ -43,3 +41,5 @@ function notify(title, message, type) {
             '</div>'
     });
 }
+
+$.ajaxSetup({ cache: false });
