@@ -1,17 +1,959 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<div class="row">
-    <!-- [ sample-page ] start -->
-    <div class="col-sm-12">
-        <div class="card">
+<!-- slider area start -->
+<section class="slider__area">
+    <div class="slider__active swiper-container">
+        <div class="swiper-wrapper">
+            <div class="slider__item swiper-slide p-relative slider__height d-flex align-items-center z-index-1">
+                <div class="slider__bg slider__overlay include-bg" data-background="@Url.Content("~/Content/home/flash/bulding.jpg")"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-7 col-lg-8 col-md-10 col-sm-10">
+                            <div class="slider__content p-relative z-index-1">
+                                <span data-animation="fadeInUp" data-delay=".3s">Since 2007</span>
 
-            <div class="card-header">
-                <h5>Welcome to Excel Educational Institute</h5>
+                                <h2 class="sectionTitle__big slider__title" data-animation="fadeInUp" data-delay=".6s">Excel Educational Institution</h2>
+                                <p data-animation="fadeInUp" data-delay=".9s">
+                                    One of the Best Commerce Institute in Central India for<br />
+                                    - CA (Chartered Accountancy)<br />
+                                    - CS (Company Secretary )<br />
+                                    - CMA (Cost Management Accountant)
+                                </p>
+
+                                <div class="slider__btn" data-animation="fadeInUp" data-delay="1.1s">
+                                    <a target="_blank" rel="" href="#" class="tp-btn">
+                                        Get in Touch With Us
+                                    </a>
+                                </div>
+
+                                <div class="slider__btn" data-animation="fadeInUp" data-delay="1.1s">
+                                    <a target="_blank" rel="" href="#" class="tp-btn">
+                                        Watch Demo Classes
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
+            <div class="slider__item swiper-slide p-relative slider__height d-flex align-items-center z-index-1">
+                <div class="slider__bg slider__overlay include-bg" data-background="@Url.Content("~/Content/home/flash/award.jpg")"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xxl-7 col-xl-8 col-lg-8 col-md-10 col-sm-10">
+                            <div class="slider__content p-relative z-index-1">
+                                <span data-animation="fadeInUp" data-delay=".3s">Since 2007</span>
+
+                                <h2 class="sectionTitle__big slider__title" data-animation="fadeInUp" data-delay=".6s">Excel Educational Institution</h2>
+                                <p data-animation="fadeInUp" data-delay=".9s">
+                                    One of the Best Commerce Institute in Central India for<br />
+                                    - CA (Chartered Accountancy)<br />
+                                    - CS (Company Secretary )<br />
+                                    - CMA (Cost Management Accountant)
+                                </p>
+
+                                <div class="slider__btn" data-animation="fadeInUp" data-delay="1.1s">
+                                    <a target="_blank" rel="" href="#" class="tp-btn">
+                                        Get in Touch With Us
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-slider-paginations">
+            <button class="slider-button-next"><i class="fa-regular fa-arrow-right"></i></button>
+            <button class="slider-button-prev"><i class="fa-regular fa-arrow-left"></i></button>
+        </div>
+    </div>
+</section>
+<!-- slider area end -->
+<!-- features area start -->
+<section class="features__area pb-160">
+    <div class="container">
+        <div class="features__inner p-relative z-index-1 white-bg">
+            <div class="row ">
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                    <div class="features__item features__border-right d-sm-flex align-items-start white-bg mb-30">
+                        <div class="features__icon mr-25">
+                            <img src="@Url.Content("~/Content/home/images/AIR-1 Saina Agrawal.png")" width="82" height="85" />
+                        </div>
+                        <div class="features__content">
+                            <h3 class="features__title">
+                                <a href="#">Saina Agrawal</a>
+                            </h3>
+                            <h3 class="features__title">
+                                <a href="#" style="color:#3d6ce7;">AIR-1</a>
+                            </h3>
+                            <p style="font-size: 9px;">In CA-Foundation November 2019 Attempt Form Junagarh (OD).</p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                    <div class="features__item features__border-right d-sm-flex align-items-start white-bg mb-30">
+                        <div class="features__icon mr-25">
+                            <img src="@Url.Content("~/Content/home/images/AIR-1 Rohit Soni.png")" width="82" height="85" />
+                        </div>
+                        <div class="features__content">
+                            <h3 class="features__title">
+                                <a href="#">Rohit Soni</a>
+                            </h3>
+                            <h3 class="features__title">
+                                <a href="#" style="color:#3d6ce7;">AIR-1</a>
+                            </h3>
+                            <p style="font-size: 9px;">In CA-CPT (Foundation) Dec. 2014 Attempt Form Junagarh (OD).</p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                    <div class="features__item features__border-right d-sm-flex align-items-start white-bg mb-30">
+                        <div class="features__icon mr-25">
+                            <img src="@Url.Content("~/Content/home/images/AIR-1 Bhramar Jain.png")" width="82" height="85" />
+                        </div>
+                        <div class="features__content">
+                            <h3 class="features__title">
+                                <a href="#">Bhramar Jain</a>
+                            </h3>
+                            <h3 class="features__title">
+                                <a href="#" style="color:#3d6ce7;">AIR-1</a>
+                            </h3>
+                            <p style="font-size: 9px;">In CA-Final November 2019 Attempt Form Junagarh (OD).</p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 text-center">
+                    <a href="#" class="link-btn text-center" style="display: inline-block;
+                        font-size: 15px;
+                        font-weight: 500;
+                        color: var(--tp-common-white);
+                        background-color: #616368;
+                        padding: 0 30px;
+                        height: 32px;
+                        line-height: 32px;
+                        text-transform: capitalize;
+                        width: 14%;text-align:center;">View More<i class="fa-regular fa-arrow-right"></i></a>
+                </div>
+
             </div>
         </div>
     </div>
-</div>
+</section>
+<!-- features area end -->
+<!-- about area start -->
+<section class="about__area pb-120 p-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-7 col-xl-7 col-lg-7">
+                <div class="about__thumb-wrapper d-sm-flex mr-20 p-relative">
+                    <div class="about__shape">
+                        <img class="about__shape-1 d-none d-sm-block" src="@Url.Content("~/Content/home/assets/img/about/about-shape-1.png")" alt="Excel Educational Institute">
+                        <img class="about__shape-2 d-none d-sm-block" src="@Url.Content("~/Content/home/assets/img/about/about-shape-2.png")" alt="Excel Educational Institute">
+                        <img class="about__shape-3" src="@Url.Content("~/Content/home/assets/img/about/about-shape-3.png")" alt="Excel Educational Institute">
+                    </div>
+                    <div class="about__thumb-left mr-10">
+                        <div class="about__thumb-1 mb-10">
+                            <img src="@Url.Content("~/Content/home/images/director 01.jpg")" alt="Excel Educational Institute" />
+                        </div>
+                        <div class="about__thumb-1 mb-10 text-end">
+                            <img src="@Url.Content("~/Content/home/images/director 02.jpg")" alt="Excel Educational Institute" />
+                        </div>
+                    </div>
+                    <div class="about__thumb-2 mb-10">
+                        <img src="@Url.Content("~/Content/home/images/director 03.jpg")" alt="Excel Educational Institute" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-5 col-xl-5 col-lg-5">
+                <div class="about__content pl-70 pr-25">
+                    <div class="section__title-wrapper mb-15">
+                        <span class="section__title-pre">Excel’s Brief</span>
+                        <h2 class="section__title">The Centre of Excellence</h2>
+                    </div>
+                    <p>
+                        The era of excel began since its inception in the year 2007.
+                        The Vision to provide quality education in met with
+                        the glorious result of our students..
+                    </p>
+
+                    <div class="about__list mb-40">
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> A Glimpse of Excel 's successes.</li>
+                            <li><i class="fa-solid fa-check"></i> The Obsessed Faculty members</li>
+                            <li><i class="fa-solid fa-check"></i> Extra Curricular Activities.</li>
+                        </ul>
+                    </div>
+
+                    <div class="about__btn">
+                        <a href="#" class="tp-btn tp-btn-2" style="
+                        height: 32px;
+                        line-height: 32px;
+                        width: 46%;text-align:center;">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- about area end -->
+<!-- counter area start -->
+<section class="counter__area pb-30">
+    <div class="container">
+        <div class="counter__inner grey-bg-2">
+            <div class="row">
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <div class="counter__item d-flex align-items-start counter__item-border">
+                        <div class="counter__icon mr-15">
+                            <img src="@Url.Content("~/Content/home/images/ICON 01.png")" />
+                        </div>
+                        <div class="counter__content">
+                            <h4><span class="counter">15</span>+</h4>
+                            <p style="font-weight:700;font-size: 11px;">Year of <br /> Excellent Education</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <div class="counter__item d-flex align-items-start counter__item-border">
+                        <div class="counter__icon mr-15">
+                            <img src="@Url.Content("~/Content/home/images/INCON 02.png")" />
+                        </div>
+                        <div class="counter__content">
+                            <h4><span class="counter">20</span>+</h4>
+                            <p style="font-weight:700;font-size: 11px;">Faculties of <br /> Excellent Experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <div class="counter__item d-flex align-items-start counter__item-border">
+                        <div class="counter__icon mr-15">
+                            <img src="@Url.Content("~/Content/home/images/INCON 03.png")" />
+                        </div>
+                        <div class="counter__content">
+                            <h4><span class="counter">156</span>+</h4>
+                            <p style="font-weight:700;font-size: 11px;">All India Rankers <br /> Since 2007</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <div class="counter__item d-flex align-items-start">
+                        <div class="counter__icon mr-15">
+                            <img src="@Url.Content("~/Content/home/images/INCON 04.png")" />
+                        </div>
+                        <div class="counter__content">
+                            <h4><span class="counter">13000</span>+</h4>
+
+                            <p style="font-weight:700;font-size: 11px;">Successful Students <br /> Since 2007</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- counter area end -->
+<!-- event area start -->
+<section class="event__area pt-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="section__title-wrapper-2 text-center mb-60">
+                    <span class="section__title-pre-2">Announcements</span>
+                    <h3 class="section__title-2">News in Brief</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="event__item white-bg mb-10 transition-3 p-relative d-lg-flex align-items-center justify-content-between">
+                    <div class="event__left d-sm-flex align-items-center">
+                        <div class="event__date">
+                            <h4>02</h4>
+                            <p>October, 2022</p>
+                        </div>
+                        <div class="event__content">
+                            <div class="event__meta">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.49992 9.51253C9.72047 9.51253 10.7099 8.52308 10.7099 7.30253C10.7099 6.08198 9.72047 5.09253 8.49992 5.09253C7.27937 5.09253 6.28992 6.08198 6.28992 7.30253C6.28992 8.52308 7.27937 9.51253 8.49992 9.51253Z" stroke="#5F6160" stroke-width="1.5" />
+                                                <path d="M2.56416 6.01334C3.95958 -0.120822 13.0475 -0.113738 14.4358 6.02043C15.2504 9.61876 13.0121 12.6646 11.05 14.5488C9.62625 15.9229 7.37375 15.9229 5.94291 14.5488C3.98791 12.6646 1.74958 9.61168 2.56416 6.01334Z" stroke="#5F6160" stroke-width="1.5" />
+                                            </svg>
+                                            Raipur
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3 class="event__title">
+                                <a href="event-details.html">Global education fall meeting for everyone</a>
+                            </h3>
+
+
+                        </div>
+                    </div>
+                    <div class="event__right d-sm-flex align-items-center">
+
+                        <div class="event__more ml-30">
+                            <a href="event-details.html" class="tp-btn-5 tp-btn-7">View Details </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="event__item white-bg mb-10 transition-3 p-relative d-lg-flex align-items-center justify-content-between">
+                    <div class="event__left d-sm-flex align-items-center">
+                        <div class="event__date">
+                            <h4>06</h4>
+                            <p>August, 2022</p>
+                        </div>
+                        <div class="event__content">
+                            <div class="event__meta">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.49992 9.51253C9.72047 9.51253 10.7099 8.52308 10.7099 7.30253C10.7099 6.08198 9.72047 5.09253 8.49992 5.09253C7.27937 5.09253 6.28992 6.08198 6.28992 7.30253C6.28992 8.52308 7.27937 9.51253 8.49992 9.51253Z" stroke="#5F6160" stroke-width="1.5" />
+                                                <path d="M2.56416 6.01334C3.95958 -0.120822 13.0475 -0.113738 14.4358 6.02043C15.2504 9.61876 13.0121 12.6646 11.05 14.5488C9.62625 15.9229 7.37375 15.9229 5.94291 14.5488C3.98791 12.6646 1.74958 9.61168 2.56416 6.01334Z" stroke="#5F6160" stroke-width="1.5" />
+                                            </svg>
+                                            Raipur
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3 class="event__title">
+                                <a href="event-details.html">University seminar series on global health.</a>
+                            </h3>
+
+
+                        </div>
+                    </div>
+                    <div class="event__right d-sm-flex align-items-center">
+
+                        <div class="event__more ml-30">
+                            <a href="event-details.html" class="tp-btn-5 tp-btn-7">View Details </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="event__item white-bg mb-10 transition-3 p-relative d-lg-flex align-items-center justify-content-between">
+                    <div class="event__left d-sm-flex align-items-center">
+                        <div class="event__date">
+                            <h4>18</h4>
+                            <p>March, 2022</p>
+                        </div>
+                        <div class="event__content">
+                            <div class="event__meta">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.49992 9.51253C9.72047 9.51253 10.7099 8.52308 10.7099 7.30253C10.7099 6.08198 9.72047 5.09253 8.49992 5.09253C7.27937 5.09253 6.28992 6.08198 6.28992 7.30253C6.28992 8.52308 7.27937 9.51253 8.49992 9.51253Z" stroke="#5F6160" stroke-width="1.5" />
+                                                <path d="M2.56416 6.01334C3.95958 -0.120822 13.0475 -0.113738 14.4358 6.02043C15.2504 9.61876 13.0121 12.6646 11.05 14.5488C9.62625 15.9229 7.37375 15.9229 5.94291 14.5488C3.98791 12.6646 1.74958 9.61168 2.56416 6.01334Z" stroke="#5F6160" stroke-width="1.5" />
+                                            </svg>
+                                            Raipur
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3 class="event__title">
+                                <a href="event-details.html">Virtual spring part-time jobs fair for student.</a>
+                            </h3>
+
+
+                        </div>
+                    </div>
+                    <div class="event__right d-sm-flex align-items-center">
+
+                        <div class="event__more ml-30">
+                            <a href="event-details.html" class="tp-btn-5 tp-btn-7">View Details </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="event__item white-bg mb-10 transition-3 p-relative d-lg-flex align-items-center justify-content-between">
+                    <div class="event__left d-sm-flex align-items-center">
+                        <div class="event__date">
+                            <h4>27</h4>
+                            <p>October, 2022</p>
+                        </div>
+                        <div class="event__content">
+                            <div class="event__meta">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.49992 9.51253C9.72047 9.51253 10.7099 8.52308 10.7099 7.30253C10.7099 6.08198 9.72047 5.09253 8.49992 5.09253C7.27937 5.09253 6.28992 6.08198 6.28992 7.30253C6.28992 8.52308 7.27937 9.51253 8.49992 9.51253Z" stroke="#5F6160" stroke-width="1.5" />
+                                                <path d="M2.56416 6.01334C3.95958 -0.120822 13.0475 -0.113738 14.4358 6.02043C15.2504 9.61876 13.0121 12.6646 11.05 14.5488C9.62625 15.9229 7.37375 15.9229 5.94291 14.5488C3.98791 12.6646 1.74958 9.61168 2.56416 6.01334Z" stroke="#5F6160" stroke-width="1.5" />
+                                            </svg>
+                                            Raipur
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3 class="event__title">
+                                <a href="event-details.html">Scottish creatives to receive funded business.</a>
+                            </h3>
+
+
+                        </div>
+                    </div>
+                    <div class="event__right d-sm-flex align-items-center">
+
+                        <div class="event__more ml-30">
+                            <a href="event-details.html" class="tp-btn-5 tp-btn-7">View Details </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- event area end -->
+<!-- course area start -->
+<section class="course__area pt-20 pb-160 grey-bg-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="section__title-wrapper text-center mb-60">
+                    <span class="section__title-pre">We Serve</span>
+                    <h2 class="section__title section__title-44">Best Quality Education For</h2>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
+                <div class="course__item white-bg transition-3 mb-30">
+                    <div class="course__thumb w-img fix">
+                        <a href="course-details.aspx">
+                            <img src="@Url.Content("~/Content/home/images/CA .jpg")" alt="Excel Educational Institute" />
+                        </a>
+                    </div>
+                    <div class="course__content p-relative">
+
+                        <h3 class="course__title">
+                            <a href="#">CA ( Chartered Accountancy)</a>
+                        </h3>
+
+                        <p>
+                            &nbsp;- Foundation<br />
+                            &nbsp;- Intermediate<br />
+                            &nbsp;- Final
+                        </p>
+                    </div>
+                    <div class="course__bottom d-sm-flex align-items-center justify-content-between">
+                        <div class="course__lesson">
+                            <a href="#">
+                                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 4.5H9.82353" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 6.94995H7.70589" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
+                <div class="course__item white-bg transition-3 mb-30">
+                    <div class="course__thumb w-img fix">
+                        <a href="course-details.aspx">
+                            <img src="@Url.Content("~/Content/home/images/CS .jpg")" alt="Excel Educational Institute" />
+                        </a>
+                    </div>
+                    <div class="course__content p-relative">
+
+                        <h3 class="course__title">
+                            <a href="#">CS ( Company Secretory)</a>
+                        </h3>
+
+                        <p>
+                            &nbsp;- EET<br />
+                            &nbsp;- Executive<br />
+                            &nbsp;- Professional
+                        </p>
+                    </div>
+                    <div class="course__bottom d-sm-flex align-items-center justify-content-between">
+                        <div class="course__lesson">
+                            <a href="#">
+                                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 4.5H9.82353" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 6.94995H7.70589" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
+                <div class="course__item white-bg transition-3 mb-30">
+                    <div class="course__thumb w-img fix">
+                        <a href="course-details.aspx">
+                            <img src="@Url.Content("~/Content/home/images/CMA .jpg")" alt="Excel Educational Institute" />
+                        </a>
+                    </div>
+                    <div class="course__content p-relative">
+
+                        <h3 class="course__title">
+                            <a href="#" style="font-size: 17px;">CMA ( Cost Management Accountant)</a>
+                        </h3>
+
+                        <p>
+                            &nbsp;- Foundation<br />
+                            &nbsp;- Intermediate<br />
+                            &nbsp;- Final
+                        </p>
+                    </div>
+                    <div class="course__bottom d-sm-flex align-items-center justify-content-between">
+                        <div class="course__lesson">
+                            <a href="#">
+                                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 4.5H9.82353" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 6.94995H7.70589" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
+                <div class="course__item white-bg transition-3 mb-30">
+                    <div class="course__thumb w-img fix">
+                        <a href="course-details.aspx">
+                            <img src="@Url.Content("~/Content/home/images/XIXII.jpg")" alt="Excel Educational Institute" />
+                        </a>
+                    </div>
+                    <div class="course__content p-relative">
+
+                        <h3 class="course__title">
+                            <a href="#">CLASS XI & XII ( COMMERCE )</a>
+                        </h3>
+
+                        <p>
+                            &nbsp;- Accounts<br />
+                            &nbsp;- Economics<br />
+                            &nbsp;- Business Studies<br />
+                            &nbsp;- English
+                        </p>
+                    </div>
+                    <div class="course__bottom d-sm-flex align-items-center justify-content-between">
+                        <div class="course__lesson">
+                            <a href="#">
+                                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 4.5H9.82353" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 6.94995H7.70589" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- course area end -->
+<!-- category area start -->
+<section class="category__area pt-10 pb-160">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-4 col-xl-4 col-lg-4">
+                <div class="category__wrapper">
+                    <div class="section__title-wrapper-2">
+                        <span class="section__title-pre-2">Excel’s</span>
+                        <h3>MODE OF LEARNING</h3>
+                    </div>
+                    <p>Any mode of classes we are providing unlimited view on recorded video</p>
+
+                </div>
+            </div>
+            <div class="col-xxl-8 col-xl-8 col-lg-8">
+                <div class="category__item-wrapper">
+                    <div class="row">
+                        <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-5 col-sm-6 col-8">
+                            <div class="category__item text-center mb-45">
+                                <div class="category__icon">
+                                    <a href="#">
+                                        <img src="@Url.Content("~/Content/home/images/INCON 02.png")" />
+                                    </a>
+                                </div>
+                                <div class="category__content">
+                                    <h4 class="category__title">
+                                        <a href="#">FACE TO FACE CLASSES</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-5 col-sm-6 col-8">
+                            <div class="category__item text-center mb-45">
+                                <div class="category__icon pink-bg">
+                                    <a href="#">
+                                        <img src="@Url.Content("~/Content/home/images/INCON FACE TO FACE.png")" />
+                                    </a>
+                                </div>
+                                <div class="category__content">
+                                    <h4 class="category__title">
+                                        <a href="#">LIVE ONLINE CLASSES</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-5 col-sm-6 col-8">
+                            <div class="category__item text-center mb-45">
+                                <div class="category__icon green-bg">
+                                    <a href="#">
+                                        <img src="@Url.Content("~/Content/home/images/INCON 02.png")" />
+                                    </a>
+                                </div>
+                                <div class="category__content">
+                                    <h4 class="category__title">
+                                        <a href="course-v1.html">RECORDED CLASSES</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- category area end -->
+<!-- Teacher area start -->
+<section class="research__area research__border grey-bg-3 pt-20 pb-60 p-relative z-index-1">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="section__title-wrapper mb-50 text-center">
+                    <span class="section__title-pre">Faculties</span>
+                    <h2 class="section__title section__title-44">Our Highly Qualified & Experienced Faculties</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <a href="#">
+                    <div class="research__item research__item-border text-center mb-30 transition-3">
+                        <div class="research__thumb mb-35">
+                            <img src="@Url.Content("~/Content/home/staff/F1.jpg")" alt='CA. B.L. Agrawal' style="width: 239px;height: 223px;" />
+                        </div>
+                        <div class="research__content">
+                            <h3 class="research__title" style="color:blue;">CA. B.L. Agrawal</h3>
+                            <span>(B.Com. FCA)</span><br />
+                            <span>Experience:29 Years</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <a href="#">
+                    <div class="research__item research__item-border text-center mb-30 transition-3">
+                        <div class="research__thumb mb-35">
+                            <img src="@Url.Content("~/Content/home/staff/F2.jpg")" alt='CA. Praveen Golchha' style="width: 239px;height: 223px;" />
+                        </div>
+                        <div class="research__content">
+                            <h3 class="research__title" style="color:blue;">CA. Praveen Golchha</h3>
+                            <span>(B.Com. FCA)</span><br />
+                            <span>Experience:22 Years</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <a href="#">
+                    <div class="research__item research__item-border text-center mb-30 transition-3">
+                        <div class="research__thumb mb-35">
+                            <img src="@Url.Content("~/Content/home/staff/F3.jpg")" alt='CA. Sanjay Goyal' style="width: 239px;height: 223px;" />
+                        </div>
+                        <div class="research__content">
+                            <h3 class="research__title" style="color:blue;">CA. Sanjay Goyal</h3>
+                            <span>(B.Com. FCA, DISA (ICAI))</span><br />
+                            <span>Experience:22 Years</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="campus__btn text-center mb-80">
+                <a href="Our_Team.aspx" class="text-center tp-btn tp-btn-border">View More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Teacher area end -->
+<!-- campus area start -->
+<section class="theme__features pt-115 pb-120 grey-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2 col-lg-10 offset-lg-2">
+                <div class="section__title-wrapper mb-55 text-center">
+                    <h2 class="section__title">
+                        Unique feature of <br>
+                        Excel Educational Institute
+                        
+                    </h2>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row gx-0">
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                <div class="theme__features-item text-center transition-3 theme__features-border-right theme__features-border-bottom">
+                    <div class="theme__features-icon mb-25">
+                        <span>
+                            <img src="@Url.Content("~/Content/home/images/features/01.png")" alt="Excel Educational Institute" />
+                        </span>
+                    </div>
+                    <div class="theme__features-content">
+                        <h3 class="theme__features-title">Summary Notes</h3>
+                        <span>of quick revision apart from regular notes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                <div class="theme__features-item text-center transition-3 theme__features-border-right theme__features-border-bottom">
+                    <div class="theme__features-icon mb-25">
+                        <span>
+                            <img src="@Url.Content("~/Content/home/images/features/02.png")" alt="Excel Educational Institute" />
+                        </span>
+                    </div>
+                    <div class="theme__features-content">
+                        <h3 class="theme__features-title">Weekly Test</h3>
+                        <span>With Evaluation<br /></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                <div class="theme__features-item text-center transition-3 theme__features-border-right theme__features-border-bottom">
+                    <div class="theme__features-icon mb-25">
+                        <span>
+                            <img src="@Url.Content("~/Content/home/images/features/03.png")" alt="Excel Educational Institute" />
+                        </span>
+                    </div>
+                    <div class="theme__features-content">
+                        <h3 class="theme__features-title">Model Test</h3>
+                        <span>in Exam environment<br /></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                <div class="theme__features-item text-center transition-3 theme__features-border-right theme__features-border-bottom">
+                    <div class="theme__features-icon mb-25">
+                        <span>
+                            <img src="@Url.Content("~/Content/home/images/features/04.png")" alt="Excel Educational Institute" />
+                        </span>
+                    </div>
+                    <div class="theme__features-content">
+                        <h3 class="theme__features-title">Revision</h3>
+                        <span>after completion of course<br /></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                <div class="theme__features-item text-center transition-3 theme__features-border-right theme__features-border-bottom">
+                    <div class="theme__features-icon mb-25">
+                        <span>
+                            <img src="@Url.Content("~/Content/home/images/features/05.png")" alt="Excel Educational Institute" />
+                        </span>
+                    </div>
+                    <div class="theme__features-content">
+                        <h3 class="theme__features-title">Timely Completion</h3>
+                        <span>of Course<br /></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                <div class="theme__features-item text-center transition-3 theme__features-border-right theme__features-border-bottom">
+                    <div class="theme__features-icon mb-25">
+                        <span>
+                            <img src="@Url.Content("~/Content/home/images/features/06.png")" alt="Excel Educational Institute" />
+                        </span>
+                    </div>
+                    <div class="theme__features-content">
+                        <h3 class="theme__features-title">Video Backup Facility</h3>
+                        <span>for all lectures with unlimited views</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                <div class="theme__features-item text-center transition-3 theme__features-border-right theme__features-border-bottom">
+                    <div class="theme__features-icon mb-25">
+                        <span>
+                            <img src="@Url.Content("~/Content/home/images/features/07.png")" alt="Excel Educational Institute" />
+                        </span>
+                    </div>
+                    <div class="theme__features-content">
+                        <h3 class="theme__features-title">100% Doubt Clearance</h3>
+                        <span>for every student<br /></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6">
+                <div class="theme__features-item text-center transition-3 theme__features-border-right theme__features-border-bottom">
+                    <div class="theme__features-icon mb-25">
+                        <span>
+                            <img src="@Url.Content("~/Content/home/images/features/08.png")" alt="Excel Educational Institute" />
+                        </span>
+                    </div>
+                    <div class="theme__features-content">
+                        <h3 class="theme__features-title">Students’ Attendance / Result</h3>
+                        <span>Information to parents</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- campus area end -->
+<!-- testimonial area start -->
+<section class="testimonial__area pt-20 pb-160 fix">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="section__title-wrapper-2 mb-40 text-center">
+                    <span class="section__title-pre-2">Testimonials</span>
+                    <h3 class="section__title-2">What our Students Say.</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="testimonial__slider">
+                    <div class="testimonial__active owl-carousel">
+                        <div class="testimonial__item transition-3 text-center white-bg" style="height:538px;">
+                            <div class="testimonial__avater">
+                                <img src="@Url.Content("~/Content/home/images/F2.png")" alt="Excel Educational Institute">
+                            </div>
+                            <div class="testimonial__text">
+                                <h4>Great quality!</h4>
+                                <p>“Excel education institute is one of the prominent institutions providing Coaching for CA, CS and CMA. It's best known for its faculties. And high quality education. Key highlights The Classroom is awesome, digital teaching, best audio quality, fully air conditioned. Doubt clearing session, backup class, weakly test. Best for CA foundation and CA inter.</p>
+                            </div>
+                            <div class="testimonial__avater-info mb-5">
+                                <h3> Dinesh Kar</h3>
+
+                            </div>
+                            <div class="testimonial__rating">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="testimonial__item transition-3 text-center white-bg" style="height:538px;">
+                            <div class="testimonial__avater">
+                                <img src="@Url.Content("~/Content/home/images/F2.png")" alt="Excel Educational Institute">
+                            </div>
+                            <div class="testimonial__text">
+                                <h4>Great quality!</h4>
+                                <p>“An excellent educational institution, with such fantastic faculties, good learning environment, quick solutions to problems. I had a very nice experience. Go for it..</p>
+                            </div>
+                            <div class="testimonial__avater-info mb-5">
+                                <h3>NEHA TIWARI</h3>
+
+                            </div>
+                            <div class="testimonial__rating">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="testimonial__item transition-3 text-center white-bg" style="height:538px;">
+                            <div class="testimonial__avater">
+                                <img src="@Url.Content("~/Content/home/images/F2.png")" alt="Excel Educational Institute">
+                            </div>
+                            <div class="testimonial__text">
+                                <h4>Great quality!</h4>
+                                <p>“It is a world class coaching centre. Proud to be here.</p>
+                            </div>
+                            <div class="testimonial__avater-info mb-5">
+                                <h3>SAMMY BROWNS</h3>
+
+                            </div>
+                            <div class="testimonial__rating">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- testimonial area end -->

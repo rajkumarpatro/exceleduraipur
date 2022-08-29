@@ -20,9 +20,11 @@ namespace DAL
             {
                 DynamicParameters dp = new DynamicParameters();
                 dp.Add("PAGE_HEAD_ID", 0);
-                dp.Add("PAGE_HEAD_NAME", "");
+                dp.Add("PAGE_HEAD_NAME", "");                
                 dp.Add("SHOW", true);
                 dp.Add("REORDER", 0);
+                dp.Add("IS_LINK", false);
+                dp.Add("LINK_URL", "");
                 dp.Add("ACTION", "4");
 
                 var res = await db.QueryAsync<PageHead>("SP_PAGE_HEAD", dp, commandType: CommandType.StoredProcedure);
@@ -37,9 +39,11 @@ namespace DAL
             {
                 DynamicParameters dp = new DynamicParameters();
                 dp.Add("PAGE_HEAD_ID", param.PAGE_HEAD_ID);
-                dp.Add("PAGE_HEAD_NAME", param.PAGE_HEAD_NAME);
+                dp.Add("PAGE_HEAD_NAME", param.PAGE_HEAD_NAME);                
                 dp.Add("SHOW", param.SHOW);
                 dp.Add("REORDER", param.REORDER);
+                dp.Add("IS_LINK", param.IS_LINK);
+                dp.Add("LINK_URL", param.LINK_URL);
                 dp.Add("ACTION", param.ACTION);
 
                 res = await db.ExecuteScalarAsync<int>("SP_PAGE_HEAD", dp, commandType: CommandType.StoredProcedure);

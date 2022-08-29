@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Menu Name</label>
                                 @Html.TextBoxFor(Model => Model.PAGE_HEAD_NAME, new { @class = "form-control", placeholder = "Enter Menu Name", @required = "required" })
@@ -29,14 +29,22 @@
                             </div>
                         </div>
                         <div class="col-md-2">
+                            <label>Description/Link</label>
+                            @Html.DropDownListFor(m => m.IS_LINK, Model.LINKDD, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-3" id="dv_link">
+                            <label>URL</label>
+                            @Html.TextBoxFor(Model => Model.LINK_URL, new { @class = "form-control", placeholder = "Enter URL" })
+                        </div>
+                        <div class="col-md-1">
                             <label>Order</label>
-                            @Html.DropDownListFor(m => m.REORDER, Model.ORDERDD, new { @class="form-control"})
+                            @Html.DropDownListFor(m => m.REORDER, Model.ORDERDD, new { @class = "form-control" })
                         </div>
                         <div class="col-md-2">
                             <label>Show</label>
                             @Html.DropDownListFor(m => m.SHOW, Model.SHOWDD, new { @class = "form-control" })
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-1">
                             <br />
                             <button class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="submit" id="btnsubmit">Submit</button>
                         </div>

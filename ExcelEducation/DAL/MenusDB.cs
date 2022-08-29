@@ -23,6 +23,41 @@ namespace DAL
             }
         }
 
+        public async static Task<List<MenuModel>> GetMenu()
+        {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+                {
+                    var pageHeads = db.QueryAsync<PageHead>("select PAGE_HEAD_ID, PAGE_HEAD_NAME, IS_LINK, LINK_URL, REORDER from TBL_PAGE_HEAD WHERE SHOW='true' ORDER BY REORDER");
+
+                    List<MenuModel> ob = new List<MenuModel>();
+
+                    foreach (var ph in pageHeads.Result)
+                    {
+                        MenuModel mm = new MenuModel();
+                        mm.PAGE_HEAD_ID = ph.PAGE_HEAD_ID;
+                        mm.PAGE_HEAD_NAME = ph.PAGE_HEAD_NAME;
+                        mm.IS_LINK = ph.IS_LINK;
+                        mm.LINK_URL = ph.LINK_URL;
+                        mm.REORDER = ph.REORDER;
+
+                        var list = db.QueryAsync<SubMenuModel>("SELECT [PAGE_ID] ,[PAGE_HEAD_ID] ,[PAGE_NAME] ,[SHOW] ,[SUB_MENU] ,[REORDER] ,[IS_DEPARTMENT] ,[IS_LINK] ,[LINK_URL] FROM [dbo].[TBL_PAGE] WHERE SHOW='true' AND PAGE_HEAD_ID = @pageheadid ORDER BY REORDER", new { @pageheadid = mm.PAGE_HEAD_ID });
+                        mm.SUBMENU = list.Result.ToList();
+
+                        ob.Add(mm);
+                    }
+
+                    return ob;
+                }
+            }
+            catch(Exception ee)
+            {
+                return null;
+            }
+            
+        }
+
         public async static Task<List<Page>> GetPages(int pageHeadId)
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))

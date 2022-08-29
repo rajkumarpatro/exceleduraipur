@@ -8,6 +8,21 @@ $(document).ready(function () {
         gridAction = "fromGrid";
     });
 
+    $('#dv_link').hide();
+
+    $(document).on('change', '#IS_LINK', function () {
+        debugger;
+        var islink = $('#IS_LINK').val();
+
+        if (islink == "true") {
+            $('#dv_link').show();
+        }
+        else {
+            $('#dv_link').hide();
+            $('#LINK_URL').val('');
+        }
+    });
+
     $(document).on('change', '.gridSelect', function () {
         if (gridAction === "fromLoad") return;
 
@@ -70,6 +85,8 @@ $(document).ready(function () {
                     $('#PAGE_HEAD_NAME').val('');
                     $('#ddl_show').val('true');
                     $('#ddl_order').val('1');
+                    $('#IS_LINK').val('false');
+                    $('#LINK_URL').val('');
                     $('#ACTION').val('1');
                 }
             });
@@ -147,12 +164,22 @@ $(document).ready(function () {
         var pagehead = $('#lbl_' + id).text();
         var order = $(this).attr("data-order");
         var show = $(this).attr("data-show");
+        var link = $(this).attr("data-link");
+        var url = $('#lbl_link' + id).text();
         $('#PAGE_HEAD_ID').val(id);
         $('#PAGE_HEAD_NAME').val(pagehead);
         $('#REORDER').val(order);
         $('#SHOW').val(show);
+        $('#IS_LINK').val(link);
+        $('#LINK_URL').val(url);
         $('#ACTION').val('2');
-
+        if (link == "true") {
+            $('#dv_link').show();
+        }
+        else {
+            $('#dv_link').hide();
+            $('#LINK_URL').val('');
+        }
         //alert('hi');
     });
 

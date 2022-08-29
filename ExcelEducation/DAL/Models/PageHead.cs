@@ -13,9 +13,14 @@ namespace DAL.Models
 		public string PAGE_HEAD_NAME { get; set; }
 		public bool SHOW { get; set; } = true;
 		public int REORDER { get; set; }
+		public bool IS_LINK { get; set; } = false;
+		public string LINK_URL { get; set; }
+		public List<SelectListItem> LINKDD { get; set; }
 		public List<SelectListItem> SelectPageHead { get; set; }
 		public List<SelectListItem> ORDERDD { get; set; }
 		public List<SelectListItem> SHOWDD { get; set; }
 		public string ACTION { get; set; }
+
+
 	}
 }

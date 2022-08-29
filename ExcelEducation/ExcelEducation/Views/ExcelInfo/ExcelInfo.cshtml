@@ -1,0 +1,20 @@
+﻿@model DAL.Models.ExcelInfoModel
+
+@{
+    ViewBag.Title = "Page";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area include-bg pt-150 pb-150 breadcrumb__overlay" data-background="@Url.Content("~/Content/home/assets/img/breadcrumb/breadcrumb-bg-1.jpg")">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__content text-center p-relative z-index-1">
+                    <h3 class="breadcrumb__title">@Model.page</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb area end -->

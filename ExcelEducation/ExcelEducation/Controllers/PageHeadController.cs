@@ -22,6 +22,8 @@ namespace ExcelEducation.Controllers
                 orderList.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             }
 
+            ob.LINKDD = new List<SelectListItem> { new SelectListItem { Text = "LINK", Value = "true", Selected = true }, new SelectListItem { Text = "DESCRIPTION", Value = "false" }, };
+
             ob.ORDERDD = orderList;
             ob.SHOWDD = new List<SelectListItem> { new SelectListItem { Text = "YES", Value = "true", Selected=true }, new SelectListItem { Text = "NO", Value = "false" }, } ;
             return View("PageHead", ob);

@@ -1,5 +1,4 @@
-﻿using DAL;
-using DAL.Models;
+﻿using DAL.Models;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace PDFReader
+namespace DAL
 {
     public class FlashDB
     {

@@ -58,7 +58,7 @@ namespace ExcelEducation.Controllers
                     Session.Add("User", Login);
                     Session.Add("Role", "User");
 
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("index", "AdminHome");
                 }
             }
         }
