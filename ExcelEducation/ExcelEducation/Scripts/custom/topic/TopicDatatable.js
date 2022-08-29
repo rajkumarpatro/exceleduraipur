@@ -99,5 +99,4 @@ var griddtable = function () {
 
 jQuery(document).ready(function () {
     griddtable.init(0);
-    var table = $('#griddtable').DataTable();
 });

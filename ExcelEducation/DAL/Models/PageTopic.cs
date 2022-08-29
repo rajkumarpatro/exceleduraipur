@@ -8,9 +8,12 @@ using System.Web.Mvc;
 
 namespace DAL.Models
 {
-	public class PageTopic
+
+    [Table("TBL_PAGE_TOPIC")]
+    public class PageTopic
 	{
-		public int TOPIC_ID { get; set; }
+        [Key]
+        public int TOPIC_ID { get; set; }
 		public int PAGE_ID { get; set; }
 		public string TOPIC_NAME { get; set; }
 		public bool IS_LINK { get; set; }

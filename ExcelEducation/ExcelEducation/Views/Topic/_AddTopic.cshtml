@@ -13,21 +13,21 @@
             <h5 class="closeCard" style="float: right; color: blue; cursor: pointer;"><i class="feather icon-x"></i></h5>
         </div>
         <div class="card-body">
-            <form id="frm_topicdetails">
+            <form id="frm_topic">
                 @Html.HiddenFor(m => m.PAGE_ID)
                 @Html.HiddenFor(m => m.TOPIC_ID)
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label required">Topic</label>
                             @Html.TextBoxFor(m => m.TOPIC_NAME, new { @class = "form-control", placeholder = "Topic", @required = "required" })
                             <label id="TOPIC_NAME-error" class="error hide_column invalid-feedback" for="TOPIC_NAME" style="">This field is required.</label>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="row">
 
-                            <div class="col-md-2 m-0 p-0">
+                            <div class="col-md-1 m-0 p-0">
                                 <div class="form-group">
                                     <label class="form-label" style="display:block">Is Link</label>
                                     <input class="chktoggle" @(Model.IS_LINK ? "checked" : "") type="checkbox" id="IS_LINK"
@@ -36,6 +36,12 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4 m-0 p-0 divlink" style="display:none">
+                                <div class="form-group">
+                                    <label class="form-label" style="display:block">Link</label>
+                                    @Html.TextBoxFor(m => m.LINK_URL, new { @class = "form-control", placeholder = "Url" })
+                                </div>
+                            </div>
                             <div class="col-md-2 m-0 p-0">
                                 <div class="form-group">
                                     <label class="form-label" style="display:block">Set Order</label>
@@ -45,7 +51,8 @@
                             <div class="col-md-2 m-0 p-0">
                                 <div class="form-group">
                                     <label class="form-label" style="visibility:hidden">Set Order</label><br />
-                                    <button type="button" id="testbtn" class="btn btn-sm btn-outline-primary">@(Model.TOPIC_ID > 0 ? "Update" : "Add")</button>
+                                    <button type="button" id="btnSaveTopic" class="btn btn-sm btn-outline-primary">@(Model.TOPIC_ID > 0 ? "Update" : "Add")</button>
+                                    <button type="button" id="btnCancelTopic" style="display:none" class="btn btn-sm btn-outline-primary">Cancel</button>
                                 </div>
                             </div>
                         </div>

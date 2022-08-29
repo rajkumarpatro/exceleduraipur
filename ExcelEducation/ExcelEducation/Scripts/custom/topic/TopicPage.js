@@ -106,11 +106,52 @@ $(document).ready(function () {
                 $('.topic-content').empty('').html(view);
                 $('.topic-content').show();
                 $('.topic').hide();
+                
             },
             error: function (data, params) {
                 $.unblockUI();
             }
         });
+    });
+
+    //form validation and submit for topic 
+    $(document).on('click', '#btnSaveTopic', function () {
+        
+        if ($("#frm_topic").valid()) {
+           
+            var fileData = new FormData(document.querySelector('#frm_topic'));
+            
+            fileData.set('IS_LINK', $('#IS_LINK').prop('checked'));
+
+            $.ajax({
+                url: AddTopic,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: fileData,
+                beforeSend: function () {
+                    $.blockUI();
+                },
+                success: function (res) {
+
+                    if (res === 'False')
+                        notify("", "Something went wrong", "danger");
+                    else {
+                        notify("", "Data Add / Edited Successfully", "success");
+                    }
+                    gridTopicstable.reloadTable();
+                    topicFrmReset();
+                },
+                error: function (err) {
+                    $.unblockUI();
+                    notify("", "Something went wrong", "danger");
+
+                },
+                complete: function () {
+                    $.unblockUI();
+                }
+            });
+        }
     });
     //add new topic details (opens topic details view)
     $(document).on('click', '#btnAddData', function () {
@@ -149,6 +190,15 @@ $(document).ready(function () {
                 $.unblockUI();
             }
         });
+    });
+
+    // close details close
+    $(document).on('click', '.closeCard', function () {
+        $('.topic-content').empty('');
+        $('.topic-content').hide();
+        $('.topic').show();
+        griddtable.reloadTable();
+       
     });
 
     //form validation and submit for topic details
@@ -317,11 +367,6 @@ $(document).ready(function () {
             },
             complete: function () {
                 $.unblockUI();
-                //$('#FLASH_ID').val('');
-                //$('#FLASH_CAPTION').val('');
-                //$('#uploadfile').val('');
-                //$('#ddl_order').val('1');
-                //$('#ACTION').val('1');
             }
         });
     });
@@ -370,11 +415,6 @@ $(document).ready(function () {
             },
             complete: function () {
                 $.unblockUI();
-                //$('#FLASH_ID').val('');
-                //$('#FLASH_CAPTION').val('');
-                //$('#uploadfile').val('');
-                //$('#ddl_order').val('1');
-                //$('#ACTION').val('1');
             }
         });
 
@@ -405,4 +445,70 @@ $(document).ready(function () {
             }
         });
     });
+
+    //Topic IS_LINK change
+    $(document).on('change', '#IS_LINK', function () {
+        
+        if ($(this).prop('checked')) {
+            $('.divlink').show();
+        }
+        else $('.divlink').hide();
+    });
+
+    //Topic delete
+    $(document).on('click', '.deletetopic', function () {
+        var id = $(this).data('id');
+
+        $.ajax({
+            url: DeleteTopic+"?id="+id,
+            type: 'GET',
+            success: function () {
+                gridTopicstable.reloadTable();
+            }
+        })
+    });
+
+    //Topic edit
+    $(document).on('click', '.edittopic', function () {
+        var id = $(this).data('id');
+
+        $.ajax({
+            url: GetTopic + "?topicId=" + id,
+            type: 'GET',
+            success: function (res) {
+                $("#PAGE_ID").val(res.PAGE_ID);
+                $("#TOPIC_ID").val(res.TOPIC_ID);
+                $("#TOPIC_NAME").val(res.TOPIC_NAME);
+                $("#IS_LINK").val(res.IS_LINK);
+                if (res.IS_LINK) {
+                    $("#IS_LINK").bootstrapToggle('on');
+                    $(".divlink").show();
+                }
+                else {
+                    $("#IS_LINK").bootstrapToggle('off');
+                    $(".divlink").hide();
+                }
+                $("#LINK_URL").val(res.LINK_URL);
+                $("#TOPIC_ORDER").val(res.TOPIC_ORDER).trigger('change');
+                $('#btnCancelTopic').show();
+                $('#btnSaveTopic').html('Update');
+                
+            }
+        })
+    });
+
+    //topic cancel edit
+    $(document).on('click', '#btnCancelTopic', function () {
+        topicFrmReset();
+    });
+
+    //topic form reset
+    function topicFrmReset() {
+        $('#btnSaveTopic').html('Add');
+        document.getElementById("frm_topic").reset();
+        $('#btnCancelTopic').hide();
+        $("#IS_LINK").bootstrapToggle('off');
+        $("#TOPIC_ORDER").val(1).trigger('change');
+    }
+
 });

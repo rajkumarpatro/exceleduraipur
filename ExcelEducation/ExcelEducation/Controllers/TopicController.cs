@@ -160,7 +160,7 @@ namespace ExcelEducation.Controllers
         {
             return await MenusDB.DeleteTopicDetailFile(fileId);
         }
-        
+
         [HttpPost]
         public string SaveImages()
         {
@@ -177,6 +177,16 @@ namespace ExcelEducation.Controllers
 
             return PartialView("_AddTopic", pageTopic);
         }
+        [HttpPost]
+        public async Task<bool> AddTopic(PageTopic pageTopic)
+        {
+            return await MenusDB.AddTopic(pageTopic);
+        }
+
+        public async Task<bool> DeleteTopic(int id)
+        {
+            return await MenusDB.DeleteTopic(id);
+        }
 
         public async Task<ActionResult> GetTopicList(int pageId)
         {
@@ -184,6 +194,11 @@ namespace ExcelEducation.Controllers
             {
                 data = (await MenusDB.GetTopics(pageId))
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> GetTopic(int topicId)
+        {
+            return Json(await MenusDB.GetTopic(topicId), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
