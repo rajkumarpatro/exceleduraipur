@@ -89,7 +89,7 @@ $(document).ready(function () {
         var btnText = 'Add ' + $(this).children(":selected").text() + ' data';
 
         $('#btnAddData').text(btnText.toUpperCase());
-        griddtable.destroy();
+        
         griddtable.init($(this).val());
     });
 
@@ -106,7 +106,7 @@ $(document).ready(function () {
                 $('.topic-content').empty('').html(view);
                 $('.topic-content').show();
                 $('.topic').hide();
-                
+
             },
             error: function (data, params) {
                 $.unblockUI();
@@ -116,11 +116,11 @@ $(document).ready(function () {
 
     //form validation and submit for topic 
     $(document).on('click', '#btnSaveTopic', function () {
-        
+
         if ($("#frm_topic").valid()) {
-           
+
             var fileData = new FormData(document.querySelector('#frm_topic'));
-            
+
             fileData.set('IS_LINK', $('#IS_LINK').prop('checked'));
 
             $.ajax({
@@ -192,18 +192,18 @@ $(document).ready(function () {
         });
     });
 
-    // close details close
+    // close Topic view
     $(document).on('click', '.closeCard', function () {
         $('.topic-content').empty('');
         $('.topic-content').hide();
         $('.topic').show();
+
         griddtable.reloadTable();
-       
     });
 
     //form validation and submit for topic details
     $(document).on('click', '#testbtn', function () {
-        debugger;
+        
         if ($("#frm_topicdetails").valid()) {
             var fileUpload = $("#uploadfile").get(0);
             var files = fileUpload.files;
@@ -216,7 +216,7 @@ $(document).ready(function () {
 
             fileData.set('SHOW_TOPIC_NAME', $('#SHOW_TOPIC_NAME').prop('checked'));
             fileData.set('TOPIC_LINK_TYPE', $('#TOPIC_LINK_TYPE').prop('checked'));
-            fileData.set('TOPIC_DESCRIPTION', encodeURI($("#TOPIC_DESCRIPTION").val()) );
+            fileData.set('TOPIC_DESCRIPTION', encodeURI($("#TOPIC_DESCRIPTION").val()));
 
             $.ajax({
                 url: AddTopicDetail,
@@ -422,7 +422,7 @@ $(document).ready(function () {
 
     //Order ddl change from grid
     $(document).on('change', '.gridSelect', function () {
-        
+
         if (gridAction === "fromLoad") return;
 
         $.ajax({
@@ -448,7 +448,7 @@ $(document).ready(function () {
 
     //Topic IS_LINK change
     $(document).on('change', '#IS_LINK', function () {
-        
+
         if ($(this).prop('checked')) {
             $('.divlink').show();
         }
@@ -460,7 +460,7 @@ $(document).ready(function () {
         var id = $(this).data('id');
 
         $.ajax({
-            url: DeleteTopic+"?id="+id,
+            url: DeleteTopic + "?id=" + id,
             type: 'GET',
             success: function () {
                 gridTopicstable.reloadTable();
@@ -492,7 +492,7 @@ $(document).ready(function () {
                 $("#TOPIC_ORDER").val(res.TOPIC_ORDER).trigger('change');
                 $('#btnCancelTopic').show();
                 $('#btnSaveTopic').html('Update');
-                
+
             }
         })
     });

@@ -5,6 +5,7 @@ var griddtable = function () {
     var tableGrid = function (topicId) {
         table = $('#griddtable');
         table.dataTable({
+            destroy: true,
             //"autowidth": "true",
             //"scrollX": true,
             order: [[3, 'desc']],
@@ -80,11 +81,11 @@ var griddtable = function () {
             tableGrid(topicId);
         },
         reloadTable: function () {
-            table.DataTable().ajax.reload(null, false); // user paging is not reset on reload
+            table.api().ajax.reload(null, false); // user paging is not reset on reload
         },
         destroy: function () {
             if (table != null)
-                table.DataTable().destroy();
+                table.DataTable().destroy();    
         },
         clear: function () {
             if (table != null)

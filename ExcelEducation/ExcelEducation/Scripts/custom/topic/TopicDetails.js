@@ -88,8 +88,9 @@ $(document).ready(function () {
     $(document).on('click', '.closeCard', function () {
         $('.topic-content').empty('');
         $('.topic-content').hide();
-        griddtable.reloadTable();
         $('.topic').show();
+
+        griddtable.reloadTable();
     });
 
     //initializr multi file uploader
