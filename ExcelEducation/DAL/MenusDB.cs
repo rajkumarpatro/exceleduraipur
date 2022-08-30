@@ -66,6 +66,15 @@ namespace DAL
                 return list.ToList();
             }
         }
+        public async static Task<PageTopic> GetTopic(int topicId)
+        {
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                var list = await db
+                    .QueryAsync<PageTopic>("select * from TBL_PAGE_TOPIC where TOPIC_ID = @topicId", new { @topicId = topicId });
+                return list.FirstOrDefault();
+            }
+        }
 
         public async static Task<List<PageTopic>> GetTopics(int pageId)
         {
@@ -160,7 +169,7 @@ namespace DAL
             }
         }
 
-        public async static Task<bool> InsertTopicDetailPhotos(List<PagePhotos>  pagePhotos)
+        public async static Task<bool> InsertTopicDetailPhotos(List<PagePhotos> pagePhotos)
         {
             int res = 0;
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
@@ -228,6 +237,48 @@ namespace DAL
             }
 
             return res > 0;
+        }
+
+        public async static Task<bool> AddTopic(PageTopic pageTopic)
+        {
+            int res = 0;
+            try
+            {
+                using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+                {
+                    if (pageTopic.TOPIC_ID > 0)
+                        return await db.UpdateAsync<PageTopic>(pageTopic);
+                    else
+                        res = await db.InsertAsync<PageTopic>(pageTopic);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return res > 0;
+        }
+
+        public async static Task<bool> DeleteTopicDetailsByTopicId(int TopicId)
+        {
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                var num = await db.ExecuteAsync("", new { @id = TopicId });
+                return num > 0;
+            }
+        }
+
+        public async static Task<bool> DeleteTopic(int id)
+        {
+            if (await DeleteTopicDetailsByTopicId(id))
+            {
+                using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+                {
+                    PageTopic topic = new PageTopic { TOPIC_ID = id };
+                    return await db.DeleteAsync(topic);
+                }
+            }
+            return false;
         }
     }
 

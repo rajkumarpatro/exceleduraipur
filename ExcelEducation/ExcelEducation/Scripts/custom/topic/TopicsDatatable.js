@@ -40,8 +40,13 @@ var gridTopicstable = function () {
                 },
                 {
                     "title": "LINK", "data": "LINK_URL",
-                    fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        var select = '<a href="' + oData.LINK_URL +' target="_blank">';
+                    fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {       
+                        
+                        var select = '';
+                        if (oData.LINK_URL != null) {
+                           select = "<a href='" + (oData.LINK_URL == null ? '' : oData.LINK_URL) + "' target='_blank'>file</a>";
+                        }
+                        
                         $(nTd).html(select);
                     }
                 },
@@ -54,9 +59,9 @@ var gridTopicstable = function () {
                 }
                 ,
                 {
-                    "title": "", "data": "TOPIC_ORDER",
+                    "title": "1", "data": "TOPIC_ORDER",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<i data-id=" + oData.TOPIC_ID + " class='feather icon-trash-2 deletefile'></i> <i data-id=" + oData.FILE_ID + " class='feather icon-edit'></i>");
+                        $(nTd).html("<i data-id=" + oData.TOPIC_ID + " class='feather icon-trash-2 deletetopic'></i> <i data-id=" + oData.TOPIC_ID + " class='feather icon-edit edittopic'></i>");
                     }
                 }
             ]
