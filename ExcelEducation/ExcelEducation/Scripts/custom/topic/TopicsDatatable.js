@@ -1,10 +1,10 @@
 
 var gridTopicstable = function () {
     //TODO:: table-datatables-scroller.js use to fix scroller issue
-    var table;
-    var tableGrid = function (pageId) {
-        table = $('#gridTopicstable');
-        table.dataTable({
+    var table1;
+    var tableGrid1 = function (pageId) {
+        table1 = $('#gridTopicstable');
+        table1.dataTable({
             "ajax": {
                 order: [[1, "desc"]],
                 "url": GetTopicList + "?pageId=" + pageId,
@@ -75,22 +75,22 @@ var gridTopicstable = function () {
                 return;
             }
 
-            tableGrid(pageId);
+            tableGrid1(pageId);
         },
         reloadTable: function () {
-            table.DataTable().ajax.reload(null, false); // user paging is not reset on reload
+            table1.DataTable().ajax.reload(null, false); // user paging is not reset on reload
         },
         destroy: function () {
-            if (table != null)
-                table.DataTable().destroy();
+            if (table1 != null)
+                table1.DataTable().destroy();
         },
         clear: function () {
-            if (table != null)
-                table.DataTable().clear();
+            if (table1 != null)
+                table1.DataTable().clear();
         },
         draw: function () {
-            if (table != null)
-                table.DataTable().draw();
+            if (table1 != null)
+                table1.DataTable().draw();
         }
     };
 }();

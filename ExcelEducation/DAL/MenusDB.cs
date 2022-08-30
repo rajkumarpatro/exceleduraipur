@@ -263,7 +263,8 @@ namespace DAL
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
-                var num = await db.ExecuteAsync("", new { @id = TopicId });
+                var num = await db.ExecuteAsync("Delete from TBL_TOPIC_DETAIL where TOPIC_ID = @id"
+                    , new { @id = TopicId });
                 return num > 0;
             }
         }
