@@ -760,6 +760,7 @@
     <Content Include="Content\home\assets\fonts\fa-v4compatibility.woff2" />
     <Content Include="Content\home\staff\CA-cpt faq.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\custom\ExcelInfo\PageContent.js" />
     <Content Include="Scripts\custom\LatestUpdates\LatestUpdates.js" />
     <Content Include="Scripts\custom\LatestUpdates\LatestUpdatesDatatable.js" />
     <Content Include="Scripts\custom\Page\Page.js" />
@@ -826,6 +827,7 @@
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ExcelInfo\ExcelInfo.cshtml" />
+    <Content Include="Views\ExcelInfo\_PageContents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

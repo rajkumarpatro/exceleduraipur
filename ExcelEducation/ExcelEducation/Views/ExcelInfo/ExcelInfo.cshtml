@@ -5,8 +5,9 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
+
 <!-- breadcrumb area start -->
-<section class="breadcrumb__area include-bg pt-150 pb-150 breadcrumb__overlay" data-background="@Url.Content("~/Content/home/assets/img/breadcrumb/breadcrumb-bg-1.jpg")">
+<section class="breadcrumb__area include-bg  breadcrumb__overlay" data-background="@Url.Content("~/Content/home/assets/img/breadcrumb/breadcrumb-bg-1.jpg")">
     <div class="container">
         <div class="row">
             <div class="col-xxl-12">
@@ -18,3 +19,52 @@
     </div>
 </section>
 <!-- breadcrumb area end -->
+<!-- profile menu area start -->
+<section class="profile__menu pt-50 pb-50 grey-bg-2">
+    <div class="container">
+        <div class="row">
+
+            @{
+                string columns = "col-xxl-12 col-md-12";
+                var topics = Model.Topics;
+                var firstTopicId = Model.Topics.FirstOrDefault().TOPIC_ID;
+                int topicCount = Model.Topics.Count();
+
+                if (topicCount > 1)
+                {
+                    columns = "col-xxl-9 col-md-9";
+                    <div class="col-xxl-3 col-md-3">
+                        <div class="profile__menu-left white-bg mb-50">
+                            <h3 class="profile__menu-title"><i class="fa-regular fa-square-list"></i> Major Topics</h3>
+                            <div class="profile__menu-tab">
+                                <div class="nav nav-tabs flex-column justify-content-start text-start" id="nav-tab" role="tablist">
+                                    @foreach (var topic in topics)
+                                    {
+                                        <div class="nav-link"><div id="lnk_topicdetails" data-topicid="@topic.TOPIC_ID"><i class="fa-regular fa-arrow-right-from-bracket"></i> @topic.TOPIC_NAME</div></div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+            <div class="@columns">
+                <div class="topic-content"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*Custom Js*@
+
+<script src="@Url.Content("~/Scripts/custom/ExcelInfo/PageContent.js")"></script>
+
+<script>
+    var LoadPageContent = "@Url.Content("~/ExcelInfo/LoadPageContents")";
+    var firstTopicID = @firstTopicId
+</script>
+<!-- profile menu area end -->

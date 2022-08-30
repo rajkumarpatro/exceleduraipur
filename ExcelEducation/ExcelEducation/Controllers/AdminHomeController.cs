@@ -8,7 +8,7 @@ namespace ExcelEducation.Controllers
 {
     public class AdminHomeController : Controller
     {
-        [Authorize]
+        //[Authorize]
         public ActionResult Index()
         {
             return View();
