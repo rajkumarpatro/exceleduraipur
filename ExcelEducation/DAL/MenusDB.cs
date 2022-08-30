@@ -137,7 +137,7 @@ namespace DAL
 
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
-                var list = await db.QueryAsync<PagePhotos>("SELECT *FROM TBL_PAGE_PHOTOS where SUB_TOPIC_ID = @id", new { @id = subTopicId });
+                var list = await db.QueryAsync<PagePhotos>("SELECT * FROM TBL_PAGE_PHOTOS where SUB_TOPIC_ID = @id", new { @id = subTopicId });
                 return list.ToList();
             }
         }

@@ -15,7 +15,7 @@ $(document).ready(function () {
         tabsize: 1,
         height: 200,
         callbacks: {
-            onImageUpload: imageUpload
+            //onImageUpload: imageUpload
         }
     }).on('summernote.change', function (customEvent, contents, $editable) {
         // Revalidate the content when its value is changed by Summernote

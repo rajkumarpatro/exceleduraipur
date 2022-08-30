@@ -30,5 +30,9 @@ namespace DAL.Models
 
         [Computed]
         public List<PagePhotos> PagePhotos { get; set; } = new List<PagePhotos>();
+
+        [Computed]
+        public List<PageFiles> PageFiles { get; set; } = new List<PageFiles>();
+
     }
 }
