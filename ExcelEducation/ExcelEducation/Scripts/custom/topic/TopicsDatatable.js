@@ -59,9 +59,9 @@ var gridTopicstable = function () {
                 }
                 ,
                 {
-                    "title": "1", "data": "TOPIC_ORDER",
+                    "title": "", "data": "TOPIC_ORDER",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<i data-id=" + oData.TOPIC_ID + " class='feather icon-trash-2 deletetopic'></i> <i data-id=" + oData.TOPIC_ID + " class='feather icon-edit edittopic'></i>");
+                        $(nTd).html("<i data-id=" + oData.TOPIC_ID + " class='feather icon-trash-2 deletetopic'></i> | <i data-id=" + oData.TOPIC_ID + " class='feather icon-edit edittopic'></i>");
                     }
                 }
             ]

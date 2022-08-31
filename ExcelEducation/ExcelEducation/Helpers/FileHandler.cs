@@ -8,7 +8,7 @@ namespace ExcelEducation.Helpers
 {
     public class FileHandler
     {
-        public static string SaveUploadedFile(HttpRequestBase Request, string filePrefix, int id)
+        public static string SaveUploadedFile(HttpRequestBase Request, string filePrefix, int id = 0)
         {
             string fname = String.Empty;
 

@@ -31,7 +31,7 @@ $(document).ready(function () {
             url: GetPages + "?pageHeadId=" + $(this).val(),
             dataType: 'json',
             success: function (params) {
-
+                
                 $('.clsddlpage').empty().select2({
                     placeholder: { text: "Select", selected: 'selected' },
                     allowClear: true,
@@ -58,8 +58,13 @@ $(document).ready(function () {
             return;
         };
 
+        LoadTopicData($(this).val());
+    });
+
+    function LoadTopicData(pageId) {
+        
         $.ajax({
-            url: GetTopics + "?pageId=" + $(this).val(),
+            url: GetTopics + "?pageId=" + pageId,
             dataType: 'json',
             success: function (params) {
 
@@ -75,7 +80,7 @@ $(document).ready(function () {
             error: function (data, params) {
             }
         });
-    });
+    }
 
     //topic change event loads topic details grid 
     $(document).on('change', '.clsddltopic', function () {
@@ -85,12 +90,16 @@ $(document).ready(function () {
             return;
         };
 
+        griddtable.init($(this).val());
+
+        var lblCntFilter = $('[name="griddtable_length"]').closest('label');
+        lblCntFilter.html('<pan style="font-weight: bold">Topic</span>: <span style="color: blue; font-weight: bold">' + $('.clsddltopic option:selected').text() +'</span></br>'+lblCntFilter.html());
+
         $('#btnAddData').show();
         var btnText = 'Add ' + $(this).children(":selected").text() + ' data';
 
         $('#btnAddData').text(btnText.toUpperCase());
-        
-        griddtable.init($(this).val());
+
     });
 
     //add new topic (opens topic view)
@@ -141,6 +150,7 @@ $(document).ready(function () {
                     }
                     gridTopicstable.reloadTable();
                     topicFrmReset();
+                    
                 },
                 error: function (err) {
                     $.unblockUI();
@@ -174,7 +184,7 @@ $(document).ready(function () {
     });
 
     //click event from details grid => edit topic details
-    $(document).on('click', '.gridedit', function () {
+    $(document).on('click', '.editsubtopic', function () {
         $.ajax({
             url: AddTopicDetail + "?subTopicId=" + $(this).data('id'),
             beforeSend: function () {
@@ -192,18 +202,22 @@ $(document).ready(function () {
         });
     });
 
+
     // close Topic view
-    $(document).on('click', '.closeCard', function () {
+    $(document).on('click', '.pagetopic .closeCard', function () {
+        debugger;
         $('.topic-content').empty('');
         $('.topic-content').hide();
         $('.topic').show();
 
+
+        LoadTopicData($('.clsddlpage').val());
         griddtable.reloadTable();
     });
 
     //form validation and submit for topic details
     $(document).on('click', '#testbtn', function () {
-        
+
         if ($("#frm_topicdetails").valid()) {
             var fileUpload = $("#uploadfile").get(0);
             var files = fileUpload.files;
@@ -234,7 +248,7 @@ $(document).ready(function () {
                     else {
                         notify("", "Data Add / Edited Successfully", "success");
                     }
-
+                    $('.closeCard').trigger('click');
                 },
                 error: function (err) {
                     $.unblockUI();
@@ -321,7 +335,7 @@ $(document).ready(function () {
 
     //upload multiple photos for topic details
     $(document).on('click', '.btnUploadPhotos', function () {
-        debugger;
+        
         var fileData = new FormData(document.querySelector('#frm_topicdetails'));
         for (var key of fileData.keys()) {
             // here you can add filtering conditions
@@ -420,6 +434,11 @@ $(document).ready(function () {
 
     });
 
+    // sets target control
+    $(document).on('click', '.select2', function () {
+        gridFlashAction = "fromGrid";
+    });
+
     //Order ddl change from grid
     $(document).on('change', '.gridSelect', function () {
 
@@ -446,6 +465,31 @@ $(document).ready(function () {
         });
     });
 
+    //Order ddl change from grid
+    $(document).on('change', '.gridTopicDetailsSelect', function () {
+        debugger;
+        if (gridFlashAction === "fromLoad") return;
+
+        $.ajax({
+            url: SetSubTopicOrder,
+            type: "POST",
+            data: { "Id": $(this).data('id'), "order": $(this).val() },
+            success: function (res) {
+
+                if (res === 'False')
+                    notify("", "Something went wrong", "danger");
+                else {
+                    notify("", "Order set succesfully", "success");
+                }
+            },
+            error: function (err) {
+                notify("", "Something went wrong", "danger");
+            },
+            complete: function () {
+
+            }
+        });
+    });
     //Topic IS_LINK change
     $(document).on('change', '#IS_LINK', function () {
 
@@ -468,8 +512,23 @@ $(document).ready(function () {
         })
     });
 
-    //Topic edit
+    //Delete Topic details
+    $(document).on('click', '.deletetopicdetails', function () {
+        debugger;
+        var id = $(this).data('id');
+
+        $.ajax({
+            url: DeleteTopicDetail + "?subTopicId=" + id,
+            type: 'GET',
+            success: function () {
+                griddtable.reloadTable();
+            }
+        })
+    });
+
+    //Topic edit        
     $(document).on('click', '.edittopic', function () {
+        debugger;
         var id = $(this).data('id');
 
         $.ajax({

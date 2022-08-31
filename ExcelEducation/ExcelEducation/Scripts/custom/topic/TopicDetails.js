@@ -15,11 +15,11 @@ $(document).ready(function () {
         tabsize: 1,
         height: 200,
         callbacks: {
-            //onImageUpload: imageUpload
+            onImageUpload: imageUpload
         }
     }).on('summernote.change', function (customEvent, contents, $editable) {
         // Revalidate the content when its value is changed by Summernote
-        fv.revalidateField('content');
+        //fv.revalidateField('content');
     });
 
     function imageUpload(files) {
@@ -46,8 +46,9 @@ $(document).ready(function () {
 
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
+                    debugger;
                     if (xhr.responseText) {
-                        toastr.error(xhr.responseText, 'Inconceivable!')
+                        //toastr.error(xhr.responseText, 'Inconceivable!')
                     } else {
                         console.error("<div>Http status: " + xhr.status + " " + xhr.statusText + "</div>" + "<div>ajaxOptions: " + ajaxOptions + "</div>"
                             + "<div>thrownError: " + thrownError + "</div>");
@@ -85,7 +86,8 @@ $(document).ready(function () {
     });
 
     // close details close
-    $(document).on('click', '.closeCard', function () {
+    $(document).on('click', '.topicdetail   .closeCard', function () {
+        debugger;
         $('.topic-content').empty('');
         $('.topic-content').hide();
         $('.topic').show();

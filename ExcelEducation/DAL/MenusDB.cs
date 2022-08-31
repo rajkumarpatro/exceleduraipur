@@ -4,11 +4,15 @@ using Dapper;
 using Dapper.Contrib.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace DAL
 {
@@ -51,11 +55,11 @@ namespace DAL
                     return ob;
                 }
             }
-            catch(Exception ee)
+            catch (Exception ee)
             {
                 return null;
             }
-            
+
         }
 
         public async static Task<List<Page>> GetPages(int pageHeadId)
@@ -224,7 +228,21 @@ namespace DAL
                 return await db.DeleteAsync<PageFiles>(pageFiles);
             }
         }
-
+        public async static Task<bool> DeleteTopicDetail(int subTopicId)
+        {
+            try
+            {
+                var subTopic = await GetTopicDetailsBySubTopicId(subTopicId);
+                await DeleteTopicPhotos(subTopicId.ToString());
+                await DeleteTopicFiles(subTopicId.ToString());
+                await DeleteTopicDetailsByTopicId(subTopic.TOPIC_ID.ToString());
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public async static Task<bool> SetTopicOrder(int topicId, int order)
         {
             int res = 0;
@@ -234,6 +252,20 @@ namespace DAL
                 res = await db.ExecuteAsync
                     ("update TBL_PAGE_TOPIC set TOPIC_ORDER = @order where TOPIC_ID = @Id",
                     new { @order = order, @Id = topicId }, commandType: CommandType.Text);
+            }
+
+            return res > 0;
+        }
+
+        public async static Task<bool> SetTopicDetailsOrder(int subtopicId, int order)
+        {
+            int res = 0;
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                db.Open();
+                res = await db.ExecuteAsync
+                    ("update TBL_TOPIC_DETAIL set SUB_TOPIC_ORDER = @order where SUB_TOPIC_ID = @Id",
+                    new { @order = order, @Id = subtopicId }, commandType: CommandType.Text);
             }
 
             return res > 0;
@@ -259,26 +291,106 @@ namespace DAL
             return res > 0;
         }
 
-        public async static Task<bool> DeleteTopicDetailsByTopicId(int TopicId)
+        public async static Task<bool> DeleteTopicDetailsByTopicId(string TopicIds)
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
-                var num = await db.ExecuteAsync("Delete from TBL_TOPIC_DETAIL where TOPIC_ID = @id"
-                    , new { @id = TopicId });
+                var details = await db.QueryAsync<TopicDetail>("select * from TBL_TOPIC_DETAIL f inner join Split_Strings (@ids,',') l on f.TOPIC_ID = l.item"
+                    , new { @ids = TopicIds });
+
+                details.ToList().ForEach(x =>
+                {
+                    if (File.Exists(HttpContext.Current.Server.MapPath(x.TOPIC_FILEPATH)))
+                    {
+                        File.Delete(HttpContext.Current.Server.MapPath(x.TOPIC_FILEPATH));
+                    }
+
+                    #region deletes images in description
+                    string strGuid = HttpUtility.HtmlDecode(x.TOPIC_DESCRIPTION ?? "");
+                    string pattern = @"([a-z0-9]{8}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{12})";
+
+                    MatchCollection mc;
+                    mc = Regex.Matches(strGuid, pattern);
+
+                    for (int i = 0; i < mc.Count; i++)
+                    {
+
+                        string loc = $"/{ConfigurationManager.AppSettings["UploadPath"]}";
+                        string path = HttpContext.Current.Server.MapPath(loc);
+                        string filesToDelete = $"topicdetails_{mc[i].Value}*";
+                        string file = System.IO.Directory.GetFiles(path, filesToDelete).FirstOrDefault() ?? "";
+
+                        if (File.Exists(file))
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                    #endregion
+                });
+
+                var num = await db.ExecuteAsync("Delete d from TBL_TOPIC_DETAIL d inner join Split_Strings (@ids,',') l on d.TOPIC_ID = l.item"
+                    , new { @ids = TopicIds });
+                return num > 0;
+            }
+        }
+        public async static Task<bool> DeleteTopicFiles(string SubTopicIds)
+        {
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                var pageFiles = await db.QueryAsync<PageFiles>("select * from TBL_PAGE_FILES f inner join Split_Strings (@ids,',') l on f.SUB_TOPIC_ID = l.item"
+                    , new { @ids = SubTopicIds });
+
+                pageFiles.ToList().ForEach(x =>
+                {
+                    if (File.Exists(HttpContext.Current.Server.MapPath(x.FILE_PATH)))
+                    {
+                        File.Delete(HttpContext.Current.Server.MapPath(x.FILE_PATH));
+                    }
+                });
+
+                var num = await db
+                    .ExecuteAsync("delete f from TBL_PAGE_FILES f inner join Split_Strings (@ids,',') l on f.SUB_TOPIC_ID = l.item"
+                        , new { @ids = SubTopicIds });
+                return num > 0;
+            }
+        }
+        public async static Task<bool> DeleteTopicPhotos(string SubTopicIds)
+        {
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                var pageFiles = await db.QueryAsync<PagePhotos>("select * from TBL_PAGE_PHOTOS f inner join Split_Strings (@ids,',') l on f.SUB_TOPIC_ID = l.item"
+                   , new { @ids = SubTopicIds });
+
+
+
+                pageFiles.ToList().ForEach(x =>
+                {
+                    if (File.Exists(HttpContext.Current.Server.MapPath(x.PHOTO_PATH)))
+                    {
+                        File.Delete(HttpContext.Current.Server.MapPath(x.PHOTO_PATH));
+                    }
+                });
+
+                var num = await db.ExecuteAsync("delete P from TBL_PAGE_PHOTOS P inner join Split_Strings (@ids,',') l on P.SUB_TOPIC_ID = l.item"
+                    , new { @ids = SubTopicIds });
                 return num > 0;
             }
         }
 
         public async static Task<bool> DeleteTopic(int id)
         {
-            if (await DeleteTopicDetailsByTopicId(id))
+            var subTopicIds = string.Join(",", (await GetTopicDetails(id)).Select(x => x.SUB_TOPIC_ID));
+
+            await DeleteTopicPhotos(subTopicIds);
+            await DeleteTopicFiles(subTopicIds);
+            await DeleteTopicDetailsByTopicId(id.ToString());
+
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
-                using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
-                {
-                    PageTopic topic = new PageTopic { TOPIC_ID = id };
-                    return await db.DeleteAsync(topic);
-                }
+                PageTopic topic = new PageTopic { TOPIC_ID = id };
+                return await db.DeleteAsync(topic);
             }
+
             return false;
         }
     }

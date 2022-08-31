@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace ExcelEducation.Controllers
 {
@@ -15,6 +17,20 @@ namespace ExcelEducation.Controllers
     {
         public ActionResult Index()
         {
+
+            string strGuid = "%3Cp%3E%3Cimg%20src=%22https://localhost:44312//common/topicdetails_73223b10-ac47-4299-9157-de88ffb174d3_DSC_5749.JPG%22%20style=%22width:%2025%25;%22%3E%3Cimg%20src=%22https://localhost:44312//common/topicdetails_bb0a8082-4580-4797-90f6-3f4b3db102d5_DSC_5090.JPG%22%20style=%22width:%2025%25;%22%3E%3Cbr%3E%3C/p%3E";
+            string strNoGuid = "someTextButNoGuid";
+
+            string pattern = @"([a-z0-9]{8}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{12})";
+
+            MatchCollection mc;
+
+            //MatchCollection of length 2
+            mc = Regex.Matches(HttpUtility.UrlDecode( strGuid), pattern);
+
+            //MatchCollection of length 0
+            mc = Regex.Matches(strNoGuid, pattern);
+
             return View();
         }
 
@@ -156,15 +172,25 @@ namespace ExcelEducation.Controllers
             return await MenusDB.SetOrder(fileId, order);
         }
 
+        public async Task<bool> SetSubTopicOrder(int Id, int order)
+        {
+            return await MenusDB.SetTopicDetailsOrder(Id, order);
+        }
+
         public async Task<bool> DeleteTopicDetailFile(int fileId)
         {
             return await MenusDB.DeleteTopicDetailFile(fileId);
         }
 
+        public async Task<bool> DeleteTopicDetail(int subTopicId)
+        {
+            return await MenusDB.DeleteTopicDetail(subTopicId);
+        }
+
         [HttpPost]
         public string SaveImages()
         {
-            return "common/topicdetailphoto_06d83ca6-588d-437a-9fde-3137c0f41051_2022-05-28%20(3).png";
+            return FileHandler.SaveUploadedFile(Request, "topicdetails");
         }
 
         public async Task<ActionResult> AddTopic(int pageId = 0)
@@ -206,5 +232,7 @@ namespace ExcelEducation.Controllers
         {
             return await MenusDB.SetTopicOrder(topicId, order);
         }
+
+
     }
 }
