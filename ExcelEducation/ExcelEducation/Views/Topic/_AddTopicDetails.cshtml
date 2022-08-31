@@ -11,7 +11,7 @@
 
 <div class="col-sm-12">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header topicdetail">
             <h5>Topic Details</h5>
             <h5 class="closeCard" style="float: right; color: blue; cursor: pointer;"><i class="feather icon-x"></i></h5>
         </div>
@@ -94,8 +94,11 @@
                     </div>
                     <div class="col-md-12">
                         <button type="button" id="testbtn" class="btn btn-sm btn-outline-primary">@(Model.SUB_TOPIC_ID > 0 ? "Update" : "Add")</button>
-                        <button type="button" class="btn btn-sm btn-outline-primary" id="btnAddMultipleFiles">Add multiple files</button>
-                    </div>
+                        @if (Model.SUB_TOPIC_ID > 0)
+                        {
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="btnAddMultipleFiles">Add multiple files</button>
+                        }
+                        </div>
                 </div>
 
             </form>

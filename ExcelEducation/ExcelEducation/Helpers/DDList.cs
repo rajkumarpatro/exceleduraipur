@@ -34,7 +34,7 @@ namespace ExcelEducation.Helpers
         {
             var list = new List<SelectListItem> {
                 new SelectListItem{ Text = "ACCORDION", Value = "true"},
-                new SelectListItem{ Text = "Paragraph", Value = "false"},
+                new SelectListItem{ Text = "PARAGRAPH", Value = "false"},
             };
 
             return list;

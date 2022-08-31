@@ -154,7 +154,7 @@
             <span>${file.size}</span>
           </div>
         </div>`);
-
+          debugger;
         let details = container.find(".imageuploadify-details");
         let deleteBtn = container.find("button");
 
@@ -222,7 +222,8 @@
         }
 
         // Delete the file from the list.
-        deleteBtn.on("click", function() {
+          deleteBtn.on("click", function () {
+              debugger;
           $(this.parentElement).remove();
           for (let index = 0; totalFiles.length > index; ++index) {
             if (totalFiles[index].id === id) {

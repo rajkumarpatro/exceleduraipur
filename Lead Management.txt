@@ -1,0 +1,71 @@
+Business Lead Management
+
+Super User- Business Owner
+User Create
+Assignment
+Reports- 
+
+
+User- Telecallers
+New Leads Create
+Call Records
+Reports- 
+
+
+User Table
+UserId
+Name
+Role - Master
+Category- Master
+Gender
+DOB
+Father
+Contact
+EmailId
+Address
+ProfilePic
+Status
+
+LeadTable
+LeadId
+CreatedByUserId
+Source-  Master
+Category-
+Name
+InteresredProduct-
+Address
+State
+Pincode
+DOB
+Whatsapp
+Contact
+EmailId
+Status
+CreatedDate
+
+AssignCallerTable
+AssignCallerId
+LeadId
+UserId
+AssignDate
+
+assigncallerhistory
+assigncallerhistoryid
+AssignCallerId
+userid
+transferdate
+
+CallHistory
+historyid
+assigncallerid
+CallDate
+Question
+Reply
+QuotationSent- bit
+
+
+questionlist
+questionid
+question
+catergory
+

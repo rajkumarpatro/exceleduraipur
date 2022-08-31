@@ -6,8 +6,9 @@ var griddtable = function () {
         table = $('#griddtable');
         table.dataTable({
             destroy: true,
-            //"autowidth": "true",
-            //"scrollX": true,
+            "oLanguage": {
+                "sLengthMenu": "Displays _MENU_ records",
+            },
             order: [[3, 'desc']],
             "ajax": {
                 "url": GetTopicDetails + "?topicId=" + topicId,
@@ -19,13 +20,13 @@ var griddtable = function () {
                         data.push({ id: i, text: i })
                     }
 
-                    $('.gridFlashSelect').select2({
+                    $('.gridTopicDetailsSelect').select2({
                         data: data
                     });
 
                     gridFlashAction = "fromLoad";
 
-                    $('.gridFlashSelect').each(function () {
+                    $('.gridTopicDetailsSelect').each(function () {
                         //alert($(this).data('order'));
                         $(this).val($(this).data('order'));
                         $(this).select2().trigger('change');
@@ -55,6 +56,13 @@ var griddtable = function () {
                     "title": "FILE PATH", "data": "TOPIC_FILEPATH"
                 },
                 {
+                    "title": "ORDER", "data": "SUB_TOPIC_ORDER",
+                    fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                        var select = "<select data-order=" + oData.SUB_TOPIC_ORDER + " data-id=" + oData.SUB_TOPIC_ID + " class='gridTopicDetailsSelect'></select>"
+                        $(nTd).html(select);
+                    }
+                },
+                {
                     "title": "LINK TYPE", "data": "TOPIC_LINK_TYPE",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                         var data = oData.TOPIC_LINK_TYPE ? "FILE" : "#";
@@ -64,7 +72,7 @@ var griddtable = function () {
                 {
                     "title": "EDIT", "data": "TOPIC_LINK_TYPE",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<i data-id=" + oData.SUB_TOPIC_ID + " style='color: blue; cursor: pointer' class='fas fa-edit gridedit'></i>");
+                        $(nTd).html("<i  style='cursor: pointer' data-id=" + oData.SUB_TOPIC_ID + " class='feather icon-trash-2 deletetopicdetails'></i> | <i data-id=" + oData.SUB_TOPIC_ID + " style='cursor: pointer' class='fas fa-edit editsubtopic'></i>");
                     }
                 }
             ]
