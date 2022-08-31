@@ -20,6 +20,10 @@ namespace DAL.Models
 
         public string NEWS_LINKTYPE { get; set; }
 
+        public string NEWS_YEAR { get; set; }
+        public string NEWS_DAY { get; set; }
+        public string NEWS_MONTH { get; set; }
+
         public List<SelectListItem> NEWS_SECTIONDD { get; set; }
         public List<SelectListItem> NEWS_LINKTYPEDD { get; set; }
 

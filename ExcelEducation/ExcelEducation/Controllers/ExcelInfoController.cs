@@ -29,5 +29,7 @@ namespace ExcelEducation.Controllers
             List<TopicDetail> details = await ExcelInfoDB.GetTopicDetails(topicid);
             return PartialView("_PageContents", details);
         }
+
+        
     }
 }
