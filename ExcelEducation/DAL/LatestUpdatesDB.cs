@@ -14,7 +14,7 @@ namespace DAL
 {
     public class LatestUpdatesDB
     {
-        public async static Task<List<LatestUpdatesModel>> LoadPageHead()
+        public async static Task<List<LatestUpdatesModel>> LoadLatestUpdates()
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {

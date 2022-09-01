@@ -20,11 +20,7 @@ var LatestUpdatesTables = function () {
                 {
                     "title": "DATE", "data": "NEWS_DATE",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        var dtSub = /\/Date\((\d*)\)\//.exec(oData.NEWS_DATE);
-                        debugger;
-                        var options = { hour12: false };
-                        var labelid = "<label id='lbl_date" + oData.NEWS_ID + "' for='L" + oData.NEWS_ID + "'>" + new Date(+dtSub[1]).toLocaleString() + "</label>";
-                        $(nTd).html(labelid);
+                        $(nTd).html(moment(oData.NEWS_DATE).format("DD-MM-YYYY"));
                     }
                 },
                 {

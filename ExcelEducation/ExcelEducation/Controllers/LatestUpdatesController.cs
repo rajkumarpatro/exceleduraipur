@@ -18,9 +18,9 @@ namespace ExcelEducation.Controllers
             LatestUpdatesModel ob = new LatestUpdatesModel();
             ob.ACTION = "1";
             ob.NEWS_SECTIONDD = new List<SelectListItem> { 
-                new SelectListItem { Text = "Latest Upldates", Value = "Latest Upldates", Selected = true },
-                new SelectListItem { Text = "Announcements", Value = "Announcements" },
-                new SelectListItem { Text = "Both", Value = "Both" }
+                new SelectListItem { Text = "News", Value = "News", Selected = true },
+                //new SelectListItem { Text = "Announcements", Value = "Announcements" },
+                //new SelectListItem { Text = "Both", Value = "Both" }
             };
             ob.NEWS_LINKTYPEDD = new List<SelectListItem> {
                 new SelectListItem { Text = "Text", Value = "Text", Selected = true },
@@ -32,7 +32,7 @@ namespace ExcelEducation.Controllers
 
         public async Task<ActionResult> loadRecord()
         {
-            return Json(new { data = await LatestUpdatesDB.LoadPageHead() }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = await LatestUpdatesDB.LoadLatestUpdates() }, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<bool> addEditRecord(LatestUpdatesModel param)

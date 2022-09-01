@@ -14,9 +14,22 @@ namespace ExcelEducation.Controllers
         // GET: Home
         public async Task<ActionResult> Index()
         {
-            HomeModel homeModel = new HomeModel();
-            homeModel.flashModels = await FlashDB.LoadFlash();
-            return View(homeModel);
+            List<FlashModel> flash = await FlashDB.LoadFlash();
+            //return PartialView("_Flash", flash);
+            return View("Index", flash);
+        }
+
+        public async Task<ActionResult> LoadFlashPhotos()
+        {
+            List<FlashModel> flash = await FlashDB.LoadFlash();
+            return PartialView("_Flash", flash);
+        }
+
+
+        public async Task<ActionResult> LoadNews()
+        {
+            List<LatestUpdatesModel> news = await LatestUpdatesDB.LoadLatestUpdates();
+            return PartialView("_News", news);
         }
     }
 }
