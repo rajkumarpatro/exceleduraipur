@@ -95,7 +95,9 @@ namespace ExcelEducation.Controllers
         public async Task<bool> AddTopicDetail(TopicDetail topicDetail)
         {
             //topicDetail.TOPIC_ID = 1;
+            if(Request.Files.Count>0)
             topicDetail.TOPIC_FILEPATH = FileHandler.SaveUploadedFile(Request, "SubTopic", topicDetail.SUB_TOPIC_ID);
+
             return await MenusDB.AddTopicDetail(topicDetail);
         }
 

@@ -215,6 +215,16 @@ $(document).ready(function () {
         griddtable.reloadTable();
     });
 
+    // close details close
+    $(document).on('click', '.topicdetail   .closeCard', function () {
+        debugger;
+        $('.topic-content').empty('');
+        $('.topic-content').hide();
+        $('.topic').show();
+
+        griddtable.reloadTable();
+    });
+
     //form validation and submit for topic details
     $(document).on('click', '#testbtn', function () {
 
@@ -317,6 +327,7 @@ $(document).ready(function () {
                     else {
                         notify("", "Data Add / Edited Successfully", "success");
                     }
+                    getElementById("frm_topicdetailfiles").reset();
                     gridTopicDetailFilestable.destroy();
                     gridTopicDetailFilestable.init(subTopicId);
                 },
@@ -569,5 +580,36 @@ $(document).ready(function () {
         $("#IS_LINK").bootstrapToggle('off');
         $("#TOPIC_ORDER").val(1).trigger('change');
     }
+
+    //Delete topic details photo event
+    $(document).on('click', '.pagephoto', function () {
+
+        var divToDelete = $(this).closest('.col-md-2');
+
+        $.ajax({
+            url: DeletePhoto + "?photoId=" + $(this).data('id'),
+            //data: { "photoId": $(this).data('id') },
+            beforeSend: function () {
+                $.blockUI();
+            },
+            success: function (res) {
+                $.unblockUI();
+                if (res === 'False')
+                    notify("", "Something went wrong", "danger");
+                else {
+                    notify("", "Flash deleted succesfully", "success");
+                }
+
+                $(divToDelete).remove();
+            },
+            error: function (err) {
+                $.unblockUI();
+                notify("", "Something went wrong", "danger");
+            },
+            complete: function () {
+                $.unblockUI();
+            }
+        });
+    });
 
 });

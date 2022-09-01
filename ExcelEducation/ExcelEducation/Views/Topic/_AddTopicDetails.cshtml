@@ -7,7 +7,15 @@
 <script src="~/Scripts/custom/topic/TopicDetails.js"></script>
 <link href="~/Scripts/imageuploadify/imageuploadify.min.css" rel="stylesheet" />
 <script src="~/Scripts/imageuploadify/imageuploadify.js"></script>
+@{
+    var file = Model.TOPIC_FILEPATH;
+    var filename = string.Empty;
 
+    if (!string.IsNullOrEmpty(file))
+    {
+        filename = Path.GetFileName(file);
+    }
+}
 
 <div class="col-sm-12">
     <div class="card">
@@ -19,6 +27,7 @@
             <form id="frm_topicdetails">
                 @Html.HiddenFor(m => m.SUB_TOPIC_ID)
                 @Html.HiddenFor(m => m.TOPIC_ID)
+                @Html.HiddenFor(m => m.TOPIC_FILEPATH)
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -73,12 +82,17 @@
                         <div class="row">
                             <div class="form-group col-md-1">
                                 <label class="form-label" style="display:block">Upload file</label>
-                                <input class="chktoggle" type="checkbox" id="TOPIC_LINK_TYPE" name="TOPIC_LINK_TYPE" data-size="sm" data-toggle="toggle" data-on="YES" data-off="NO"
+                                <input class="chktoggle" @(Model.TOPIC_LINK_TYPE ? "checked" : "" ) type="checkbox" id="TOPIC_LINK_TYPE" name="TOPIC_LINK_TYPE" data-size="sm" data-toggle="toggle" data-on="YES" data-off="NO"
                                        data-onstyle="success" data-offstyle="danger">
                             </div>
-                            <div class="form-group col-md-2 divfile" style="visibility: hidden">
+                            <div class="form-group col-md-2 divfile" style="visibility:  @(Model.TOPIC_LINK_TYPE ? "" : "hidden" ) ">
                                 <label class="form-label required">File</label>
                                 <input type="file" id="uploadfile" class="form-control" />
+                                @if (!string.IsNullOrEmpty(filename))
+                                {
+                                    <br />
+                                    <label>@filename</label>
+                                }
                             </div>
                             @if (Model.SUB_TOPIC_ID > 0)
                             {
@@ -98,7 +112,7 @@
                         {
                             <button type="button" class="btn btn-sm btn-outline-primary" id="btnAddMultipleFiles">Add multiple files</button>
                         }
-                        </div>
+                    </div>
                 </div>
 
             </form>
