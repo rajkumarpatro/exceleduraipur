@@ -19,7 +19,10 @@
                         </h3>
                     }
 
-                   @Html.Partial("_ContentDetails", pagecontent);
+
+                    @{
+                        Html.RenderPartial("_ContentDetails", pagecontent);
+                    }
 
                 </div>
 

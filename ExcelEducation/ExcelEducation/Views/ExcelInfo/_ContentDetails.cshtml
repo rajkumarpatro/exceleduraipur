@@ -50,7 +50,7 @@
     }
 </div>
 
-@if (pagecontent.PageFiles.Any())
+@if (Model.PageFiles.Any())
 {
     int rowno = 1;
     <div class="row">
@@ -65,7 +65,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var files in pagecontent.PageFiles)
+                    @foreach (var files in Model.PageFiles)
                     {
                         <tr>
                             <th>@rowno</th>
