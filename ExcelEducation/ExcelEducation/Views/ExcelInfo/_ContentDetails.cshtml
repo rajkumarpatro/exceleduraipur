@@ -1,0 +1,82 @@
+﻿@model DAL.Models.TopicDetail
+
+@{ 
+    string topicname = Model.SUB_TOPIC_NAME.ToString();
+    string description = HttpUtility.UrlDecode(Model.TOPIC_DESCRIPTION == null ? "" : Model.TOPIC_DESCRIPTION.ToString());
+    string topicFilepath = (Model.TOPIC_FILEPATH == null ? "" : Model.TOPIC_FILEPATH.ToString());
+    string topicFilepathUpper = topicFilepath.ToUpper();
+}
+
+<div class="row">
+    @if (topicFilepath == "")
+    {
+        <div class="col-xxl-12 col-md-12">
+            @Html.Raw(description)
+        </div>
+    }
+    else if (topicFilepathUpper.Contains(".JPG") == true || topicFilepathUpper.Contains(".JPEG") || topicFilepathUpper.Contains(".PNG") || topicFilepathUpper.Contains(".GIF"))
+    {
+
+        string colsize = "col-md-4";
+        if (description == "")
+        {
+            colsize = "col-md-12";
+        }
+
+        <div class="@colsize">
+            <img src="@topicFilepath" class="img-responsive" alt="@topicname" style="width: -webkit-fill-available;" />
+        </div>
+        <div class="col-md-8">
+            @Html.Raw(description)
+        </div>
+    }
+    else if (topicFilepathUpper.Contains(".DOC") == true || topicFilepathUpper.Contains(".DOCX") || topicFilepathUpper.Contains(".XLS") || topicFilepathUpper.Contains(".XLSX") || topicFilepathUpper.Contains(".PPT") || topicFilepathUpper.Contains(".PPTX"))
+    {
+        <div class="col-md-12">
+            @Html.Raw(description)
+            <p>
+                <a href="@topicFilepath">Click here to download file</a>
+            </p>
+        </div>
+    }
+    else if (topicFilepathUpper.Contains(".PDF") == true)
+    {
+        <div class="col-md-12">
+            @Html.Raw(description)
+            <object data="@topicFilepath" type="application/pdf" width="100%" height="600">
+                <p><a href="@topicFilepath">Click here to View</a></p>
+            </object>
+        </div>
+    }
+</div>
+
+@if (pagecontent.PageFiles.Any())
+{
+    int rowno = 1;
+    <div class="row">
+        <div class="col-xxl-12">
+            <table class="table table-bordered table-hover" width="100%">
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var files in pagecontent.PageFiles)
+                    {
+                        <tr>
+                            <th>@rowno</th>
+                            <th>@files.FILE_DESCRIPTION</th>
+                            <th>@files.FILE_DATE</th>
+                            <th><a href="@files.FILE_PATH" target="_blank">Click here</a></th>
+                        </tr>
+                        rowno++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

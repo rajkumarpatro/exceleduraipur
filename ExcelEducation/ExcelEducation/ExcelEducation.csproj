@@ -123,6 +123,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ExcelInfoController.cs" />
     <Compile Include="Controllers\FlashController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -831,6 +832,8 @@
     <Content Include="Views\ExcelInfo\_PageContents.cshtml" />
     <Content Include="Views\Home\_Flash.cshtml" />
     <Content Include="Views\Home\_News.cshtml" />
+    <Content Include="Views\ChangePassword\ChangePassword.cshtml" />
+    <Content Include="Views\ExcelInfo\_ContentDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

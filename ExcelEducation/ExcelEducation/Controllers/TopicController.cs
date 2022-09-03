@@ -17,20 +17,6 @@ namespace ExcelEducation.Controllers
     {
         public ActionResult Index()
         {
-
-            string strGuid = "%3Cp%3E%3Cimg%20src=%22https://localhost:44312//common/topicdetails_73223b10-ac47-4299-9157-de88ffb174d3_DSC_5749.JPG%22%20style=%22width:%2025%25;%22%3E%3Cimg%20src=%22https://localhost:44312//common/topicdetails_bb0a8082-4580-4797-90f6-3f4b3db102d5_DSC_5090.JPG%22%20style=%22width:%2025%25;%22%3E%3Cbr%3E%3C/p%3E";
-            string strNoGuid = "someTextButNoGuid";
-
-            string pattern = @"([a-z0-9]{8}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{4}[-][a-z0-9]{12})";
-
-            MatchCollection mc;
-
-            //MatchCollection of length 2
-            mc = Regex.Matches(HttpUtility.UrlDecode( strGuid), pattern);
-
-            //MatchCollection of length 0
-            mc = Regex.Matches(strNoGuid, pattern);
-
             return View();
         }
 
@@ -38,7 +24,7 @@ namespace ExcelEducation.Controllers
         {
             return Json(new
             {
-                data = (await MenusDB.GetPageHeads())
+                data = (await MenusDB.GetPageHeads()).Where(x=>!x.IS_LINK)
                 .Select(x => new { id = x.PAGE_HEAD_ID, text = x.PAGE_HEAD_NAME }).ToList()
             }, JsonRequestBehavior.AllowGet);
         }

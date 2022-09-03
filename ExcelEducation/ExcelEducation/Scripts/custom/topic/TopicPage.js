@@ -227,7 +227,7 @@ $(document).ready(function () {
 
             if (files.length > 0)
                 fileData.append(files[0].name, files[0]);
-
+            debugger;
             fileData.set('SHOW_TOPIC_NAME', $('#SHOW_TOPIC_NAME').prop('checked'));
             fileData.set('TOPIC_LINK_TYPE', $('#TOPIC_LINK_TYPE').prop('checked'));
             fileData.set('TOPIC_DESCRIPTION', encodeURI($("#TOPIC_DESCRIPTION").val()));

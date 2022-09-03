@@ -78,6 +78,7 @@
     <Compile Include="ExcelInfoDB.cs" />
     <Compile Include="Models\ExcelInfoModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="PageDB.cs" />
     <Compile Include="LatestUpdatesDB.cs" />
