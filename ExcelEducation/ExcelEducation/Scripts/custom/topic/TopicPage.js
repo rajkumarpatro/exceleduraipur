@@ -31,7 +31,7 @@ $(document).ready(function () {
             url: GetPages + "?pageHeadId=" + $(this).val(),
             dataType: 'json',
             success: function (params) {
-                
+
                 $('.clsddlpage').empty().select2({
                     placeholder: { text: "Select", selected: 'selected' },
                     allowClear: true,
@@ -62,7 +62,7 @@ $(document).ready(function () {
     });
 
     function LoadTopicData(pageId) {
-        
+
         $.ajax({
             url: GetTopics + "?pageId=" + pageId,
             dataType: 'json',
@@ -93,7 +93,7 @@ $(document).ready(function () {
         griddtable.init($(this).val());
 
         var lblCntFilter = $('[name="griddtable_length"]').closest('label');
-        lblCntFilter.html('<pan style="font-weight: bold">Topic</span>: <span style="color: blue; font-weight: bold">' + $('.clsddltopic option:selected').text() +'</span></br>'+lblCntFilter.html());
+        lblCntFilter.html('<pan style="font-weight: bold">Topic</span>: <span style="color: blue; font-weight: bold">' + $('.clsddltopic option:selected').text() + '</span></br>' + lblCntFilter.html());
 
         $('#btnAddData').show();
         var btnText = 'Add ' + $(this).children(":selected").text() + ' data';
@@ -150,7 +150,7 @@ $(document).ready(function () {
                     }
                     gridTopicstable.reloadTable();
                     topicFrmReset();
-                    
+
                 },
                 error: function (err) {
                     $.unblockUI();
@@ -205,7 +205,7 @@ $(document).ready(function () {
 
     // close Topic view
     $(document).on('click', '.pagetopic .closeCard', function () {
-        debugger;
+        
         $('.topic-content').empty('');
         $('.topic-content').hide();
         $('.topic').show();
@@ -217,7 +217,7 @@ $(document).ready(function () {
 
     // close details close
     $(document).on('click', '.topicdetail   .closeCard', function () {
-        debugger;
+        
         $('.topic-content').empty('');
         $('.topic-content').hide();
         $('.topic').show();
@@ -237,7 +237,7 @@ $(document).ready(function () {
 
             if (files.length > 0)
                 fileData.append(files[0].name, files[0]);
-            debugger;
+            
             fileData.set('SHOW_TOPIC_NAME', $('#SHOW_TOPIC_NAME').prop('checked'));
             fileData.set('TOPIC_LINK_TYPE', $('#TOPIC_LINK_TYPE').prop('checked'));
             fileData.set('TOPIC_DESCRIPTION', encodeURI($("#TOPIC_DESCRIPTION").val()));
@@ -346,7 +346,7 @@ $(document).ready(function () {
 
     //upload multiple photos for topic details
     $(document).on('click', '.btnUploadPhotos', function () {
-        
+
         var fileData = new FormData(document.querySelector('#frm_topicdetails'));
         for (var key of fileData.keys()) {
             // here you can add filtering conditions
@@ -382,6 +382,7 @@ $(document).ready(function () {
                     //$('#photosupload').uploadify('destroy')
                     $('.imageuploadify-container').remove();
                     $('#photosupload').val('');
+                    LoadPagePhotos();
                 }
 
             },
@@ -395,6 +396,16 @@ $(document).ready(function () {
             }
         });
     });
+
+    function LoadPagePhotos() {
+        $.ajax({
+            type: 'GET',
+            url: GetPagePhotos + "?subTopicId=" + $('#SUB_TOPIC_ID').val(),
+            success: function (res) {
+                $('#divPagePhotosList').empty().html(res);
+            }
+        });
+    }
 
     // uploades multiple files of any format 
     $(document).on('click', '.uploadDetailFiles', function () {
@@ -478,7 +489,7 @@ $(document).ready(function () {
 
     //Order ddl change from grid
     $(document).on('change', '.gridTopicDetailsSelect', function () {
-        debugger;
+        
         if (gridFlashAction === "fromLoad") return;
 
         $.ajax({
@@ -525,7 +536,7 @@ $(document).ready(function () {
 
     //Delete Topic details
     $(document).on('click', '.deletetopicdetails', function () {
-        debugger;
+        
         var id = $(this).data('id');
 
         $.ajax({
@@ -539,7 +550,7 @@ $(document).ready(function () {
 
     //Topic edit        
     $(document).on('click', '.edittopic', function () {
-        debugger;
+        
         var id = $(this).data('id');
 
         $.ajax({
@@ -600,7 +611,13 @@ $(document).ready(function () {
                     notify("", "Flash deleted succesfully", "success");
                 }
 
-                $(divToDelete).remove();
+                if ($(divToDelete).closest('.col-md-2').siblings().length == 0) {
+                    $(divToDelete).closest('.carousel-item').prev().addClass('active');
+                    $(divToDelete).closest('.carousel-item').remove();
+                }
+                else {
+                    $(divToDelete).remove();
+                }
             },
             error: function (err) {
                 $.unblockUI();

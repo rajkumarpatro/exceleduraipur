@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using static System.Net.WebRequestMethods;
 
 namespace DAL
 {
@@ -159,7 +160,14 @@ namespace DAL
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
+                var photo = (await db
+                    .QueryAsync<PagePhotos>("select * from [dbo].[TBL_PAGE_PHOTOS] where  PHOTO_ID = @photoId"
+                    , new { @photoId = photoId })).FirstOrDefault();
+
                 PagePhotos pagePhotos = new PagePhotos { PHOTO_ID = photoId };
+
+                await DeleteFile(photo.PHOTO_PATH);
+
                 return await db.DeleteAsync<PagePhotos>(pagePhotos);
             }
         }
@@ -223,8 +231,14 @@ namespace DAL
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
+                var photo = (await db
+                    .QueryAsync<PageFiles>("select * from [dbo].[TBL_PAGE_FILES] where  FILE_ID = @fileId"
+                    , new { @fileId = fileId })).FirstOrDefault();
+
                 PageFiles pageFiles = new PageFiles { FILE_ID = fileId };
-                db.Open();
+
+                await DeleteFile(photo.FILE_PATH);
+
                 return await db.DeleteAsync<PageFiles>(pageFiles);
             }
         }
@@ -298,12 +312,9 @@ namespace DAL
                 var details = await db.QueryAsync<TopicDetail>("select * from TBL_TOPIC_DETAIL f inner join Split_Strings (@ids,',') l on f.TOPIC_ID = l.item"
                     , new { @ids = TopicIds });
 
-                details.ToList().ForEach(x =>
+                details.ToList().ForEach(async x =>
                 {
-                    if (File.Exists(HttpContext.Current.Server.MapPath(x.TOPIC_FILEPATH)))
-                    {
-                        File.Delete(HttpContext.Current.Server.MapPath(x.TOPIC_FILEPATH));
-                    }
+                    await DeleteFile(x.TOPIC_FILEPATH);
 
                     #region deletes images in description
                     string strGuid = HttpUtility.HtmlDecode(x.TOPIC_DESCRIPTION ?? "");
@@ -320,9 +331,9 @@ namespace DAL
                         string filesToDelete = $"topicdetails_{mc[i].Value}*";
                         string file = System.IO.Directory.GetFiles(path, filesToDelete).FirstOrDefault() ?? "";
 
-                        if (File.Exists(file))
+                        if (System.IO.File.Exists(file))
                         {
-                            File.Delete(file);
+                            System.IO.File.Delete(file);
                         }
                     }
                     #endregion
@@ -333,6 +344,14 @@ namespace DAL
                 return num > 0;
             }
         }
+
+        static async Task DeleteFile(string filePath)
+        {
+            if (System.IO.File.Exists(HttpContext.Current.Server.MapPath(filePath)))
+            {
+                System.IO.File.Delete(HttpContext.Current.Server.MapPath(filePath));
+            }
+        }
         public async static Task<bool> DeleteTopicFiles(string SubTopicIds)
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
@@ -340,12 +359,9 @@ namespace DAL
                 var pageFiles = await db.QueryAsync<PageFiles>("select * from TBL_PAGE_FILES f inner join Split_Strings (@ids,',') l on f.SUB_TOPIC_ID = l.item"
                     , new { @ids = SubTopicIds });
 
-                pageFiles.ToList().ForEach(x =>
+                pageFiles.ToList().ForEach(async file =>
                 {
-                    if (File.Exists(HttpContext.Current.Server.MapPath(x.FILE_PATH)))
-                    {
-                        File.Delete(HttpContext.Current.Server.MapPath(x.FILE_PATH));
-                    }
+                    await DeleteFile(file.FILE_PATH);
                 });
 
                 var num = await db
@@ -358,17 +374,12 @@ namespace DAL
         {
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
-                var pageFiles = await db.QueryAsync<PagePhotos>("select * from TBL_PAGE_PHOTOS f inner join Split_Strings (@ids,',') l on f.SUB_TOPIC_ID = l.item"
+                var pagePhotos = await db.QueryAsync<PagePhotos>("select * from TBL_PAGE_PHOTOS f inner join Split_Strings (@ids,',') l on f.SUB_TOPIC_ID = l.item"
                    , new { @ids = SubTopicIds });
 
-
-
-                pageFiles.ToList().ForEach(x =>
+                pagePhotos.ToList().ForEach(async x =>
                 {
-                    if (File.Exists(HttpContext.Current.Server.MapPath(x.PHOTO_PATH)))
-                    {
-                        File.Delete(HttpContext.Current.Server.MapPath(x.PHOTO_PATH));
-                    }
+                    await DeleteFile(x.PHOTO_PATH);
                 });
 
                 var num = await db.ExecuteAsync("delete P from TBL_PAGE_PHOTOS P inner join Split_Strings (@ids,',') l on P.SUB_TOPIC_ID = l.item"
@@ -390,8 +401,6 @@ namespace DAL
                 PageTopic topic = new PageTopic { TOPIC_ID = id };
                 return await db.DeleteAsync(topic);
             }
-
-            return false;
         }
     }
 

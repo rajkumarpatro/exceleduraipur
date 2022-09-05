@@ -1,0 +1,63 @@
+﻿@model List<DAL.Models.PagePhotos>
+
+<div class="row mt-2 col-md-12">
+    <!--Carousel Wrapper-->
+    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+        <!--Controls-->
+        <div class="controls-top">
+            <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+            <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+        </div>
+        <!--/.Controls-->
+        <!--Indicators-->
+        <ol class="carousel-indicators">
+            <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+            <li data-target="#multi-item-example" data-slide-to="1"></li>
+            <li data-target="#multi-item-example" data-slide-to="2"></li>
+            <li data-target="#multi-item-example" data-slide-to="3"></li>
+            <li data-target="#multi-item-example" data-slide-to="4"></li>
+            <li data-target="#multi-item-example" data-slide-to="5"></li>
+        </ol>
+        <!--/.Indicators-->
+        @{
+            var take = 6;
+            var totalSlide = Model.Count() / take;
+            var leftPhotos = Model.Count() % take;
+            
+            if (leftPhotos > 0)
+            {
+                totalSlide = totalSlide + 1;
+            }
+        }
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+            @for (int i = 0; i < totalSlide; i++)
+            {
+                var photos = Model.Skip(take * i).Take(take).ToList();
+
+
+                <div class="carousel-item @( i == 0 ? "active" : "")">
+                    <div class="row">
+                        @foreach (var photo in photos)
+                        {
+                            <div class="col-md-2">
+                                <div class="card mb-2">
+                                    <img style="" class="card-img-top" src="@photo.PHOTO_PATH"
+                                         alt="Card image cap"/>
+                                    <div class="card-body" style=" text-align: center;">
+                                        <button style="color:white" class=" btn btn-sm btn-primary">
+                                            <i class="feather icon-trash-2 pagephoto" data-id="@photo.PHOTO_ID"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <!--/.Slides-->
+
+    </div>
+</div>

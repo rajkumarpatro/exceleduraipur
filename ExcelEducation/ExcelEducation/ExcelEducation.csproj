@@ -834,6 +834,7 @@
     <Content Include="Views\Home\_News.cshtml" />
     <Content Include="Views\ChangePassword\ChangePassword.cshtml" />
     <Content Include="Views\ExcelInfo\_ContentDetails.cshtml" />
+    <Content Include="Views\Topic\_PagePhotos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

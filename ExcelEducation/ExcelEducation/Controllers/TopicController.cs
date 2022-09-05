@@ -108,6 +108,11 @@ namespace ExcelEducation.Controllers
             return await MenusDB.DeletePhoto(photoId);
         }
 
+        public async Task<ActionResult> GetPagePhotos(int subTopicId)
+        {
+            return PartialView("_PagePhotos", await MenusDB.GetSubTopicPhotos(subTopicId));
+        }
+
         public async Task<ActionResult> AddTopicDetailFiles(int subTopicId = 0)
         {
             PageFiles pageFiles = new PageFiles()
