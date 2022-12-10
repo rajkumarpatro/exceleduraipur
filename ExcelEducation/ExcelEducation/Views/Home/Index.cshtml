@@ -5,6 +5,20 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
+<div id="boxes">
+    <div style="top: 50%; left: 50%; display: none;" id="dialog" class="window">
+        <div id="san">
+            <a href="#" class="close agree">
+                <img src="@Url.Content("~/Content/home/close-icon.png")" width="25"
+                     style="float:right; margin-right: -25px; margin-top: -20px;">
+            </a>
+            <img src="@Url.Content("~/Content/home/popup.jpeg")" width="450">
+        </div>
+    </div>
+    <div style="width: 2478px; font-size: 32pt; color:white; height: 1202px; display: none; opacity: 0.4;" id="mask">
+    </div>
+</div>
+
 <!--Load Flash Photos (Slider here using partial view _Flash)-->
 
 @if (Model.Any())
@@ -26,7 +40,7 @@
                                     <div class="slider__content p-relative z-index-1">
                                         <span data-animation="fadeInUp" data-delay=".3s">Since 2007</span>
 
-                                        <h2 class="sectionTitle__big slider__title" data-animation="fadeInUp" data-delay=".6s">Excel Educational Institution</h2>
+                                        <h2 class="sectionTitle__big slider__title" data-animation="fadeInUp" data-delay=".6s">Excel Educational Institute</h2>
                                         <p data-animation="fadeInUp" data-delay=".9s">
                                             One of the Best Commerce Institute in Central India for<br />
                                             - CA (Chartered Accountancy)<br />
@@ -35,12 +49,12 @@
                                         </p>
 
                                         <div class="slider__btn" data-animation="fadeInUp" data-delay="1.1s">
-                                            <a target="_blank" rel="" href="https://www.exceledu.co.in/contact" class="tp-btn">
-                                                Get in Touch With Us
+                                            <a target="_blank" rel="" href="https://www.exceledu.co.in/contact" class="tp-btn" style="margin:3px; width:180px;">
+                                                Get in Touch
                                             </a>
 
-                                            <a target="_blank" rel="" href="https://www.youtube.com/c/ExcelEducationalInstitute" class="tp-btn">
-                                                Watch Demo Classes
+                                            <a target="_blank" rel="" href="https://www.youtube.com/c/ExcelEducationalInstitute" class="tp-btn" style="margin:3px; width:180px;">
+                                                Demo Classes
                                             </a>
                                         </div>
 
@@ -64,7 +78,7 @@
 }
 
 <!-- features area start -->
-<section class="features__area pb-160">
+<section class="features__area  pt-50 pb-50">
     <div class="container">
         <div class="features__inner p-relative z-index-1 white-bg">
             <div class="row ">
@@ -123,7 +137,7 @@
                     </div>
                 </div>
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 text-center">
-                    <a href="#" class="link-btn text-center" style="display: inline-block;
+                    <a href="ExcelInfo?page=Rankers" class="link-btn text-center" style="display: inline-block;
                         font-size: 15px;
                         font-weight: 500;
                         color: var(--tp-common-white);
@@ -132,7 +146,7 @@
                         height: 32px;
                         line-height: 32px;
                         text-transform: capitalize;
-                        width: 14%;text-align:center;">View More<i class="fa-regular fa-arrow-right"></i></a>
+                        text-align:center;">View More<i class="fa-regular fa-arrow-right"></i></a>
                 </div>
 
             </div>
@@ -141,7 +155,7 @@
 </section>
 <!-- features area end -->
 <!-- about area start -->
-<section class="about__area pb-120 p-relative">
+<section class="about__area  pt-50 pb-50 p-relative">
     <div class="container">
         <div class="row">
             <div class="col-xxl-7 col-xl-7 col-lg-7">
@@ -185,10 +199,10 @@
                     </div>
 
                     <div class="about__btn">
-                        <a href="#" class="tp-btn tp-btn-2" style="
+                        <a href="ExcelInfo?page=About%20Us" class="tp-btn tp-btn-2" style="
                         height: 32px;
                         line-height: 32px;
-                        width: 46%;text-align:center;">Read more</a>
+                        text-align:center;">Read more</a>
                     </div>
                 </div>
             </div>
@@ -197,7 +211,7 @@
 </section>
 <!-- about area end -->
 <!-- counter area start -->
-<section class="counter__area pb-30">
+<section class="counter__area  pt-50 pb-50">
     <div class="container">
         <div class="counter__inner grey-bg-2">
             <div class="row">
@@ -229,7 +243,7 @@
                             <img src="@Url.Content("~/Content/home/images/INCON 03.png")" />
                         </div>
                         <div class="counter__content">
-                            <h4><span class="">156</span>+</h4>
+                            <h4><span class="">156</span></h4>
                             <p style="font-weight:700;font-size: 11px;">All India Rankers <br /> Since 2007</p>
                         </div>
                     </div>
@@ -255,7 +269,7 @@
 <div class="news-content"></div>
 <!-- News in Brief end -->
 <!-- course area start -->
-<section class="course__area pt-20 pb-160 grey-bg-3">
+<section class="course__area  pt-50 pb-50 grey-bg-3">
     <div class="container">
         <div class="row">
             <div class="col-xxl-12">
@@ -271,14 +285,14 @@
             <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
                 <div class="course__item white-bg transition-3 mb-30">
                     <div class="course__thumb w-img fix">
-                        <a href="course-details.aspx">
+                        <a href="ExcelInfo?page=CA%20%28Chartered%20Accountant%29">
                             <img src="@Url.Content("~/Content/home/images/CA .jpg")" alt="Excel Educational Institute" />
                         </a>
                     </div>
                     <div class="course__content p-relative">
 
                         <h3 class="course__title">
-                            <a href="#">CA ( Chartered Accountancy)</a>
+                            <a href="ExcelInfo?page=CA%20%28Chartered%20Accountant%29">CA ( Chartered Accountancy)</a>
                         </h3>
 
                         <p>
@@ -289,7 +303,7 @@
                     </div>
                     <div class="course__bottom d-sm-flex align-items-center justify-content-between">
                         <div class="course__lesson">
-                            <a href="#">
+                            <a href="ExcelInfo?page=CA%20%28Chartered%20Accountant%29">
                                 <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -306,14 +320,14 @@
             <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
                 <div class="course__item white-bg transition-3 mb-30">
                     <div class="course__thumb w-img fix">
-                        <a href="course-details.aspx">
+                        <a href="ExcelInfo?page=CS%20%28Company%20Secretary%29">
                             <img src="@Url.Content("~/Content/home/images/CS .jpg")" alt="Excel Educational Institute" />
                         </a>
                     </div>
                     <div class="course__content p-relative">
 
                         <h3 class="course__title">
-                            <a href="#">CS ( Company Secretary)</a>
+                            <a href="ExcelInfo?page=CS%20%28Company%20Secretary%29">CS ( Company Secretary)</a>
                         </h3>
 
                         <p>
@@ -324,7 +338,7 @@
                     </div>
                     <div class="course__bottom d-sm-flex align-items-center justify-content-between">
                         <div class="course__lesson">
-                            <a href="#">
+                            <a href="ExcelInfo?page=CS%20%28Company%20Secretary%29">
                                 <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -341,14 +355,14 @@
             <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
                 <div class="course__item white-bg transition-3 mb-30">
                     <div class="course__thumb w-img fix">
-                        <a href="course-details.aspx">
+                        <a href="ExcelInfo?page=CMA%20%28Cost%20Management%20Accountant%29">
                             <img src="@Url.Content("~/Content/home/images/CMA .jpg")" alt="Excel Educational Institute" />
                         </a>
                     </div>
                     <div class="course__content p-relative">
 
                         <h3 class="course__title">
-                            <a href="#" style="font-size: 17px;">CMA ( Cost Management Accountant)</a>
+                            <a href="ExcelInfo?page=CMA%20%28Cost%20Management%20Accountant%29" style="font-size: 17px;">CMA ( Cost Management Accountant)</a>
                         </h3>
 
                         <p>
@@ -359,7 +373,7 @@
                     </div>
                     <div class="course__bottom d-sm-flex align-items-center justify-content-between">
                         <div class="course__lesson">
-                            <a href="#">
+                            <a href="ExcelInfo?page=CMA%20%28Cost%20Management%20Accountant%29">
                                 <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -376,14 +390,14 @@
             <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
                 <div class="course__item white-bg transition-3 mb-30">
                     <div class="course__thumb w-img fix">
-                        <a href="course-details.aspx">
+                        <a href="ExcelInfo?page=Class%20XI%20%28Commerce%29">
                             <img src="@Url.Content("~/Content/home/images/XIXII.jpg")" alt="Excel Educational Institute" />
                         </a>
                     </div>
                     <div class="course__content p-relative">
 
                         <h3 class="course__title">
-                            <a href="#">CLASS XI & XII ( COMMERCE )</a>
+                            <a href="ExcelInfo?page=Class%20XI%20%28Commerce%29">CLASS XI ( COMMERCE )</a>
                         </h3>
 
                         <p>
@@ -395,7 +409,44 @@
                     </div>
                     <div class="course__bottom d-sm-flex align-items-center justify-content-between">
                         <div class="course__lesson">
-                            <a href="#">
+                            <a href="ExcelInfo?page=Class%20XI%20%28Commerce%29">
+                                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 4.5H9.82353" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M4.17647 6.94995H7.70589" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6">
+                <div class="course__item white-bg transition-3 mb-30">
+                    <div class="course__thumb w-img fix">
+                        <a href="ExcelInfo?page=Class%20XII%20%28Commerce%29">
+                            <img src="@Url.Content("~/Content/home/images/XIXII.jpg")" alt="Excel Educational Institute" />
+                        </a>
+                    </div>
+                    <div class="course__content p-relative">
+
+                        <h3 class="course__title">
+                            <a href="ExcelInfo?page=Class%20XII%20%28Commerce%29">CLASS XII ( COMMERCE )</a>
+                        </h3>
+
+                        <p>
+                            &nbsp;- Accounts<br />
+                            &nbsp;- Economics<br />
+                            &nbsp;- Business Studies<br />
+                            &nbsp;- English
+                        </p>
+                    </div>
+                    <div class="course__bottom d-sm-flex align-items-center justify-content-between">
+                        <div class="course__lesson">
+                            <a href="ExcelInfo?page=Class%20XII%20%28Commerce%29">
                                 <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -415,7 +466,7 @@
 </section>
 <!-- course area end -->
 <!-- category area start -->
-<section class="category__area pt-10 pb-160">
+<section class="category__area  pt-50 pb-50">
     <div class="container">
         <div class="row">
             <div class="col-xxl-12">
@@ -428,43 +479,37 @@
         <div class="row">
 
             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <a href="#">
-                    <div class="research__item research__item-border text-center mb-30 transition-3">
-                        <div class="research__thumb mb-35">
-                            <img src="@Url.Content("~/Content/home/images/face to face classes.png")" alt='Excel Education Raipur' style="width: 239px;height: 223px;" />
-                        </div>
-                        <div class="research__content">
-                            <h3 class="research__title" style="color:blue;">Face to Face</h3>
-                            <span>Classes</span>
-                        </div>
+                <div class="research__item research__item-border text-center mb-30 transition-3">
+                    <div class="research__thumb mb-35">
+                        <img src="@Url.Content("~/Content/home/images/face to face classes.png")" alt='Excel Education Raipur' style="width: 239px;height: 223px;" />
                     </div>
-                </a>
+                    <div class="research__content">
+                        <h3 class="research__title" style="color:blue;">Face to Face</h3>
+                        <span>Classes</span>
+                    </div>
+                </div>
             </div>
             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <a href="#">
-                    <div class="research__item research__item-border text-center mb-30 transition-3">
-                        <div class="research__thumb mb-35">
-                            <img src="@Url.Content("~/Content/home/images/Live Online Classes.png")" alt='Excel Education Raipur' style="width: 239px;height: 223px;" />
-                        </div>
-                        <div class="research__content">
-                            <h3 class="research__title" style="color:blue;">Live Online</h3>
-                            <span>Classes</span>
-                        </div>
+                <div class="research__item research__item-border text-center mb-30 transition-3">
+                    <div class="research__thumb mb-35">
+                        <img src="@Url.Content("~/Content/home/images/Live Online Classes.png")" alt='Excel Education Raipur' style="width: 239px;height: 223px;" />
                     </div>
-                </a>
+                    <div class="research__content">
+                        <h3 class="research__title" style="color:blue;">Live Online</h3>
+                        <span>Classes</span>
+                    </div>
+                </div>
             </div>
             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <a href="#">
-                    <div class="research__item research__item-border text-center mb-30 transition-3">
-                        <div class="research__thumb mb-35">
-                            <img src="@Url.Content("~/Content/home/images/Recorded Classes.png")" alt='Excel Education Raipur' style="width: 239px;height: 223px;" />
-                        </div>
-                        <div class="research__content">
-                            <h3 class="research__title" style="color:blue;">Recorded</h3>
-                            <span>Classes</span>
-                        </div>
+                <div class="research__item research__item-border text-center mb-30 transition-3">
+                    <div class="research__thumb mb-35">
+                        <img src="@Url.Content("~/Content/home/images/Recorded Classes.png")" alt='Excel Education Raipur' style="width: 239px;height: 223px;" />
                     </div>
-                </a>
+                    <div class="research__content">
+                        <h3 class="research__title" style="color:blue;">Recorded</h3>
+                        <span>Classes</span>
+                    </div>
+                </div>
             </div>
 
 
@@ -473,10 +518,27 @@
 </section>
 <!-- category area end -->
 <!-- cta area start -->
-<section class="cta__area pb-160">
+<section class="cta__area pt-50 pb-50  grey-bg">
     <div class="container">
         <div class="cta__inner">
             <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6">
+                    <div class="cta__item pl-85 pt-40 pb-15 d-sm-flex align-items-start">
+                        <div class="cta__icon mr-30">
+                            <span>
+                                <img src="~/Content/home/images/excel app.png" width="46" height="46" />
+                            </span>
+                        </div>
+                        <div class="cta__content">
+                            <h3 class="cta__title">Excel App</h3>
+                            <p>
+                                Live Online Classes & Recorded Classes<br />
+                                are duly available in Excel's App.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                     <div class="cta__item cta__item-border pt-40 pb-15 d-sm-flex align-items-start pr-110">
                         <div class="cta__icon mr-30">
@@ -488,26 +550,46 @@
                             <h3 class="cta__title">Unlimited View</h3>
                             <p>
                                 We provided unlimited views on recorded videos<br />
-                                with all the methods of learning
+                                with all the modes of learning
                             </p>
-                            
+
                         </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- cta area end -->
+<!-- app area start -->
+<section class="app__area app__bg pt-50 pb-50">
+    <div class="container">
+        <div class="app__inner theme-bg-3 p-relative fix">
+            <div class="app__shape">
+                <img class="app__shape-1" src="~/Content/home/assets/img/app/app-shape-1.png" alt="">
+                <img class="app__shape-2" src="~/Content/home/assets/img/app/app-shape-2.png" alt="">
+            </div>
+            <div class="row align-items-center">
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
-                    <div class="cta__item pl-85 pt-40 pb-15 d-sm-flex align-items-start">
-                        <div class="cta__icon mr-30">
-                            <span>
-                                <img src="~/Content/home/images/excel app.png" width="46" height="46"/>
-                            </span>
+                    <div class="app__wrapper p-relative z-index-1">
+                        <h3 class="app__title"> Start learning By Downloading Apps</h3>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-lg-6">
+                    <div class="app__download p-relative z-index-1 d-sm-flex align-items-center justify-content-lg-end">
+                        <div class="app__item mr-15">
+                            <a href="https://play.google.com/store/apps/details?id=com.aaptrix.exceleducationalinstitute">
+                                <span><img src="~/Content/home/assets/img/app/google-play.png" alt=""></span>
+                                Google play
+                            </a>
                         </div>
-                        <div class="cta__content">
-                            <h3 class="cta__title">Excel App</h3>
-                            <p>
-                                Live Online Classes & Recorded Classes<br />
-                                are duly available in Excel's App.
-                            </p>
-                            
+                        <div class="app__item">
+                            <a href="https://drive.google.com/drive/u/2/folders/1cf8uO118Jpu33usaE-rpkkoB1WpgRVmg">
+                                <span class="apple"><img src="~/Content/home/assets/img/app/windows.png" alt=""></span>
+                                Windows
+                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -515,9 +597,9 @@
         </div>
     </div>
 </section>
-<!-- cta area end -->
+<!-- app area end -->
 <!-- Teacher area start -->
-<section class="research__area research__border grey-bg-3 pt-20 pb-60 p-relative z-index-1">
+<section class="research__area research__border grey-bg-3  pt-50 pb-50 p-relative z-index-1">
 
     <div class="container">
         <div class="row">
@@ -531,64 +613,58 @@
         <div class="row">
 
             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <a href="#">
-                    <div class="research__item research__item-border text-center mb-30 transition-3">
-                        <div class="research__thumb mb-35">
-                            <img src="@Url.Content("~/Content/home/staff/F1.jpg")" alt='CA. B.L. Agrawal' style="width: 239px;height: 223px;" />
-                        </div>
-                        <div class="research__content">
-                            <h3 class="research__title" style="color:blue;">CA. B.L. Agrawal</h3>
-                            <span>(B.Com. FCA)</span><br />
-                            <span>Experience:29 Years</span>
-                        </div>
+                <div class="research__item research__item-border text-center mb-30 transition-3">
+                    <div class="research__thumb mb-35">
+                        <img src="@Url.Content("~/Content/home/staff/f1.png")" alt='CA. B.L. Agrawal' style="width: 239px;height: 223px;" />
                     </div>
-                </a>
+                    <div class="research__content">
+                        <h3 class="research__title" style="color:blue;">CA. B.L. Agrawal</h3>
+                        <span>(B.Com. FCA)</span><br />
+                        <span>Experience:29 Years</span>
+                    </div>
+                </div>
             </div>
             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <a href="#">
-                    <div class="research__item research__item-border text-center mb-30 transition-3">
-                        <div class="research__thumb mb-35">
-                            <img src="@Url.Content("~/Content/home/staff/F2.jpg")" alt='CA. Praveen Golchha' style="width: 239px;height: 223px;" />
-                        </div>
-                        <div class="research__content">
-                            <h3 class="research__title" style="color:blue;">CA. Praveen Golchha</h3>
-                            <span>(B.Com. FCA)</span><br />
-                            <span>Experience:22 Years</span>
-                        </div>
+                <div class="research__item research__item-border text-center mb-30 transition-3">
+                    <div class="research__thumb mb-35">
+                        <img src="@Url.Content("~/Content/home/staff/f2.png")" alt='CA. Praveen Golchha' style="width: 239px;height: 223px;" />
                     </div>
-                </a>
+                    <div class="research__content">
+                        <h3 class="research__title" style="color:blue;">CA. Praveen Golchha</h3>
+                        <span>(B.Com. FCA)</span><br />
+                        <span>Experience:22 Years</span>
+                    </div>
+                </div>
             </div>
             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <a href="#">
-                    <div class="research__item research__item-border text-center mb-30 transition-3">
-                        <div class="research__thumb mb-35">
-                            <img src="@Url.Content("~/Content/home/staff/F3.jpg")" alt='CA. Sanjay Goyal' style="width: 239px;height: 223px;" />
-                        </div>
-                        <div class="research__content">
-                            <h3 class="research__title" style="color:blue;">CA. Sanjay Goyal</h3>
-                            <span>(B.Com. FCA, DISA (ICAI))</span><br />
-                            <span>Experience:22 Years</span>
-                        </div>
+                <div class="research__item research__item-border text-center mb-30 transition-3">
+                    <div class="research__thumb mb-35">
+                        <img src="@Url.Content("~/Content/home/staff/f3.png")" alt='CA. Sanjay Goyal' style="width: 239px;height: 223px;" />
                     </div>
-                </a>
+                    <div class="research__content">
+                        <h3 class="research__title" style="color:blue;">CA. Sanjay Goyal</h3>
+                        <span>(B.Com. FCA, DISA (ICAI))</span><br />
+                        <span>Experience:22 Years</span>
+                    </div>
+                </div>
             </div>
 
 
             <div class="campus__btn text-center mb-80">
-                <a href="Our_Team.aspx" class="text-center tp-btn tp-btn-border">View More</a>
+                <a href="ExcelInfo?page=Faculties" class="text-center tp-btn tp-btn-border">View More</a>
             </div>
         </div>
     </div>
 </section>
 <!-- Teacher area end -->
 <!-- campus area start -->
-<section class="theme__features pt-115 pb-120 grey-bg">
+<section class="theme__features pt-115  pt-50 pb-50 grey-bg">
     <div class="container">
         <div class="row">
             <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2 col-lg-10 offset-lg-2">
                 <div class="section__title-wrapper mb-55 text-center">
                     <h2 class="section__title">
-                        Unique feature of <br>
+                        Unique features of <br>
                         Excel Educational Institute
 
                     </h2>
@@ -620,7 +696,7 @@
                     </div>
                     <div class="theme__features-content">
                         <h3 class="theme__features-title">Weekly Test</h3>
-                        <span>with evaluation<br /></span>
+                        <span>with evaluation<br /><br /></span>
                     </div>
                 </div>
             </div>
@@ -634,7 +710,7 @@
                     </div>
                     <div class="theme__features-content">
                         <h3 class="theme__features-title">Model Test</h3>
-                        <span>in exam environment<br /></span>
+                        <span>in exam environment<br /><br /></span>
                     </div>
                 </div>
             </div>
@@ -648,7 +724,7 @@
                     </div>
                     <div class="theme__features-content">
                         <h3 class="theme__features-title">Revision</h3>
-                        <span>after completion of course<br /></span>
+                        <span>after completion of course<br /><br /></span>
                     </div>
                 </div>
             </div>
@@ -662,7 +738,7 @@
                     </div>
                     <div class="theme__features-content">
                         <h3 class="theme__features-title">Timely Completion</h3>
-                        <span>of course<br /></span>
+                        <span>of course<br /><br /></span>
                     </div>
                 </div>
             </div>
@@ -690,7 +766,7 @@
                     </div>
                     <div class="theme__features-content">
                         <h3 class="theme__features-title">100% Doubt Clearance</h3>
-                        <span>for every student<br /></span>
+                        <span>for every student<br /><br /></span>
                     </div>
                 </div>
             </div>
@@ -713,7 +789,7 @@
 </section>
 <!-- campus area end -->
 <!-- testimonial area start -->
-<section class="testimonial__area pt-20 pb-160 fix">
+<section class="testimonial__area  pt-50 pb-50 fix">
     <div class="container">
         <div class="row">
             <div class="col-xxl-12">

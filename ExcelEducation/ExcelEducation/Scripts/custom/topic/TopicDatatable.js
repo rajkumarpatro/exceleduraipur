@@ -49,7 +49,7 @@ var griddtable = function () {
                 {
                     "title": "DATE", "data": "TOPIC_DATE",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html(moment(oData.TOPIC_DATE).format("DD/MM/YYYY"));
+                        $(nTd).html(moment(oData.TOPIC_DATE).format("DD-MM-YYYY"));
                     }
                 },
                 {
@@ -72,7 +72,7 @@ var griddtable = function () {
                 {
                     "title": "EDIT", "data": "TOPIC_LINK_TYPE",
                     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<i  style='cursor: pointer' data-id=" + oData.SUB_TOPIC_ID + " class='feather icon-trash-2 deletetopicdetails'></i> | <i data-id=" + oData.SUB_TOPIC_ID + " style='cursor: pointer' class='fas fa-edit editsubtopic'></i>");
+                        $(nTd).html("<i  style='cursor: pointer' data-filepath=" + oData.TOPIC_FILEPATH + " data-id=" + oData.SUB_TOPIC_ID + " class='feather icon-trash-2 deletetopicdetails'></i> | <i data-id=" + oData.SUB_TOPIC_ID + " style='cursor: pointer' class='fas fa-edit editsubtopic'></i>");
                     }
                 }
             ]

@@ -253,16 +253,18 @@ $(document).ready(function () {
                 },
                 success: function (res) {
 
-                    if (res === 'False')
-                        notify("", "Something went wrong", "danger");
+                    if (res == "Inserted" || res == "Updated") {
+                        notify("", "Data " + res + " Successfully", "success");
+                    }
                     else {
-                        notify("", "Data Add / Edited Successfully", "success");
+                        notify("", "Error :" + res + "", "danger");
+
                     }
                     $('.closeCard').trigger('click');
                 },
                 error: function (err) {
                     $.unblockUI();
-                    notify("", "Something went wrong", "danger");
+                    notify("", "Something went wrong "+err, "danger");
 
                 },
                 complete: function () {
@@ -538,12 +540,17 @@ $(document).ready(function () {
     $(document).on('click', '.deletetopicdetails', function () {
         
         var id = $(this).data('id');
+        var filepath = $(this).data('filepath');
 
         $.ajax({
-            url: DeleteTopicDetail + "?subTopicId=" + id,
+            url: DeleteTopicDetail + "?subTopicId=" + id + "&filepath=" + filepath,
             type: 'GET',
             success: function () {
+                notify("", "Record deleted succesfully", "success");
                 griddtable.reloadTable();
+            },
+            error: function (res) {
+                notify("", "Error while deleting record", "danger");
             }
         })
     });

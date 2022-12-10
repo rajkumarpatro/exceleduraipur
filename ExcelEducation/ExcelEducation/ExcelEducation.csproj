@@ -124,6 +124,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ExcelInfoController.cs" />
     <Compile Include="Controllers\FlashController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -761,6 +762,7 @@
     <Content Include="Content\home\assets\fonts\fa-v4compatibility.woff2" />
     <Content Include="Content\home\staff\CA-cpt faq.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\custom\ChangePassword\ChangePassword.js" />
     <Content Include="Scripts\custom\Home\Home.js" />
     <Content Include="Scripts\custom\ExcelInfo\PageContent.js" />
     <Content Include="Scripts\custom\LatestUpdates\LatestUpdates.js" />
@@ -835,6 +837,7 @@
     <Content Include="Views\ChangePassword\ChangePassword.cshtml" />
     <Content Include="Views\ExcelInfo\_ContentDetails.cshtml" />
     <Content Include="Views\Topic\_PagePhotos.cshtml" />
+    <Content Include="Views\Contact\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -43,7 +43,7 @@
 
                                 <div class="form-group">
                                     <label class="form-label">Select Date</label>
-                                    @Html.TextBoxFor(m => m.TOPIC_DATE, Model.TOPIC_DATE.ToString("dd/MM/YYYY"), new { @class = "form-control" })
+                                    @Html.TextBoxFor(Model => Model.TOPIC_DATE, new { @class = "form-control datepicker", type = "date", placeholder = "Enter Date", @required = "required" })
                                 </div>
                             </div>
                             <div class="col-md-3">

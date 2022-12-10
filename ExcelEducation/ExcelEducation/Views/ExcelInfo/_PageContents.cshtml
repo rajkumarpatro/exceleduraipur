@@ -3,6 +3,7 @@
 @foreach (var pagecontent in Model)
 {
     string topicname = pagecontent.SUB_TOPIC_NAME.ToString();
+    int subtopicid = pagecontent.SUB_TOPIC_ID;
     string description = HttpUtility.UrlDecode(pagecontent.TOPIC_DESCRIPTION == null ? "" : pagecontent.TOPIC_DESCRIPTION.ToString());
     string topicFilepath = (pagecontent.TOPIC_FILEPATH == null ? "" : pagecontent.TOPIC_FILEPATH.ToString());
     string topicFilepathUpper = topicFilepath.ToUpper();
@@ -31,14 +32,14 @@
     }
     else
     {
-        <div class="accordion" id="course__accordion">
-            <div class="accordion-item mb-50">
-                <h2 class="accordion-header" id="week-01">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#week-01-content" aria-expanded="true" aria-controls="week-01-content">
-                        Week 01
+        <div class="accordion" id="accordion+@topicname">
+            <div class="accordion-item mb-20">
+                <h2 class="accordion-header" id="@topicname">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test1" aria-expanded="true" aria-controls="test1">
+                        @topicname
                     </button>
                 </h2>
-                <div id="week-01-content" class="accordion-collapse collapse show" aria-labelledby="week-01" data-bs-parent="#course__accordion">
+                <div id="test1" class="accordion-collapse collapse" aria-labelledby="@topicname">
                     <div class="accordion-body">
                         @Html.Partial("_ContentDetails", pagecontent)
                     </div>

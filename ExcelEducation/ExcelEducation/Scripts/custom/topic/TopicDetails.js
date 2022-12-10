@@ -60,23 +60,23 @@ $(document).ready(function () {
 
 
     //date picker
-    $(function () {
+    //$(function () {
         
-        if ($('#TOPIC_DATE').val() === "") {
-            var date = new Date().toLocaleDateString();
-            $('#TOPIC_DATE').val(date);
-        }
+    //    if ($('#TOPIC_DATE').val() === "") {
+    //        var date = new Date().toLocaleDateString();
+    //        $('#TOPIC_DATE').val(date);
+    //    }
 
-        $('input[id="TOPIC_DATE"]').daterangepicker({
-            locale: {
-                format: 'DD/MM/YYYY'
-            },
-            singleDatePicker: true,
-            showDropdowns: true,
-        }, function (start, end, label) {
-            var years = moment().diff(start, 'years');
-        });
-    });
+    //    $('input[id="TOPIC_DATE"]').daterangepicker({
+    //        locale: {
+    //            format: 'DD/MM/YYYY'
+    //        },
+    //        singleDatePicker: true,
+    //        showDropdowns: true,
+    //    }, function (start, end, label) {
+    //        var years = moment().diff(start, 'years');
+    //    });
+    //});
 
     
     $(document).on('change', '#TOPIC_LINK_TYPE', function () {

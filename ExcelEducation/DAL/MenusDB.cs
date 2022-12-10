@@ -108,24 +108,29 @@ namespace DAL
             }
         }
 
-        public async static Task<bool> AddTopicDetail(TopicDetail topicDetail)
+        public async static Task<string> AddTopicDetail(TopicDetail topicDetail)
         {
-            int res = 0;
             try
             {
                 using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
                 {
                     if (topicDetail.SUB_TOPIC_ID > 0)
-                        return await db.UpdateAsync<TopicDetail>(topicDetail);
+                    {
+                        await db.UpdateAsync(topicDetail);
+                        return "Updated";
+                    }
                     else
-                        res = await db.InsertAsync<TopicDetail>(topicDetail);
+                    {
+                        await db.InsertAsync<TopicDetail>(topicDetail);
+                        return "Inserted";
+                    }
                 }
             }
             catch (Exception ex)
             {
-
+                return ("Error: " + ex.Message);
             }
-            return res > 0;
+            
         }
 
         public async static Task<bool> InsertSubTopicPhotos(List<PagePhotos> photos)
@@ -242,15 +247,30 @@ namespace DAL
                 return await db.DeleteAsync<PageFiles>(pageFiles);
             }
         }
-        public async static Task<bool> DeleteTopicDetail(int subTopicId)
+        public async static Task<bool> DeleteTopicDetail(int subTopicId, string filepath)
         {
             try
             {
-                var subTopic = await GetTopicDetailsBySubTopicId(subTopicId);
                 await DeleteTopicPhotos(subTopicId.ToString());
                 await DeleteTopicFiles(subTopicId.ToString());
-                await DeleteTopicDetailsByTopicId(subTopic.TOPIC_ID.ToString());
-                return true;
+
+                if(filepath!="")
+                {
+                    string file = HttpContext.Current.Server.MapPath(filepath);
+
+                    if (System.IO.File.Exists(file))
+                    {
+                        System.IO.File.Delete(file);
+                    }
+                }
+
+                using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+                {
+                    var num = await db.ExecuteAsync("Delete from TBL_TOPIC_DETAIL where sub_topic_id = @subTopicId"
+                    , new { @subTopicId = subTopicId });
+                    return true;
+                }
+               
             }
             catch (Exception ex)
             {
@@ -312,9 +332,9 @@ namespace DAL
                 var details = await db.QueryAsync<TopicDetail>("select * from TBL_TOPIC_DETAIL f inner join Split_Strings (@ids,',') l on f.TOPIC_ID = l.item"
                     , new { @ids = TopicIds });
 
-                details.ToList().ForEach(async x =>
+                details.ToList().ForEach( x =>
                 {
-                    await DeleteFile(x.TOPIC_FILEPATH);
+                    DeleteFile(x.TOPIC_FILEPATH);
 
                     #region deletes images in description
                     string strGuid = HttpUtility.HtmlDecode(x.TOPIC_DESCRIPTION ?? "");

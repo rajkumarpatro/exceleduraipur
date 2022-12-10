@@ -1,6 +1,6 @@
 ﻿@model DAL.Models.TopicDetail
 
-@{ 
+@{
     string topicname = Model.SUB_TOPIC_NAME.ToString();
     string description = HttpUtility.UrlDecode(Model.TOPIC_DESCRIPTION == null ? "" : Model.TOPIC_DESCRIPTION.ToString());
     string topicFilepath = (Model.TOPIC_FILEPATH == null ? "" : Model.TOPIC_FILEPATH.ToString());
@@ -78,5 +78,17 @@
                 </tbody>
             </table>
         </div>
+    </div>
+}
+
+@if (Model.PagePhotos.Any())
+{
+    <div class="row">
+        @foreach (var photo in Model.PagePhotos)
+        {
+            <div class="col-md-3">
+                <img src="@photo.PHOTO_PATH" class="img-fluid" style="margin-bottom: 20px;" />
+            </div>
+        }
     </div>
 }

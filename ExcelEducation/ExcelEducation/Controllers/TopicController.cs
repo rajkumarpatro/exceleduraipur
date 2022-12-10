@@ -78,11 +78,10 @@ namespace ExcelEducation.Controllers
         }
 
         [HttpPost]
-        public async Task<bool> AddTopicDetail(TopicDetail topicDetail)
+        public async Task<string> AddTopicDetail(TopicDetail topicDetail)
         {
-            //topicDetail.TOPIC_ID = 1;
-            if(Request.Files.Count>0)
-            topicDetail.TOPIC_FILEPATH = FileHandler.SaveUploadedFile(Request, "SubTopic", topicDetail.SUB_TOPIC_ID);
+            if (Request.Files.Count > 0)
+                topicDetail.TOPIC_FILEPATH = FileHandler.SaveUploadedFile(Request, "SubTopic", topicDetail.SUB_TOPIC_ID);
 
             return await MenusDB.AddTopicDetail(topicDetail);
         }
@@ -175,9 +174,9 @@ namespace ExcelEducation.Controllers
             return await MenusDB.DeleteTopicDetailFile(fileId);
         }
 
-        public async Task<bool> DeleteTopicDetail(int subTopicId)
+        public async Task<bool> DeleteTopicDetail(int subTopicId, string filepath)
         {
-            return await MenusDB.DeleteTopicDetail(subTopicId);
+            return await MenusDB.DeleteTopicDetail(subTopicId,filepath);
         }
 
         [HttpPost]
