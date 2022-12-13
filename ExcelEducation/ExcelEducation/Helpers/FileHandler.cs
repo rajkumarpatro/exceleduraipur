@@ -34,8 +34,8 @@ namespace ExcelEducation.Helpers
 
                     // Get the complete folder path and store the file inside it.
                     var guidId = Guid.NewGuid();
-                    var targetpath = $"{uploadPath}/{ filePrefix }_{guidId}_{fname}";
-                    var fPath = Path.Combine(HttpContext.Current.Server.MapPath(uploadPath), $"{ filePrefix }_{guidId}_{fname}");
+                    var targetpath = $"{uploadPath}/{filePrefix}_{guidId}_{fname}";
+                    var fPath = Path.Combine(HttpContext.Current.Server.MapPath(uploadPath), $"{filePrefix}_{guidId}_{fname}");
 
                     file.SaveAs(fPath);
 
@@ -66,7 +66,8 @@ namespace ExcelEducation.Helpers
                     HttpFileCollectionBase files = Request.Files;
                     //HttpPostedFileBase file = files[0];
 
-                    for (int i=0; i<files.Count; i++) {
+                    for (int i = 0; i < files.Count; i++)
+                    {
                         HttpPostedFileBase file = files[i];
 
                         if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
@@ -87,10 +88,10 @@ namespace ExcelEducation.Helpers
                         var fPath = Path.Combine(HttpContext.Current.Server.MapPath(uploadPath), $"{filePrefix}_{guidId}_{fname}");
 
                         file.SaveAs(fPath);
-                       
+
                         paths.Add(new { name = Path.ChangeExtension(fname, null), path = targetpath });
                     }
-                    
+
 
                     //Returns message that successfully uploaded
 
@@ -147,6 +148,18 @@ namespace ExcelEducation.Helpers
             }
 
             return "";
+        }
+
+        public static bool DeleteFile(string path)
+        {
+            path = Path.Combine(HttpContext.Current.Server.MapPath("~"), path.TrimStart('/'));
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+                return true;
+            }
+            return false;
         }
     }
 }

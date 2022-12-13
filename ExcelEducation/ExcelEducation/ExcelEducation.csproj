@@ -126,6 +126,8 @@
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ExcelInfoController.cs" />
+    <Compile Include="Controllers\TestimonialController.cs" />
+    <Compile Include="Controllers\PopupController.cs" />
     <Compile Include="Controllers\FlashController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
@@ -763,6 +765,8 @@
     <Content Include="Content\home\staff\CA-cpt faq.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\custom\ChangePassword\ChangePassword.js" />
+    <Content Include="Scripts\custom\Testimonial\Testimonial.js" />
+    <Content Include="Scripts\custom\Testimonial\TestimonialDatatable.js" />
     <Content Include="Scripts\custom\Home\Home.js" />
     <Content Include="Scripts\custom\ExcelInfo\PageContent.js" />
     <Content Include="Scripts\custom\LatestUpdates\LatestUpdates.js" />
@@ -777,6 +781,7 @@
     <Content Include="Scripts\custom\Flash\FlashDatatable.js" />
     <Content Include="Scripts\custom\gbl.js" />
     <Content Include="Scripts\custom\jquery.dataTables.js" />
+    <Content Include="Scripts\custom\Popup\popup.js" />
     <Content Include="Scripts\custom\topic\TopicFileDatatable.js" />
     <Content Include="Scripts\custom\topic\TopicPage.js" />
     <Content Include="Scripts\custom\topic\TopicsDatatable.js" />
@@ -838,6 +843,8 @@
     <Content Include="Views\ExcelInfo\_ContentDetails.cshtml" />
     <Content Include="Views\Topic\_PagePhotos.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Popup\Index.cshtml" />
+    <Content Include="Views\Testimonial\Testimonial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

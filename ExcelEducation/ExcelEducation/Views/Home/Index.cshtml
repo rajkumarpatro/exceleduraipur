@@ -1,27 +1,29 @@
-﻿@model List<DAL.Models.FlashModel>
+﻿@model DAL.Models.HomeViewModel
 
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<div id="boxes">
-    <div style="top: 50%; left: 50%; display: none;" id="dialog" class="window">
-        <div id="san">
-            <a href="#" class="close agree">
-                <img src="@Url.Content("~/Content/home/close-icon.png")" width="25"
-                     style="float:right; margin-right: -25px; margin-top: -20px;">
-            </a>
-            <img src="@Url.Content("~/Content/home/popup.jpeg")" width="450">
+@if (Model.ShowPopup)
+{
+    <div id="boxes">
+        <div style="top: 50%; left: 50%; display: none;" id="dialog" class="window">
+            <div id="san">
+                <a href="#" class="close agree">
+                    <img src="@Url.Content("~/Content/home/close-icon.png")" width="25"
+                         style="float:right; margin-right: -25px; margin-top: -20px;">
+                </a>
+                <img src="@Url.Content(Model.PopupImg)" width="450">
+            </div>
+        </div>
+        <div style="width: 2478px; font-size: 32pt; color:white; height: 1202px; display: none; opacity: 0.4;" id="mask">
         </div>
     </div>
-    <div style="width: 2478px; font-size: 32pt; color:white; height: 1202px; display: none; opacity: 0.4;" id="mask">
-    </div>
-</div>
-
+}
 <!--Load Flash Photos (Slider here using partial view _Flash)-->
 
-@if (Model.Any())
+@if (Model.FlashList.Any())
 {
 
 
@@ -29,7 +31,7 @@
     <section class="slider__area">
         <div class="slider__active swiper-container">
             <div class="swiper-wrapper">
-                @foreach (var flash in Model)
+                @foreach (var flash in Model.FlashList)
                 {
                     string photopath = flash.FLASH_FILEPATH;
                     <div class="slider__item swiper-slide p-relative slider__height d-flex align-items-center z-index-1">
@@ -803,102 +805,42 @@
             <div class="col-xxl-12">
                 <div class="testimonial__slider">
                     <div class="testimonial__active owl-carousel">
-                        <div class="testimonial__item transition-3 text-center white-bg" style="height:538px;">
-                            <div class="testimonial__avater">
-                                <img src="@Url.Content("~/Content/home/images/F2.png")" alt="Excel Educational Institute">
-                            </div>
-                            <div class="testimonial__text">
-                                <h4>Great quality!</h4>
-                                <p>“Excel education institute is one of the prominent institutions providing Coaching for CA, CS and CMA. It's best known for its faculties. And high quality education. Key highlights The Classroom is awesome, digital teaching, best audio quality, fully air conditioned. Doubt clearing session, backup class, weakly test. Best for CA foundation and CA inter.</p>
-                            </div>
-                            <div class="testimonial__avater-info mb-5">
-                                <h3> Dinesh Kar</h3>
 
-                            </div>
-                            <div class="testimonial__rating">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="testimonial__item transition-3 text-center white-bg" style="height:538px;">
-                            <div class="testimonial__avater">
-                                <img src="@Url.Content("~/Content/home/images/F2.png")" alt="Excel Educational Institute">
-                            </div>
-                            <div class="testimonial__text">
-                                <h4>Great quality!</h4>
-                                <p>“An excellent educational institution, with such fantastic faculties, good learning environment, quick solutions to problems. I had a very nice experience. Go for it..</p>
-                            </div>
-                            <div class="testimonial__avater-info mb-5">
-                                <h3>NEHA TIWARI</h3>
+                        @foreach (var testimonial in Model.TestimonialList)
+                        {
+                            <div class="testimonial__item transition-3 text-center white-bg" style="height:538px;">
+                                <div class="testimonial__avater">
+                                    <img src="@Url.Content(testimonial.STUDENT_PHOTO)" alt="Excel Educational Institute">
+                                </div>
+                                <div class="testimonial__text">
+                                    <h4>Great quality!</h4>
+                                    <p>“@testimonial.TESTIMONIAL</p>
+                                </div>
+                                <div class="testimonial__avater-info mb-5">
+                                    <h3> @testimonial.STUDENT_NAME</h3>
 
+                                </div>
+                                <div class="testimonial__rating">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="fa-solid fa-star"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa-solid fa-star"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa-solid fa-star"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa-solid fa-star"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa-solid fa-star"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="testimonial__rating">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="testimonial__item transition-3 text-center white-bg" style="height:538px;">
-                            <div class="testimonial__avater">
-                                <img src="@Url.Content("~/Content/home/images/F2.png")" alt="Excel Educational Institute">
-                            </div>
-                            <div class="testimonial__text">
-                                <h4>Great quality!</h4>
-                                <p>“It is a world class coaching centre. Proud to be here.</p>
-                            </div>
-                            <div class="testimonial__avater-info mb-5">
-                                <h3>SAMMY BROWNS</h3>
-
-                            </div>
-                            <div class="testimonial__rating">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        }
 
                     </div>
                 </div>

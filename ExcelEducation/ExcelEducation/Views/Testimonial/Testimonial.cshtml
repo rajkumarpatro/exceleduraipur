@@ -1,0 +1,133 @@
+﻿@model DAL.Models.TestimonialModel
+
+@{
+    ViewBag.Title = "Testimonial";
+}
+
+<!-- data tables css -->
+<link rel="stylesheet" href="@Url.Content("~/Content/admin/assets/css/plugins/dataTables.bootstrap4.min.css")">
+<link href="@Url.Content("~/Content/admin/Custom.css")" rel="stylesheet" />
+
+<div class="row">
+    <!-- [ sample-page ] start -->
+    <div class="col-sm-12">
+        <div class="card">
+           
+            <div class="card-header">
+                <h5>Testimonial</h5>
+            </div>
+            <div class="card-body">
+                <form id="frm_Testimonial">
+                    @Html.HiddenFor(Model => Model.ID)
+                    <div class="row">
+
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        @Html.TextBoxFor(Model => Model.STUDENT_NAME, new { @class = "form-control", placeholder = "Name", @required = "required" })
+                                        <label id="STUDENT_NAME-error" class="error hide_column invalid-feedback" for="STUDENT_NAME" style="">This field is required.</label>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Class</label>
+                                        @Html.TextBoxFor(Model => Model.STUDENT_CLASS, new { @class = "form-control", placeholder = "Class", @required = "required" })
+                                        <label id="STUDENT_CLASS-error" class="error hide_column invalid-feedback" for="STUDENT_CLASS" style="">This field is required.</label>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Order</label>
+                                    <select class="form-control" id="TESTIMONIAL_ORDER" required>
+                                        @{
+                                            for (int i = 1; i <= 100; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Upload Image</label>
+                                    <input onchange="previewFile(this);" type="file" id="uploadfile" accept=".jpg, .jpeg, .png" required />
+                                    <label id="STUDENT_PHOTO-error" class="error hide_column invalid-feedback" for="uploadfile" style="">This field is required.</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label>Testimonial</label>
+                                        @Html.TextAreaFor(Model => Model.TESTIMONIAL, new { @rows = "5", @class = "form-control", placeholder = "Testimonial", @required = "required" })
+                                        <label id="TESTIMONIAL-error" class="error hide_column invalid-feedback" for="TESTIMONIAL" style="">This field is required.</label>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-5 pt-5">
+                                    <br /><br /><br />
+                                    <button class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="button" id="btnTestCancel">Cancel</button>
+                                    <button class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="submit" id="btnsubmit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style=" vertical-align: top; position: relative; top: -88px">
+                            <div class="image-upload">
+                                <label for="file-input">
+                                    <img id="previewImg" src="@Model.STUDENT_PHOTO" style="height: 150px;" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="dt-responsive table-responsive">
+                            <table id="gridtable" class="table table-bordered">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ sample-page ] end -->
+</div>
+
+
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/jquery.dataTables.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/dataTables.bootstrap4.min.js")"></script>
+
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.colVis.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.print.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/pdfmake.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/jszip.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/dataTables.buttons.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.html5.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.bootstrap4.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/pages/data-export-custom.js")"></script>
+
+<!--Custom-->
+<script src="@Url.Content("~/Scripts/custom/Testimonial/TestimonialDatatable.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/Testimonial/Testimonial.js")"></script>
+
+<script>
+    var LoadRecord = "@Url.Content("~/Testimonial/loadRecord")"
+    var AddEditDeleteRecord= "@Url.Content("~/Testimonial/addEditDeleteRecord")"
+    var EditRecord = "@Url.Content("~/Testimonial/editRecord")"
+    var GetTestimonial = "@Url.Content("~/Testimonial/GetTestimonial")"
+    var DeleteRecord = "@Url.Content("~/Testimonial/deleteRecord")"
+    var ToggleTestimonial = "@Url.Content("~/Testimonial/ToggleTestimonial")"
+    var DeleteTestimonial = "@Url.Content("~/Testimonial/DeleteTestimonial")"
+    var SetOrder = "@Url.Content("~/Testimonial/SetOrder")"
+    var UploadFileUrl = "@Url.Content("~/Testimonial/uploadFile")"
+</script>
+

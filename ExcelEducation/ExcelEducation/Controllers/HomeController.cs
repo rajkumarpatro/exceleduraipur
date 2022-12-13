@@ -14,9 +14,19 @@ namespace ExcelEducation.Controllers
         // GET: Home
         public async Task<ActionResult> Index()
         {
+            var testimonials = await TestimonialDB.LoadTestimonial();
+            var popup = await PopupDB.GetPopup();
             List<FlashModel> flash = await FlashDB.LoadFlash();
-            //return PartialView("_Flash", flash);
-            return View("Index", flash);
+
+            HomeViewModel homeViewModel = new HomeViewModel
+            {
+                PopupImg = popup.IMAGE_PATH,
+                ShowPopup = popup.SHOW,
+                FlashList = flash,
+                TestimonialList = testimonials
+            };
+
+            return View("Index", homeViewModel);
         }
 
         public async Task<ActionResult> LoadFlashPhotos()

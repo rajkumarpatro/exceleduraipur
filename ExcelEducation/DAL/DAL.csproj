@@ -76,10 +76,14 @@
   <ItemGroup>
     <Compile Include="Connection.cs" />
     <Compile Include="ExcelInfoDB.cs" />
+    <Compile Include="TestimonialDB.cs" />
     <Compile Include="Models\ExcelInfoModel.cs" />
+    <Compile Include="Models\TestimonialModel.cs" />
+    <Compile Include="Models\PopupModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="PopupDB.cs" />
     <Compile Include="PageDB.cs" />
     <Compile Include="LatestUpdatesDB.cs" />
     <Compile Include="PageHeadDB.cs" />

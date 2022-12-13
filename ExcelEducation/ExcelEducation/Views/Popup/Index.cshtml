@@ -1,0 +1,65 @@
+﻿@model DAL.Models.PopupModel
+
+@{
+    ViewBag.Title = "Popup";
+}
+
+<!-- data tables css -->
+<link rel="stylesheet" href="@Url.Content("~/Content/admin/assets/css/plugins/dataTables.bootstrap4.min.css")">
+<link href="@Url.Content("~/Content/admin/Custom.css")" rel="stylesheet" />
+<script src="~/Scripts/custom/Popup/popup.js"></script>
+
+<form id="frm_Popup">
+    <div class="row">
+        <!-- [ sample-page ] start -->
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <h5>Popup</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Upload Image</label>
+                            <input onchange="previewFile(this);"  type="file" id="uploadfile" accept=".jpg, .jpeg, .png" required />
+                            <label id="Popup_ORDER-error" class="error hide_column invalid-feedback" for="uploadfile" style="">This field is required.</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="visibility:  hidden">Upload Image</label>
+                            <div class="form-group">
+                                <label>@Html.CheckBoxFor(Model => Model.SHOW) Show/Hide</label>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <br />
+                            <button onclick="SavePopup()" class="btn notifications btn-success has-ripple" data-type="success" data-from="top" data-align="right" type="button" id="btnsubmit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="image-upload">
+                                <label for="file-input">
+                                    <img id="previewImg" src="@Model.IMAGE_PATH" style="width: 450px;"/>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ sample-page ] end -->
+    </div>
+</form>
+
+<!--Custom-->
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/Popup/Popup.js")"></script>
+
+<script>
+    var SavePopupUrl = "@Url.Content("~/Popup/SavePopup")"
+
+</script>
+

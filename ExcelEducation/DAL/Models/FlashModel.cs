@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
+    public class HomeViewModel {
+        public List<FlashModel> FlashList { get; set; }
+        public List<TestimonialModel> TestimonialList { get; set; }
+        public string PopupImg { get; set; }
+        public bool ShowPopup { get; set; }
+    }   
+
     public class FlashModel
     {
         public int FLASH_ID { get; set; }
