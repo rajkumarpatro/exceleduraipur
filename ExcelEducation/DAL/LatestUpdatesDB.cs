@@ -64,6 +64,53 @@ namespace DAL
 
             return res > 0;
         }
-    }
 
+        public async static Task<bool> Enquiry(string name, string mode, string Message, string mobile, string applyfor, string course, string city)
+        {
+            int res = 0;
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                db.Open();
+                res = await db.ExecuteAsync
+                    ("insert into TBL_ENQUIRY (student, mode_of_class, course_id, appearing_for, message, contact, place, DATETIMESTAMP) " +
+                     "values (@name, @mode, @course, @applyfor, @message, @mobile, @city, GETDATE())",
+                    new { @name = name, @mode = mode, @course = course, @applyfor = applyfor, @message = Message, @mobile = mobile, @city = city },
+                    commandType: CommandType.Text);
+            }
+
+            return res > 0;
+        }
+
+        public async static Task<List<CourseModel>> GetCourses()
+        {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+                {
+                    db.Open();
+                    var xx = await db.QueryAsync<CourseModel>
+                        ("select COURSE_ID, COURSE, OFFLINE_FEES, ONLINE_FEES, ISACTIVE, APPEARING_FOR_VALUES from TBL_COURSE where isactive = 'YES'", commandType: CommandType.Text);
+                    return xx.ToList();
+                }
+            }
+            catch (Exception ex) {
+                return null;
+            }
+        }
+
+        public async static Task<List<string>> GetAppearingFor(int courseId)
+        {
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                db.Open();
+
+                var xx = await db.QueryAsync<string>
+                    ("select APPEARING_FOR_VALUES from TBL_COURSE where COURSE_ID  = @courseId",
+                    new { @courseId = courseId}, commandType: CommandType.Text);
+
+                return xx.FirstOrDefault().Split(',').ToList();
+            }
+        }
+
+    }
 }

@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Connection.cs" />
     <Compile Include="ExcelInfoDB.cs" />
+    <Compile Include="Models\CourseModel.cs" />
     <Compile Include="TestimonialDB.cs" />
     <Compile Include="Models\ExcelInfoModel.cs" />
     <Compile Include="Models\TestimonialModel.cs" />

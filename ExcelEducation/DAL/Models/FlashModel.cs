@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace DAL.Models
 {
@@ -12,6 +13,11 @@ namespace DAL.Models
         public List<TestimonialModel> TestimonialList { get; set; }
         public string PopupImg { get; set; }
         public bool ShowPopup { get; set; }
+
+
+        public int CourseId { get; set; }
+        public List<SelectListItem> CourseDD { get; set; }
+        public List<SelectListItem> AppearingForDD { get; set; }
     }   
 
     public class FlashModel
