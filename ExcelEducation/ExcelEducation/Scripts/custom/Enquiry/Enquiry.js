@@ -3,44 +3,7 @@ $(document).ready(function () {
     //$('select').niceSelect();
     // on load 
     //LoadFlash();
-    LoadNews();
-
-
-    function LoadFlash() {
-        $.ajax({
-            url: loadFlashPhotos,
-            beforeSend: function () {
-                $.blockUI();
-            },
-            success: function (view) {
-                $.unblockUI();
-                $('.topic-content').empty('').html(view);
-                $('.topic-content').show();
-                $('.topic').hide();
-            },
-            error: function (data, params) {
-                $.unblockUI();
-            }
-        });
-    }
-
-    function LoadNews() {
-        $.ajax({
-            url: loadNewsDetails,
-            beforeSend: function () {
-                $.blockUI();
-            },
-            success: function (view) {
-                $.unblockUI();
-                $('.news-content').empty('').html(view);
-                $('.news-content').show();
-                $('.news').hide();
-            },
-            error: function (data, params) {
-                $.unblockUI();
-            }
-        });
-    }
+    
 
     $(document).on('click', '#btnContactSubmit', function () {
 
@@ -58,7 +21,7 @@ $(document).ready(function () {
         if (course === "") { alert("Please select Course"); return; }
         if (batch === "") { alert("Please select Batch"); return; }
         if (mode === "") { alert("Please select Mode"); return; }
-        if(city === "") { alert("Please select City"); return; }
+        if (city === "") { alert("Please select City"); return; }
         if (message === "") { alert("Please add Message"); return; }
 
 
@@ -71,8 +34,6 @@ $(document).ready(function () {
                 $("#mobile").val('');
                 $("#message").val('');
                 $("#city").val('');
-
-                $('#exampleModal').modal('toggle');
             }
         });
     });
@@ -94,11 +55,11 @@ $(document).ready(function () {
                         value: value.COURSE_ID,
                         text: value.COURSE
                     }));
-                }); 
+                });
 
                 $('select').niceSelect('update');
-                
-                
+
+
             },
             error: function () { }
         });

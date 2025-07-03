@@ -18,7 +18,7 @@ namespace ExcelEducation.Controllers
             var testimonials = await TestimonialDB.LoadTestimonial();
             var popup = await PopupDB.GetPopup();
             List<FlashModel> flash = await FlashDB.LoadFlash();
-            List<CourseModel> courses = await LatestUpdatesDB.GetCourses();
+            List<CourseMasterModel> courses = await LatestUpdatesDB.GetCourses();
 
             HomeViewModel homeViewModel = new HomeViewModel
             {
@@ -26,10 +26,10 @@ namespace ExcelEducation.Controllers
                 ShowPopup = popup.SHOW,
                 FlashList = flash,
                 TestimonialList = testimonials,
-                CourseDD  = courses.Select(x=> new SelectListItem { 
-                 Text = x.COURSE, Value = x.COURSE_ID.ToString()
-                 }).ToList(),
-                AppearingForDD = new List<SelectListItem>()
+                BatchDD = new List<SelectListItem>(),
+                CourseMasterDD = courses.Select(x => new SelectListItem {
+                    Text = x.M_COURSE_NAME, Value = x.M_COURSE_ID.ToString()
+                }).ToList()
             };
 
             return View("Index", homeViewModel);
@@ -48,14 +48,19 @@ namespace ExcelEducation.Controllers
             return PartialView("_News", news);
         }
 
-        public async Task<ActionResult> GetAppearingFor(int courseId)
+        public async Task<ActionResult> GetBatch(int courseId)
         {
-            return Json(await LatestUpdatesDB.GetAppearingFor(courseId), JsonRequestBehavior.AllowGet);
+            return Json(await LatestUpdatesDB.GetBatch(courseId), JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<bool> Enquiry(string name, string mode, string message, string mobile, string applyfor, string course, string city)
+        public async Task<ActionResult> GetAppearingForYear()
         {
-            return await LatestUpdatesDB.Enquiry(name, mode, message, mobile, applyfor, course, city);
+            return Json(await LatestUpdatesDB.GetAppearingForYear(), JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<bool> Enquiry(string name, string mode, string message, string mobile, string batch, string course, string city)
+        {
+            return await LatestUpdatesDB.Enquiry(name, mode, message, mobile, batch, course, city);
         }
     }
 }

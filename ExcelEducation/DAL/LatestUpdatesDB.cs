@@ -65,36 +65,50 @@ namespace DAL
             return res > 0;
         }
 
-        public async static Task<bool> Enquiry(string name, string mode, string Message, string mobile, string applyfor, string course, string city)
+        public async static Task<bool> Enquiry(string name, string mode, string Message, string mobile, string batch, string course, string city)
         {
             int res = 0;
             using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
             {
                 db.Open();
                 res = await db.ExecuteAsync
-                    ("insert into TBL_ENQUIRY (student, mode_of_class, course_id, appearing_for, message, contact, place, DATETIMESTAMP) " +
-                     "values (@name, @mode, @course, @applyfor, @message, @mobile, @city, GETDATE())",
-                    new { @name = name, @mode = mode, @course = course, @applyfor = applyfor, @message = Message, @mobile = mobile, @city = city },
+                    ("insert into TBL_ENQUIRY (student, mode_of_class, M_COURSE_ID,course_id, message, contact, place, DATETIMESTAMP) " +
+                     "values (@name, @mode, @course, @batch, @message, @mobile, @city, GETDATE())",
+                    new { @name = name, @mode = mode, @course = course, @batch = batch, @message = Message, @mobile = mobile, @city = city },
                     commandType: CommandType.Text);
             }
 
             return res > 0;
         }
 
-        public async static Task<List<CourseModel>> GetCourses()
+        public async static Task<List<CourseMasterModel>> GetCourses()
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
                 {
                     db.Open();
-                    var xx = await db.QueryAsync<CourseModel>
-                        ("select COURSE_ID, COURSE, OFFLINE_FEES, ONLINE_FEES, ISACTIVE, APPEARING_FOR_VALUES from TBL_COURSE where isactive = 'YES'", commandType: CommandType.Text);
+                    var xx = await db.QueryAsync<CourseMasterModel>
+                        ("SELECT [M_COURSE_ID] ,[M_COURSE_NAME] FROM [dbo].[TBL_COURSE_MASTER] WHERE ISACTIVE_ENQUIRY='Yes' ORDER BY M_COURSE_NAME", commandType: CommandType.Text);
                     return xx.ToList();
                 }
             }
             catch (Exception ex) {
                 return null;
+            }
+        }
+
+        public async static Task<List<CourseModel>> GetBatch(int courseId)
+        {
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                db.Open();
+
+                var xx = await db.QueryAsync<CourseModel>
+                    ("select COURSE_ID, M_COURSE_ID, COURSE, OFFLINE_FEES, ISACTIVE from TBL_COURSE where ISACTIVE_ENQUIRY = 'Yes' AND M_COURSE_ID  = @courseId",
+                    new { @courseId = courseId }, commandType: CommandType.Text);
+
+                return xx.ToList();
             }
         }
 
@@ -109,6 +123,19 @@ namespace DAL
                     new { @courseId = courseId}, commandType: CommandType.Text);
 
                 return xx.FirstOrDefault().Split(',').ToList();
+            }
+        }
+
+        public async static Task<List<int>> GetAppearingForYear()
+        {
+            using (IDbConnection db = new SqlConnection(Connection.MyConnection()))
+            {
+                db.Open();
+
+                var xx = await db.QueryAsync<int>
+                    ("select YEAR_VALUE from TBL_YEAR where YEAR_ENABLE  = 'YES'", commandType: CommandType.Text);
+
+                return xx.ToList();
             }
         }
 

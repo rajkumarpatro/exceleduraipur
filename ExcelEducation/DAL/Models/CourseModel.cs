@@ -10,6 +10,7 @@ namespace DAL.Models
 	public class CourseModel
     {
 		public int COURSE_ID { get; set; }
+		public int M_COURSE_ID { get; set; }
 		public string COURSE { get; set; }
         public int ONLINE_FEES { get; set; }
         public int OFFLINE_FEES { get; set; }

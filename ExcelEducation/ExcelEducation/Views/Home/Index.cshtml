@@ -121,7 +121,7 @@
                             <h3 class="features__title">
                                 <a href="#" style="color:#3d6ce7;">AIR-1</a>
                             </h3>
-                            <p style="font-size: 9px;">In CA-CPT (Foundation) Dec. 2014 Attempt Form Junagarh (OD).</p>
+                            <p style="font-size: 9px;">In CA-CPT (Foundation) Dec. 2014 Attempt Form Koriya (CG).</p>
 
 
                         </div>
@@ -139,7 +139,7 @@
                             <h3 class="features__title">
                                 <a href="#" style="color:#3d6ce7;">AIR-1</a>
                             </h3>
-                            <p style="font-size: 9px;">In CA-Final November 2019 Attempt Form Junagarh (OD).</p>
+                            <p style="font-size: 9px;">In CA-Final November 2019 Attempt Form Raipur (CG).</p>
 
 
                         </div>
@@ -230,7 +230,7 @@
                             <img src="@Url.Content("~/Content/home/images/ICON 01.png")" />
                         </div>
                         <div class="counter__content">
-                            <h4><span class="">15</span>+</h4>
+                            <h4><span class="">17</span>+</h4>
                             <p style="font-weight:700;font-size: 11px;">Year of <br /> Excellent Education</p>
                         </div>
                     </div>
@@ -241,7 +241,7 @@
                             <img src="@Url.Content("~/Content/home/images/INCON 02.png")" />
                         </div>
                         <div class="counter__content">
-                            <h4><span class="">20</span>+</h4>
+                            <h4><span class="">15</span>+</h4>
                             <p style="font-weight:700;font-size: 11px;">Faculties of <br /> Excellent Experience</p>
                         </div>
                     </div>
@@ -252,7 +252,7 @@
                             <img src="@Url.Content("~/Content/home/images/INCON 03.png")" />
                         </div>
                         <div class="counter__content">
-                            <h4><span class="">156</span></h4>
+                            <h4><span class="">164</span></h4>
                             <p style="font-weight:700;font-size: 11px;">All India Rankers <br /> Since 2007</p>
                         </div>
                     </div>
@@ -263,7 +263,7 @@
                             <img src="@Url.Content("~/Content/home/images/INCON 04.png")" />
                         </div>
                         <div class="counter__content">
-                            <h4><span class="">13000</span>+</h4>
+                            <h4><span class="">16500</span>+</h4>
 
                             <p style="font-weight:700;font-size: 11px;">Successful Students <br /> Since 2007</p>
                         </div>
@@ -629,7 +629,7 @@
                     <div class="research__content">
                         <h3 class="research__title" style="color:blue;">CA. B.L. Agrawal</h3>
                         <span>(B.Com. FCA)</span><br />
-                        <span>Experience:29 Years</span>
+                        <span>Experience:34 Years</span>
                     </div>
                 </div>
             </div>
@@ -641,7 +641,7 @@
                     <div class="research__content">
                         <h3 class="research__title" style="color:blue;">CA. Praveen Golchha</h3>
                         <span>(B.Com. FCA)</span><br />
-                        <span>Experience:22 Years</span>
+                        <span>Experience:26 Years</span>
                     </div>
                 </div>
             </div>
@@ -653,7 +653,7 @@
                     <div class="research__content">
                         <h3 class="research__title" style="color:blue;">CA. Sanjay Goyal</h3>
                         <span>(B.Com. FCA, DISA (ICAI))</span><br />
-                        <span>Experience:22 Years</span>
+                        <span>Experience:26 Years</span>
                     </div>
                 </div>
             </div>
@@ -880,16 +880,16 @@
                            <div class="form-group row mb-1">
                                <label for="course" class="col-sm-2 col-form-label">Course</label>
                                <div class="col-sm-10">
-                                   @Html.DropDownListFor(m => m.CourseId, Model.CourseDD, "Select", new { @id = "course", @class = "wide form-control", @required = "required" })
+                                   @Html.DropDownListFor(m => m.CourseMasterId, Model.CourseMasterDD, "Select", new { @id = "course", @class = "wide form-control", @required = "required" })
                                </div>
                            </div>
                            <div class="form-group row mb-1">
-                               <label for="applyfor" class="col-sm-2 col-form-label">Apply For</label>
+                               <label for="course" class="col-sm-2 col-form-label">Batch</label>
                                <div class="col-sm-10">
-                                   @Html.DropDownListFor(m => m.CourseId, Model.AppearingForDD, "Select", new { @id = "applyfor", @class = "wide form-control", @required = "required" })
+                                   @Html.DropDownListFor(m => m.BatchId, Model.BatchDD, "Select", new { @id = "batch", @class = "wide form-control", @required = "required" })
                                </div>
                            </div>
-                           <div class="form-group row mb-1">
+                           <div class="form-group row mb-1" style="display:none">
                                <label for="mode" class="col-sm-2 col-form-label">Mode</label>
                                <div class="col-sm-10">
                                    <select class="wide form-control" id="mode">
@@ -929,6 +929,6 @@
     var loadNewsDetails = "@Url.Content("~/Home/LoadNews")";
     var enquiry = "@Url.Content("~/Home/Enquiry")";
     var enquiry = "@Url.Content("~/Home/Enquiry")";
-    var GetAppearingFor = "@Url.Content("~/Home/GetAppearingFor")";
+    var GetBatch = "@Url.Content("~/Home/GetBatch")";
 
 </script>

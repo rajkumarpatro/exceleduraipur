@@ -13,11 +13,10 @@ namespace DAL.Models
         public List<TestimonialModel> TestimonialList { get; set; }
         public string PopupImg { get; set; }
         public bool ShowPopup { get; set; }
-
-
-        public int CourseId { get; set; }
-        public List<SelectListItem> CourseDD { get; set; }
-        public List<SelectListItem> AppearingForDD { get; set; }
+        public int CourseMasterId { get; set; }
+        public List<SelectListItem> CourseMasterDD { get; set; }
+        public int BatchId { get; set; }
+        public List<SelectListItem> BatchDD { get; set; }
     }   
 
     public class FlashModel
