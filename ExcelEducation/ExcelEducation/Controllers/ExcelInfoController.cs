@@ -24,6 +24,7 @@ namespace ExcelEducation.Controllers
             return View("ExcelInfo", ob);
         }
        
+
         public async Task<ActionResult> LoadPageContents(int topicid)
         {
             List<TopicDetail> details = await ExcelInfoDB.GetTopicDetails(topicid);

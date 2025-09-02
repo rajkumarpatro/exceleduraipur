@@ -74,8 +74,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogUpdates.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="ExcelInfoDB.cs" />
+    <Compile Include="Models\ContactUS.cs" />
     <Compile Include="Models\CourseMasterModel.cs" />
     <Compile Include="Models\CourseModel.cs" />
     <Compile Include="Models\EnquiryModel.cs" />

@@ -1,0 +1,137 @@
+﻿@model DAL.BlogUpdates
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+ 
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="@Url.Content("~/Content/admin/assets/css/plugins/dataTables.bootstrap4.min.css")">
+<link href="@Url.Content("~/Content/admin/Custom.css")" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+
+            <div class="card-header">
+                <h5>Blog Updates</h5>
+            </div>
+            <div class="card-body">
+                <form id="frm_BlogUpdates">
+                    @Html.HiddenFor(m => m.Id)
+
+                    <div class="row">
+
+                        <!-- Blog Info -->
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Category</label>
+                                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Blog Title", required = "required", Value = Model?.Title })
+
+                                        <label class="invalid-feedback">This field is required.</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Published Date</label>
+                                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Blog Title", required = "required", Value = Model?.Title })
+
+                                        <label class="invalid-feedback">This field is required.</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Blog Title", required = "required", Value = Model?.Title })
+
+
+                                        <label class="invalid-feedback">This field is required.</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="col-md-4">
+                            <label>Upload Image</label>
+                            <input onchange="previewFile(this);" type="file" id="uploadImage" accept=".jpg, .jpeg, .png" />
+                            <div class="image-upload mt-2">
+                                <img id="previewImg" src="@(!string.IsNullOrEmpty(Model?.ImageUrl) ? Model.ImageUrl : "~/Content/images/no-image.png")" style="height: 150px;" />
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <!-- Author Info -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Author Name</label>
+                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Blog Title", required = "required", Value = Model?.Title })
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Author Role</label>
+                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Blog Title", required = "required", Value = Model?.Title })
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Author Photo</label>
+                            <input type="file" id="uploadAuthorPhoto" accept=".jpg, .jpeg, .png" />
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button type="button" class="btn btn-secondary mr-2" id="btnBlogCancel">Cancel</button>
+                            <button type="submit" class="btn btn-success" id="btnBlogSubmit">Save</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Blog Listing -->
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="dt-responsive table-responsive">
+                            <table id="blogGridTable" class="table table-bordered"></table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+    var LoadBlogs = "@Url.Content("~/BlogUpdates/LoadBlogs")";
+    var SaveOrUpdateBlog = "@Url.Content("~/BlogUpdates/SaveOrUpdateBlog")";
+    var GetBlog = "@Url.Content("~/BlogUpdates/GetBlog")";
+    var DeleteBlog = "@Url.Content("~/BlogUpdates/DeleteBlog")";
+</script>
+
+
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/jquery.dataTables.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/dataTables.bootstrap4.min.js")"></script>
+
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.colVis.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.print.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/pdfmake.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/jszip.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/dataTables.buttons.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.html5.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/plugins/buttons.bootstrap4.min.js")"></script>
+<script src="@Url.Content("~/Content/admin/assets/js/pages/data-export-custom.js")"></script>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/custom/BlogUpdates/BlogUpdates.js")"></script>
+
+<script>
+    var LoadBlogs = "@Url.Content("~/BlogUpdates/LoadBlogs")";
+    var SaveOrUpdateBlog = "@Url.Content("~/BlogUpdates/SaveOrUpdateBlog")";
+    var GetBlog = "@Url.Content("~/BlogUpdates/GetBlog")";
+    var DeleteBlog = "@Url.Content("~/BlogUpdates/DeleteBlog")";
+</script>

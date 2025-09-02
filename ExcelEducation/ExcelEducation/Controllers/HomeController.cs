@@ -34,7 +34,7 @@ namespace ExcelEducation.Controllers
 
             return View("Index", homeViewModel);
         }
-
+       
         public async Task<ActionResult> LoadFlashPhotos()
         {
             List<FlashModel> flash = await FlashDB.LoadFlash();

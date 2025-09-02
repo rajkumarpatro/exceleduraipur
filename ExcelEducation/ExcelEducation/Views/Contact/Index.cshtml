@@ -1,0 +1,106 @@
+﻿@model DAL.Models.ContactUS
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+@* Razor View: Views/Contact/Index.cshtml *@
+ 
+<section class="page-header page-header--bg-two" style="background: url(/Content/home/images/backgrounds/page-header-bg-1-2.jpg) " data-jarallax data-speed="0.3">
+    <div class="page-header__overlay"></div>
+    <div class="container text-center">
+        <h2 class="page-header__title">Contact</h2>
+        <ul class="page-header__breadcrumb list-unstyled">
+            <li><a href="/">Home</a></li>
+            <li><span>Contact</span></li>
+        </ul>
+    </div>
+</section>
+
+
+<section class="contact-one">
+    <div class="container wow fadeInUp animated" data-wow-delay="300ms">
+        <div class="section-title text-center">
+            <h5 class="section-title__tagline">Contact with Us</h5>
+            <h2 class="section-title__title">Feel Free to Write us Anytime</h2>
+        </div>
+
+        <div class="contact-one__form-box text-center">
+            <form asp-action="Index" method="post" class="contact-one__form contact-form-validated" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="contact-one__input-box">
+                            <input asp-for="Name" class="form-control" placeholder="Your Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact-one__input-box">
+                            <input asp-for="Email" class="form-control" placeholder="Email Address" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact-one__input-box">
+                            <input asp-for="Phone" class="form-control" placeholder="Phone" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact-one__input-box">
+                            <input asp-for="Subject" class="form-control" placeholder="Subject" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="contact-one__input-box text-message-box">
+                            <textarea asp-for="Message" class="form-control" placeholder="Write a Message"></textarea>
+                            <span asp-validation-for="Message" class="text-danger"></span>
+                        </div>
+                        <div class="contact-one__btn-box mt-3">
+                            <button type="submit" class="eduact-btn eduact-btn-second">
+                                <span class="eduact-btn__curve"></span>
+                                Send a Message <i class="icon-arrow"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            @if (ViewBag.MessageSent == true)
+            {
+                <div class="alert alert-success mt-3">Your message has been sent successfully!</div>
+            }
+        </div>
+    </div>
+</section>
+<section class="contact-info">
+    <div class="container">
+        <ul class="contact-info__wrapper">
+            <li>
+                <div class="contact-info__icon"><span class="icon-Call"></span></div>
+                <p class="contact-info__title">Have any question?</p>
+                <h4 class="contact-info__text">Call<a href="tel:9926821000"> 9926821000 </a></h4>
+            </li>
+            <li class="active">
+                <div class="contact-info__icon"><span class="icon-Email"></span></div>
+                <p class="contact-info__title">Send Email</p>
+                <h4 class="contact-info__text"><a href="eeiraipur@gmail.com">eeiraipur@gmail.com</a></h4>
+            </li>
+            <li>
+                <div class="contact-info__icon"><span class="icon-Location"></span></div>
+                <p class="contact-info__title">Visit Anytime</p>
+                <h4 class="contact-info__text">
+                    <a href="https://www.google.com/maps?q=Excel+Tower,+Pachpedi+Naka,+Raipur,+Chhattisgarh,+India" target="_blank">
+                        Excel Tower, Pachpedi Naka, Raipur (C.G.), India
+                    </a>
+                </h4>
+            </li>
+ 
+        </ul>
+    </div>
+</section>
+
+
+
+@section Scripts {
+}

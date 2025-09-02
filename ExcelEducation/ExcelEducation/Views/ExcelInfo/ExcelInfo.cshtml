@@ -7,7 +7,7 @@
 
 
 <!-- breadcrumb area start -->
-<section class="breadcrumb__area include-bg  breadcrumb__overlay" data-background="@Url.Content("~/Content/home/assets/img/breadcrumb/breadcrumb-bg-1.jpg")">
+@*<section class="breadcrumb__area include-bg  breadcrumb__overlay" data-background="@Url.Content("~/Content/home/assets/img/breadcrumb/breadcrumb-bg-1.jpg")">
     <div class="container">
         <div class="row">
             <div class="col-xxl-12">
@@ -17,10 +17,74 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@
 <!-- breadcrumb area end -->
+<section class="page-header page-header--bg-two" data-jarallax data-speed="0.3" data-imgPosition="50% -100%">
+    <div class="page-header__bg jarallax-img"></div>
+    <!-- /.page-header-bg -->
+    <div class="page-header__overlay"></div>
+    <!-- /.page-header-overlay -->
+    <div class="container text-center">
+        <h2 class="page-header__title">@Model.page</h2>
+        <!-- /.page-breadcrumb list-unstyled -->
+    </div>
+    <!-- /.container -->
+</section>
+
 <!-- profile menu area start -->
-<section class="profile__menu pt-50 pb-50 grey-bg-2">
+<!--------28/08/25 tetsing start------->
+<section class="service-two" style="background-image: url(../../Content/home/images/shapes/service-bg-2.jpg);">
+    <div class="container">
+
+        <div class="row">
+            @{
+                string columns = "col-xxl-12 col-md-12";
+                var topics = Model.Topics;
+                var firstTopicId = Model.Topics.FirstOrDefault().TOPIC_ID;
+                int topicCount = Model.Topics.Count();
+
+                if (topicCount > 1)
+                {
+                    <div class="col-xl-3 col-lg-4 wow fadeInLeft" data-wow-delay="200ms">
+                        <div class="product__sidebar product__sidebar--left">
+                            <!-- /.price-slider -->
+                                        <div class="product__sidebar__single product__categories">
+                                            <h3 class="product__sidebar__title"> Major Topics</h3>
+                                            <ul class="list-unstyled">
+                                                @foreach (var topic in topics)
+                                                {
+                                                <li  id="lnk_topicdetails" data-topicid="@topic.TOPIC_ID" ><a href="products.html">@topic.TOPIC_NAME</a></li>
+                                                }
+                                                </ul> 
+                                        </div>
+                            <!-- /.category-widget -->
+                        </div>
+                        <!-- /.shop-sidebar -->
+                    </div>
+                    <!-- /.column -->
+
+                }
+            }
+
+            <div class="col-xl-9 col-lg-8">
+                <div class="product__sidebar__single product__categories">
+                    <h2 class=" section-title__title text-center">
+                        Mode of Learning
+                    </h2>
+                    <div class="product__info-top wow fadeInUp" data-wow-delay="200ms">
+                        <div class="product__showing-text-box">
+                            <div class="@columns">
+                                <div class="topic-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--------tetsing End------->
+@*<section class="profile__menu pt-50 pb-50 grey-bg-2">
     <div class="container">
         <div class="row">
 
@@ -57,7 +121,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@
 
 @*Custom Js*@
 
@@ -67,6 +131,6 @@
     var LoadPageContent = "@Url.Content("~/ExcelInfo/LoadPageContents")";
     var firstTopicID = @firstTopicId;
 
-    
+
 </script>
 <!-- profile menu area end -->
